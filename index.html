@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Faceted Search JavaScript Library
+    </title>
+    <style>
+
+      /* First come the styles which are used in the demo */
+
+      .facetsearch {
+        margin-bottom: 2em;
+        vertical-align: top;
+      }
+      .activeorderby,
+      .activefacet {
+        color: red;
+      }
+      .bottomline {
+        padding: 10px 0 10px 0;
+        font-weight: bold;
+      }
+      .bottomline .orderby,
+      .bottomline .facettotalcount {
+        display: inline-block;
+      }
+      .bottomline .orderby ul,
+      .bottomline .orderby li {
+        display: inline;
+        padding: 0;
+      }
+      .bottomline .orderby-title {
+        margin: 0 0 0 10px;
+      }
+      .bottomline .deselectstartover {
+        float: right;
+      }
+      .item {
+        width: 150px;
+        height: 250px;
+        margin: 0 10px 10px 0;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .item h4 {
+        font-size: 1.2em;
+      }
+      .item .tags {
+        font-weight: bold;
+        color: gray;
+      }
+      #showmorebutton {
+        border: 1px solid #AAA;
+        border-radius: 15px;
+        background-color: #DDD;
+        margin: 0 0 10px 0;
+        padding: 10px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      /* These styles are just general purpose styles to make the page look a little less aweful */
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        padding: 20px;
+        font-family: sans-serif;
+        font-size: 14px;
+        width: 40em;
+        margin: 0 auto;
+      }
+      #wrapper, #documentation {
+        margin: 0 auto;
+        width: 800px;
+      }
+      p {
+        padding-bottom: 1em;
+        line-height: 1.3em;
+      }
+      h1, h2, h3{
+        margin: 0 0 1em 0;
+      }
+      tt {
+        background-color: #EEE;
+        border: 1px solid #CCC;
+      }
+    </style>
+  </head>
+  <body>
+      <h2>Demo</h2>
+      <div id="facets"></div>
+      <ul id="results"></ul>
+    </div>
+    <script src="dependencies/jquery-1.6.2.js"></script>
+    <script src="dependencies/underscore-1.1.7.js"></script>
+    <script src="facetedsearch.js"></script>
+    <script>
+      $(function(){
+          var item_template =
+           '<li>' +
+             '<h4><a href="<%= obj.location %>"><%= obj.title %></a></h4>' +
+             '<p><%= obj.creator %> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p> ' +
+             '<p>' +
+             '<% if (obj.category) {  %><%= obj.category %><% } %>' +
+             '<% if (obj.continent) {  %>, <%= obj.continent %><% } %>' +
+             '<% if (obj.language) {  %>, <%= obj.language %><% } %>' +
+             '</p>' +
+             '<p class="desc"><%= obj.desc %></p>' +
+           '</li>';
+        settings = {
+          items            : example_items,
+          facets           : {
+                              'language'  : 'Languages',
+                              'guideline' : 'Guidelines',
+                              'manual' : 'Manual Evaluation',
+                              'runtime' : 'Runtime',
+                              'license' : 'License'
+          },
+          resultSelector   : '#results',
+          facetSelector    : '#facets',
+          resultTemplate   : item_template,
+          paginationCount  : 50,
+          orderByOptions   : {'title': 'Title'},
+          facetSortOption  : {'continent': ["North America", "South America"]}
+        }
+
+        // use them!
+        $.facetelize(settings);
+
+      });
+    </script>
+    <script>
+      // Most of the time I suppose you would use jQuery to get your data;
+      /*
+        $.getJSON( "http:/example.com", function(data){
+          $.facetelize....
+        });
+      */
+      var example_items = [{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": ["en"],
+  "guideline": ["wcag10"],
+  "manual": ["wizard"],
+  "runtime": ["flsh"],
+  "license": ["freeware"],
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["en", "fr"],
+  "guideline": ["wcag10", "section508"],
+  "automatic": ["single"],
+  "remote": "online",
+  "checks": ["html", "xhtml"],
+  "reports": ["htm"],
+  "license": ["freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+}];
+
+    </script>
+  </body>
+</html>
