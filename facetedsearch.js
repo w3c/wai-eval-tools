@@ -1,7 +1,7 @@
 ;(function(){
 
 /**
- * Please note that when passing in custom templates for 
+ * Please note that when passing in custom templates for
  * listItemTemplate and orderByTemplate to keep the classes as
  * they are used in the code at other locations as well.
  */
@@ -11,18 +11,20 @@ var defaults = {
   facets             : {'a': 'Title A', 'b': 'Title B', 'c': 'Title C'},
   resultSelector     : '#results',
   facetSelector      : '#facets',
+  infoSelector       : '#infos',
   facetContainer     : '<div class=facetsearch id=<%= id %> ></div>',
   facetTitleTemplate : '<h3 class=facettitle><%= title %></h3>',
   facetListContainer : '<div class=facetlist></div>',
   listItemTemplate   : '<div class=facetitem id="<%= id %>"><%= name %> <span class=facetitemcount>(<%= count %>)</span></div>',
+  listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %>)</span></span>',
   bottomContainer    : '<div class=bottomline></div>',
   orderByTemplate    : '<div class=orderby><span class="orderby-title">Sort by: </span><ul><% _.each(options, function(value, key) { %>'+
-                       '<li class=orderbyitem id=orderby_<%= key %>>'+
+                       '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
-  countTemplate      : '<div class=facettotalcount><%= count %> Results</div>',
-  deselectTemplate   : '<div class=deselectstartover>Deselect all filters</div>',
-  resultTemplate     : '<div class=facetresultbox><%= name %></div>',
-  noResults          : '<div class=results>Sorry, but no items match these criteria</div>',
+  countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
+  deselectTemplate   : '<button class="button-small">Deselect all filters</button>',
+  resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
+  noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
   state              : {
                          orderBy : false,
@@ -34,7 +36,7 @@ var defaults = {
 }
 
 /**
- * This is the first function / variable that gets exported into the 
+ * This is the first function / variable that gets exported into the
  * jQuery namespace. Pass in your own settings (see above) to initialize
  * the faceted search
  */
@@ -52,7 +54,7 @@ jQuery.facetelize = function(usersettings) {
 }
 
 /**
- * This is the second function / variable that gets exported into the 
+ * This is the second function / variable that gets exported into the
  * jQuery namespace. Use it to update everything if you messed with
  * the settings object
  */
@@ -68,7 +70,7 @@ jQuery.facetUpdate = function() {
  */
 
 /**
- * initializes all facets and their individual filters 
+ * initializes all facets and their individual filters
  */
 function initFacetCount() {
   _.each(settings.facets, function(facettitle, facet) {
@@ -114,7 +116,7 @@ function resetFacetCount() {
 }
 
 /**
- * Filters all items from the settings according to the currently 
+ * Filters all items from the settings according to the currently
  * set filters and stores the results in the settings.currentResults.
  * The number of items in each filter from each facet is also updated
  */
@@ -124,7 +126,7 @@ function filter() {
     var filtersApply = true;
     _.each(settings.state.filters, function(filter, facet) {
       if ($.isArray(item[facet])) {
-         var inters = _.intersect(item[facet], filter);
+         var inters = _.intersection(item[facet], filter);
          if (inters.length == 0) {
            filtersApply = false;
          }
@@ -164,7 +166,7 @@ function filter() {
 
 /**
  * Orders the currentResults according to the settings.state.orderBy variable
- */ 
+ */
 function order() {
   if (settings.state.orderBy) {
     $(".activeorderby").removeClass("activeorderby");
@@ -208,11 +210,11 @@ function createFacetUI() {
   var itemtemplate  = _.template(settings.listItemTemplate);
   var titletemplate = _.template(settings.facetTitleTemplate);
   var containertemplate = _.template(settings.facetContainer);
-  
+
   $(settings.facetSelector).html("");
-  _.each(settings.facets, function(facettitle, facet) {
-    var facetHtml     = $(containertemplate({id: facet}));
-    var facetItem     = {title: facettitle};
+  _.each(settings.facets, function(current, facet) {
+    var facetHtml     = $(containertemplate({id: facet, obj: current}));
+    var facetItem     = current;
     var facetItemHtml = $(titletemplate(facetItem));
 
     facetHtml.append(facetItemHtml);
@@ -245,7 +247,7 @@ function createFacetUI() {
   var ordertemplate = _.template(settings.orderByTemplate);
   var itemHtml = $(ordertemplate({'options': settings.orderByOptions}));
   $(bottom).append(itemHtml);
-  $(settings.facetSelector).append(bottom);
+  $(settings.infoSelector).append(bottom);
   $('.orderbyitem').each(function(){
     var id = this.id.substr(8);
     if (settings.state.orderBy == id) {
@@ -290,21 +292,22 @@ function getFilterById(id) {
  * It adds a class to the active filters and shows the correct number for each
  */
 function updateFacetUI() {
-  var itemtemplate = _.template(settings.listItemTemplate);
+  var itemtemplate = _.template(settings.listItemInnerTemplate);
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
+      console.log(itemtemplate(item));
       $("#"+filter.id).html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
-        $("#"+filter.id).addClass("activefacet");
+        $("#"+filter.id).addClass("activefacet").attr('aria-pressed', 'true');
       } else {
-        $("#"+filter.id).removeClass("activefacet");
+        $("#"+filter.id).removeClass("activefacet").attr('aria-pressed', 'false');
       }
     });
   });
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length});
-  $(settings.facetSelector + ' .facettotalcount').replaceWith(countHtml);
+  $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
 }
 
 /**
@@ -317,9 +320,9 @@ function updateResults() {
 
 var moreButton;
 function showMoreResults() {
-  var showNowCount = 
-      settings.enablePagination ? 
-      Math.min(settings.currentResults.length - settings.state.shownResults, settings.paginationCount) : 
+  var showNowCount =
+      settings.enablePagination ?
+      Math.min(settings.currentResults.length - settings.state.shownResults, settings.paginationCount) :
       settings.currentResults.length;
   var itemHtml = "";
   var template = _.template(settings.resultTemplate);

@@ -1,137 +1,203 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>
-      Faceted Search JavaScript Library
-    </title>
-    <style>
+<!doctype html>
+<html class="no-js no-svg" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Accessibility Tools List</title>
+  <meta name="viewport" content="width=device-width">
+  <link href="http://w3c.github.io/wai-tutorials/stylesheets/wai-act-2a25d6d7.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://w3c.github.io/wai-tutorials/javascripts/modernizr-8ab87436.js" type="text/javascript"></script>
+  <style>
+    details, summary { display: block; border: 1px solid #666; padding: .5em; margin-bottom: 1em; box-sizing: border-box;}
+    /* Apply a pointer cursor and style the background upon hover to indicate <summary> is a clickable element. */
+    /* These styles can be applied regardless of whether the fallback is needed */
+    summary { cursor: pointer; margin-bottom:0; border: none;}
+    summary:hover, summary:focus { background: #ddd; }
 
-      /* First come the styles which are used in the demo */
-
-      .facetsearch {
-        margin-bottom: 2em;
-        vertical-align: top;
-      }
-      .activeorderby,
-      .activefacet {
-        color: red;
-      }
-      .bottomline {
-        padding: 10px 0 10px 0;
-        font-weight: bold;
-      }
-      .bottomline .orderby,
-      .bottomline .facettotalcount {
-        display: inline-block;
-      }
-      .bottomline .orderby ul,
-      .bottomline .orderby li {
-        display: inline;
-        padding: 0;
-      }
-      .bottomline .orderby-title {
-        margin: 0 0 0 10px;
-      }
-      .bottomline .deselectstartover {
-        float: right;
-      }
-      .item {
-        width: 150px;
-        height: 250px;
-        margin: 0 10px 10px 0;
-        display: inline-block;
-        vertical-align: top;
-      }
-      .item h4 {
-        font-size: 1.2em;
-      }
-      .item .tags {
-        font-weight: bold;
-        color: gray;
-      }
-      #showmorebutton {
-        border: 1px solid #AAA;
-        border-radius: 15px;
-        background-color: #DDD;
-        margin: 0 0 10px 0;
-        padding: 10px;
-        width: 100%;
-        display: block;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      /* These styles are just general purpose styles to make the page look a little less aweful */
-
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        padding: 20px;
-        font-family: sans-serif;
-        font-size: 14px;
-        width: 40em;
-        margin: 0 auto;
-      }
-      #wrapper, #documentation {
-        margin: 0 auto;
-        width: 800px;
-      }
-      p {
-        padding-bottom: 1em;
-        line-height: 1.3em;
-      }
-      h1, h2, h3{
-        margin: 0 0 1em 0;
-      }
-      tt {
-        background-color: #EEE;
-        border: 1px solid #CCC;
-      }
-    </style>
-  </head>
-  <body>
-      <h2>Demo</h2>
-      <div id="facets"></div>
-      <ul id="results"></ul>
+    /* The following styles are not really needed, since the jQuery script takes care of hiding/displaying the elements. */
+    /* However, we’re still gonna use CSS as well to prevent FOUC in browsers that understand these selectors. */
+    /* Remember: by default (and probably most of the time), the contents of the <details> element are hidden. */
+    .no-details details > * { display: none; }
+    /* This doesn’t work very well in Firefox 3.6.x */
+    .no-details details[open] > * { display: block; }
+    /* The following doesn’t toggle correctly in WebKit:
+    .no-details details > summary:before { content: '► '; }
+    .no-details details[open] > summary:before { content: '▼ '; }
+    */
+    /* And yes, it should really be ::before, but that doesn’t work in IE8 */
+    .no-details details > summary:before { float: left; width: 20px; content: '► '; }
+    .no-details details.open > summary:before { content: '▼ '; }
+    /* For IE6 and IE7, who don’t support generated content, you could use padding-left + a background image instead */
+    /* I really couldn’t be bothered though. */
+    /*
+    .no-details details > summary { padding-left: 20px; background: url(img/arrow-sprite.png) no-repeat 0 0; }
+    .no-details details.open > summary { background-position: 0 -20px; }
+    */
+    /* Make sure summary remains visible */
+    .no-details details summary { display: block; }
+    .facetsearch {
+      display:inline-block;
+      width: 100%;
+    }
+    [aria-pressed="true"] {
+      background: #000 !important;
+      color: #fff !important;
+    }
+    .tool-item h4 {
+      margin-bottom: 0;
+    }
+    .tool-item p {
+      margin: 0;
+    }
+    .tool-item p.desc {
+      overflow:hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .tool-item h4 i {
+      font-weight: normal;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body class="texts">
+  <header role="banner">
+    <div class="w3c-wai-header">
+      <a href="http://w3.org/"><img alt="W3C" width="90" src="http://w3c.github.io/wai-tutorials/img/w3c-796023c4.png" /></a>
+      <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="http://w3c.github.io/wai-tutorials/img/wai-4c28be39.png" /></a>
     </div>
-    <script src="dependencies/jquery-1.6.2.js"></script>
-    <script src="dependencies/underscore-1.1.7.js"></script>
+  </header>
+  <main role="main">
+  <!--
+    <div class="page-title">
+      Accessibility Tools List
+    </div>-->
+    <!--<a href="#nav" class="btn btn-jump">Jump to the navigation</a>-->
+<div class="content draft">
+  <div class="grid">
+    <header class="tutorial-heading">
+      <h1>
+        Accessibility Tools List
+      </h1>
+    </header>
+    <div class="with-filter">
+      <aside class="column-first">
+        <div id="facets">
+
+        </div>
+      </aside>
+      <div class="column-second">
+        <div id="infos"></div>
+        <ul id="results"></ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+    <script src="dependencies/jquery.js"></script>
+    <script src="dependencies/underscore.js"></script>
     <script src="facetedsearch.js"></script>
+    <script type="text/template" id="results-template">
+      <li class="tool-item">
+        <h4><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h4>
+        <p class="desc"><%= obj.desc %></p>
+        <p> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p>
+        <ul>
+          <% if (obj.assistance) { %>
+            <li>
+            <% if (obj.assistance instanceof Array && obj.assistance.length > 1) { %>
+              <strong>Assistance width:</strong> <%= obj.assistance.join(', ') %>
+            <% } else { %>
+              <strong>Assistance with:</strong> <%= obj.assistance %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.type) { %>
+            <li>
+            <% if (obj.type instanceof Array && obj.type.length > 1) { %>
+              <strong>Type of tool:</strong> <%= obj.type.join(', ') %>
+            <% } else { %>
+              <strong>Type of tool:</strong> <%= obj.type %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.language) { %>
+            <li>
+            <% if (obj.language instanceof Array && obj.language.length > 1) { %>
+              <strong>Languages:</strong> <%= obj.language.join(', ') %>
+            <% } else { %>
+              <strong>Language:</strong> <%= obj.language %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.platform) { %>
+            <li>
+            <% if (obj.platform instanceof Array && obj.platform.length > 1) { %>
+              <strong>Platforms:</strong> <%= obj.platform.join(', ') %>
+            <% } else { %>
+              <strong>Platform:</strong> <%= obj.platform %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.checks) { %>
+            <li>
+            <% if (obj.checks instanceof Array && obj.checks.length > 1) { %>
+              <strong>Checks:</strong> <%= obj.checks.join(', ') %>
+            <% } else { %>
+              <strong>Checks:</strong> <%= obj.checks %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.automatic) { %>
+            <li>
+            <% if (obj.automatic instanceof Array && obj.automatic.length > 1) { %>
+              <strong>Automatic testing:</strong> <%= obj.automatic.join(', ') %>
+            <% } else { %>
+              <strong>Automatic testing:</strong> <%= obj.automatic %>
+            <% } %>
+            </li>
+          <% }; %>
+        </ul>
+      </li>
+</script>
+  <script>
+  /*! http://mths.be/details v0.1.0 by @mathias | includes http://mths.be/noselect v1.0.3 */
+  ;(function(a,f){var e=f.fn,d,c=Object.prototype.toString.call(window.opera)=='[object Opera]',g=(function(l){var j=l.createElement('details'),i,h,k;if(!('open' in j)){return false}h=l.body||(function(){var m=l.documentElement;i=true;return m.insertBefore(l.createElement('body'),m.firstElementChild||m.firstChild)}());j.innerHTML='<summary>a</summary>b';j.style.display='block';h.appendChild(j);k=j.offsetHeight;j.open=true;k=k!=j.offsetHeight;h.removeChild(j);if(i){h.parentNode.removeChild(h)}return k}(a)),b=function(i,l,k,h){var j=i.prop('open'),m=j&&h||!j&&!h;if(m){i.removeClass('open').prop('open',false).triggerHandler('close.details');l.attr('aria-expanded',false);k.hide()}else{i.addClass('open').prop('open',true).triggerHandler('open.details');l.attr('aria-expanded',true);k.show()}};e.noSelect=function(){var h='none';return this.bind('selectstart dragstart mousedown',function(){return false}).css({MozUserSelect:h,msUserSelect:h,webkitUserSelect:h,userSelect:h})};if(g){d=e.details=function(){return this.each(function(){var i=f(this),h=f('summary',i).first();h.attr({role:'button','aria-expanded':i.prop('open')}).on('click',function(){var j=i.prop('open');h.attr('aria-expanded',!j);i.triggerHandler((j?'close':'open')+'.details')})})};d.support=g}else{d=e.details=function(){return this.each(function(){var h=f(this),j=f('summary',h).first(),i=h.children(':not(summary)'),k=h.contents(':not(summary)');if(!j.length){j=f('<summary>').text('Details').prependTo(h)}if(i.length!=k.length){k.filter(function(){return this.nodeType==3&&/[^ \t\n\f\r]/.test(this.data)}).wrap('<span>');i=h.children(':not(summary)')}h.prop('open',typeof h.attr('open')=='string');b(h,j,i);j.attr('role','button').noSelect().prop('tabIndex',0).on('click',function(){j.focus();b(h,j,i,true)}).keyup(function(l){if(32==l.keyCode||(13==l.keyCode&&!c)){l.preventDefault();j.click()}})})};d.support=g}}(document,jQuery));
+</script>
     <script>
       $(function(){
-          var item_template =
-           '<li>' +
-             '<h4><a href="<%= obj.location %>"><%= obj.title %></a></h4>' +
-             '<p><%= obj.creator %> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p> ' +
-             '<p>' +
-             '<% if (obj.category) {  %><%= obj.category %><% } %>' +
-             '<% if (obj.continent) {  %>, <%= obj.continent %><% } %>' +
-             '<% if (obj.language) {  %>, <%= obj.language %><% } %>' +
-             '</p>' +
-             '<p class="desc"><%= obj.desc %></p>' +
-           '</li>';
+          var item_template = $('#results-template').text();
         settings = {
           items            : example_items,
           facets           : {
-                              'language'  : 'Languages',
-                              'guideline' : 'Guidelines',
-                              'manual' : 'Manual Evaluation',
-                              'runtime' : 'Runtime',
-                              'license' : 'License'
+                              'language'  : {'title': 'Languages'},
+                              'assistance': {'title': 'Assistance'},
+                              'guideline' : {'title': 'Guidelines'},
+                              'platform' : {'title': 'Platform'},
+                              'license' : {'title': 'License', 'collapsed': true},
+                              'automatic': {'title': 'Automatically checks…', 'collapsed': true},
+                              'type': {'title': 'Type', 'collapsed': true},
+                              'checks': {'title': 'Checks', 'collapsed': true},
+                              'reports': {'title': 'Report Format', 'collapsed': true}
           },
           resultSelector   : '#results',
           facetSelector    : '#facets',
           resultTemplate   : item_template,
-          paginationCount  : 50,
+          paginationCount  : 999,
           orderByOptions   : {'title': 'Title'},
-          facetSortOption  : {'continent': ["North America", "South America"]}
+          facetSortOption  : {},
+          listItemTemplate   : '<div><button class="btn-small facetitem" aria-pressed="false" id="<%= id %>"> <%= name %> <span class=facetitemcount>(<%= count %><span class="visuallyhidden"> remaining results</span>)</span></button></div>',
+          listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %><span class="visuallyhidden"> remaining results</span>)</span></span>',
+          orderByTemplate    : '',
+          countTemplate      : '<div class="facettotalcount" aria-live="true"><%= count %> Results</div>',
+          facetTitleTemplate : '<summary class="facettitle"><%= title %></summary>',
+          facetContainer     : '<details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details> <%= obj %>',
         }
 
         // use them!
         $.facetelize(settings);
-
+        // Emulate <details> where necessary and enable open/close event handlers
+        $('details').details();
+        $('html').addClass($.fn.details.support ? 'details' : 'no-details');
       });
     </script>
     <script>
@@ -147,11 +213,12 @@
   "location": "http://www.binaryblue.com.au/access_wizard/",
   "release": "2003-06-24",
   "version": "1.0",
-  "language": ["en"],
-  "guideline": ["wcag10"],
-  "manual": ["wizard"],
-  "runtime": ["flsh"],
-  "license": ["freeware"],
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
   "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
 },
 {
@@ -160,14 +227,279 @@
   "location": "http://webxact.watchfire.com/",
   "release": "2005-03-14",
   "version": "4.0",
-  "language": ["en", "fr"],
-  "guideline": ["wcag10", "section508"],
-  "automatic": ["single"],
-  "remote": "online",
-  "checks": ["html", "xhtml"],
-  "reports": ["htm"],
-  "license": ["freeware"],
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
   "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
+},
+{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
+},
+{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
+},
+{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
+},
+{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
+},
+{
+  "title": "Accessibility Wizard",
+  "creator": "Binary Blue",
+  "location": "http://www.binaryblue.com.au/access_wizard/",
+  "release": "2003-06-24",
+  "version": "1.0",
+  "language": "English",
+  "guideline": ["WCAG 1.0"],
+  "assistance": ["Step-by-step evaluations"],
+  "platform": ["Flash"],
+  "license": ["Freeware"],
+  "type": "Online Tool",
+  "desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
+},
+{
+  "title": "WebXACT",
+  "creator": "Watchfire",
+  "location": "http://webxact.watchfire.com/",
+  "release": "2005-03-14",
+  "version": "4.0",
+  "language": ["English", "French (<span lang='fr'>Français</span>)"],
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Automated Checks"],
+  "automatic": ["Single Web Pages"],
+  "type": "Online Tool",
+  "checks": ["HTML", "XHTML"],
+  "reports": ["HTML"],
+  "license": ["Freeware"],
+  "desc": "WebXACT is a free online service that enables users to test single pages of web content for accessibility, quality and privacy issues. Can be integrated into the browser via favelet or similar technology."
+},
+{
+  "title":"AccRepair",
+  "version":"DS2 2005/8.x",
+  "release": "2005-01-01",
+  "creator":"HiSoftware",
+  "location":"http://www.hisoftware.com/access/repair.html",
+  "desc": "Description: AccRepair by HiSoftware provides for the verification and correction of Accessibility policy and standards required for Web sites. AccRepair supports the WCAG Guidelines at all three levels, as well as Section 508, and through the Usability Test Manager provides usability testing. AccRepair is designed to work as a standalone client or integrated with Microsoft FrontPage, Microsoft Office 2000 and XP. AccRepair includes a Repair Library Editor allowing for team services and automated repairs of common accessibility errors, and all the verification functions of AccVerify, as well as Hi-Caption and metadata management. A developer's kit including API's and sample source code is available to allow extension or integration with other products. AccRepair provides out-of-the-box testing and reporting for Accessibility, Privacy, Metadata and Usability standards. It also allows users to define and conduct custom tests.",
+  "language": "English",
+  "guideline": ["WCAG 1.0", "Section 508"],
+  "assistance": ["Generating Reports", "Step-by-step evaluations", "In-page feedback", "Page transformation"],
+  "automatic": ["Single Web Pages", "Page groups", "Restricted pages"],
+  "repair": "Code modification",
+  "checks": ["CSS", "HTML", "XHTML", "PDF", "SVG"],
+  "platform": ["Windows",".NET"],
+  "authoringtools": "FrontPage",
+  "ide": "Visual Studio",
+  "reports": ["HTML", "XML", "EARL", "CSV"],
+  "license": ["Commercial", "Enterprise"]
 }];
 
     </script>
