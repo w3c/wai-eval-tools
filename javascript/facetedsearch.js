@@ -33,7 +33,7 @@ var defaults = {
   showMoreTemplate   : '<a id=showmorebutton>Show more</a>',
   enablePagination   : true,
   paginationCount    : 20
-}
+};
 
 /**
  * This is the first function / variable that gets exported into the
@@ -51,7 +51,7 @@ jQuery.facetelize = function(usersettings) {
   order();
   createFacetUI();
   updateResults();
-}
+};
 
 /**
  * This is the second function / variable that gets exported into the
@@ -63,7 +63,7 @@ jQuery.facetUpdate = function() {
   order();
   updateFacetUI();
   updateResults();
-}
+};
 
 /**
  * The following section contains the logic of the faceted search
@@ -81,11 +81,11 @@ function initFacetCount() {
     _.each(settings.facets, function(facettitle, facet) {
       if ($.isArray(item[facet])) {
         _.each(item[facet], function(facetitem) {
-          settings.facetStore[facet][facetitem] = settings.facetStore[facet][facetitem] || {count: 0, id: _.uniqueId("facet_")}
+          settings.facetStore[facet][facetitem] = settings.facetStore[facet][facetitem] || {count: 0, id: _.uniqueId("facet_")};
         });
       } else {
         if (item[facet] !== undefined) {
-          settings.facetStore[facet][item[facet]] = settings.facetStore[facet][item[facet]] || {count: 0, id: _.uniqueId("facet_")}
+          settings.facetStore[facet][item[facet]] = settings.facetStore[facet][item[facet]] || {count: 0, id: _.uniqueId("facet_")};
         }
       }
     });
@@ -127,7 +127,7 @@ function filter() {
     _.each(settings.state.filters, function(filter, facet) {
       if ($.isArray(item[facet])) {
          var inters = _.intersection(item[facet], filter);
-         if (inters.length == 0) {
+         if (inters.length === 0) {
            filtersApply = false;
          }
       } else {
@@ -156,11 +156,13 @@ function filter() {
     });
   });
   // remove confusing 0 from facets where a filter has been set
+  /*
   _.each(settings.state.filters, function(filters, facettitle) {
     _.each(settings.facetStore[facettitle], function(facet) {
-      if (facet.count == 0 && settings.state.filters[facettitle].length) facet.count = "+";
+      if (facet.count === 0 && settings.state.filters[facettitle].length) {facet.count = "+";}
     });
   });
+  */
   settings.state.shownResults = 0;
 }
 
@@ -192,7 +194,7 @@ function toggleFilter(key, value) {
     settings.state.filters[key].push(value);
   } else {
     settings.state.filters[key] = _.without(settings.state.filters[key], value);
-    if (settings.state.filters[key].length == 0) {
+    if (settings.state.filters[key].length === 0) {
       delete settings.state.filters[key];
     }
   }
@@ -298,11 +300,16 @@ function updateFacetUI() {
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
       console.log(itemtemplate(item));
-      $("#"+filter.id).html(filteritem);
+      $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
-        $("#"+filter.id).addClass("activefacet").attr('aria-pressed', 'true');
+        $("#"+filter.id).addClass("activefacet");
       } else {
-        $("#"+filter.id).removeClass("activefacet").attr('aria-pressed', 'false');
+        $("#"+filter.id).removeClass("activefacet");
+      }
+      if (filter.count === 0) {
+        $("#"+filter.id).prop('disabled', true);
+      } else {
+        $("#"+filter.id).removeProp('disabled');
       }
     });
   });
@@ -314,7 +321,7 @@ function updateFacetUI() {
  * Updates the the list of results according to the filters that have been set
  */
 function updateResults() {
-  $(settings.resultSelector).html(settings.currentResults.length == 0 ? settings.noResults : "");
+  $(settings.resultSelector).html(settings.currentResults.length === 0 ? settings.noResults : "");
   showMoreResults();
 }
 
@@ -332,14 +339,14 @@ function showMoreResults() {
       batchItemNr    : i - settings.state.shownResults,
       batchItemCount : showNowCount
     });
-    var itemHtml = itemHtml + template(item);
+    itemHtml = itemHtml + template(item);
   }
   $(settings.resultSelector).append(itemHtml);
   if (!moreButton) {
     moreButton = $(settings.showMoreTemplate).click(showMoreResults);
     $(settings.resultSelector).after(moreButton);
   }
-  if (settings.state.shownResults == 0) {
+  if (settings.state.shownResults === 0) {
     moreButton.show();
   }
   settings.state.shownResults += showNowCount;

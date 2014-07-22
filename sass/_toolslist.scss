@@ -1,0 +1,53 @@
+.facetsearch {
+  display:inline-block;
+  width: 100%;
+}
+[aria-pressed="true"] {
+  background: #000 !important;
+  color: #fff !important;
+}
+.tool-item h4 {
+  margin-bottom: 0;
+}
+.tool-item p {
+  margin: 0;
+}
+.tool-item p.desc {
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tool-item h4 i {
+  font-weight: normal;
+  font-size: 0.9em;
+}
+
+.facetitemcount {
+    font-size: 0.8em;
+}
+
+.facetlist {
+  margin: 0;
+  padding: .5em;
+  li {
+    display:inline;
+    margin-right: 0.5em;
+  }
+}
+
+.facetitem {
+}
+
+details:nth-child(even) {
+  background-color: #eee;
+}
+
+summary:hover,
+summary:focus {
+  background: #777;
+  color: #fff;
+}
+
+[type=checkbox]:disabled + span {
+  color: #777;
+}

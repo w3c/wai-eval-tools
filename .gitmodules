@@ -1,0 +1,3 @@
+[submodule "lib/treevue"]
+	path = lib/treevue
+	url = https://github.com/WilcoFiers/treevue
