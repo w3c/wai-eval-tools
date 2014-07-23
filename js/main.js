@@ -13,6 +13,22 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
 /*! http://mths.be/details v0.1.0 by @mathias | includes http://mths.be/noselect v1.0.3 */
   ;(function(a,f){var e=f.fn,d,c=Object.prototype.toString.call(window.opera)=='[object Opera]',g=(function(l){var j=l.createElement('details'),i,h,k;if(!('open' in j)){return false}h=l.body||(function(){var m=l.documentElement;i=true;return m.insertBefore(l.createElement('body'),m.firstElementChild||m.firstChild)}());j.innerHTML='<summary>a</summary>b';j.style.display='block';h.appendChild(j);k=j.offsetHeight;j.open=true;k=k!=j.offsetHeight;h.removeChild(j);if(i){h.parentNode.removeChild(h)}return k}(a)),b=function(i,l,k,h){var j=i.prop('open'),m=j&&h||!j&&!h;if(m){i.removeClass('open').prop('open',false).triggerHandler('close.details');l.attr('aria-expanded',false);k.hide()}else{i.addClass('open').prop('open',true).triggerHandler('open.details');l.attr('aria-expanded',true);k.show()}};e.noSelect=function(){var h='none';return this.bind('selectstart dragstart mousedown',function(){return false}).css({MozUserSelect:h,msUserSelect:h,webkitUserSelect:h,userSelect:h})};if(g){d=e.details=function(){return this.each(function(){var i=f(this),h=f('summary',i).first();h.attr({role:'button','aria-expanded':i.prop('open')}).on('click',function(){var j=i.prop('open');h.attr('aria-expanded',!j);i.triggerHandler((j?'close':'open')+'.details')})})};d.support=g}else{d=e.details=function(){return this.each(function(){var h=f(this),j=f('summary',h).first(),i=h.children(':not(summary)'),k=h.contents(':not(summary)');if(!j.length){j=f('<summary>').text('Details').prependTo(h)}if(i.length!=k.length){k.filter(function(){return this.nodeType==3&&/[^ \t\n\f\r]/.test(this.data)}).wrap('<span>');i=h.children(':not(summary)')}h.prop('open',typeof h.attr('open')=='string');b(h,j,i);j.attr('role','button').noSelect().prop('tabIndex',0).on('click',function(){j.focus();b(h,j,i,true)}).keyup(function(l){if(32==l.keyCode||(13==l.keyCode&&!c)){l.preventDefault();j.click()}})})};d.support=g}}(document,jQuery));
 
+jQuery.fn.highlight = function() {
+   $(this).each(function() {
+        var el = $(this);
+        el.before("<div/>")
+        el.prev()
+            .width(el.width())
+            .height(el.height())
+            .css({
+                "position": "absolute",
+                "background-color": "#ffff99",
+                "opacity": ".8"
+            })
+            .fadeOut(750);
+    });
+}
+
 ;(function(){
 
 /**
@@ -37,7 +53,7 @@ var defaults = {
                        '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
   countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
-  deselectTemplate   : '<button class="button-small">Deselect all filters</button>',
+  deselectTemplate   : '<a href="#" class="button-small">Show all tools</button>',
   resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
   noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
@@ -185,17 +201,13 @@ function filter() {
  * Orders the currentResults according to the settings.state.orderBy variable
  */
 function order() {
-  if (settings.state.orderBy) {
-    $(".activeorderby").removeClass("activeorderby");
-    $('#orderby_'+settings.state.orderBy).addClass("activeorderby");
     settings.currentResults = _.sortBy(settings.currentResults, function(item) {
       if (settings.state.orderBy == 'RANDOM') {
         return Math.random()*10000;
       } else {
-        return item[settings.state.orderBy];
+        return item['title'];
       }
     });
-  }
 }
 
 /**
@@ -258,7 +270,7 @@ function createFacetUI() {
   });
   // Append total result count
   var bottom = $(settings.bottomContainer);
-  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length});
+  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: false});
   $(bottom).append(countHtml);
   // generate the "order by" options:
   var ordertemplate = _.template(settings.orderByTemplate);
@@ -309,15 +321,19 @@ function getFilterById(id) {
  * It adds a class to the active filters and shows the correct number for each
  */
 function updateFacetUI() {
+  //$('#results').toggleClass('updated1').toggleClass('updated2');
+  var activeFilters = [];
   var itemtemplate = _.template(settings.listItemInnerTemplate);
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
+      console.log('Filter: ' + filtername);
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
-      console.log(itemtemplate(item));
+      // console.log(itemtemplate(item));
       $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
         $("#"+filter.id).addClass("activefacet");
+        activeFilters.push(filtername);
       } else {
         $("#"+filter.id).removeClass("activefacet");
       }
@@ -328,8 +344,13 @@ function updateFacetUI() {
       }
     });
   });
-  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length});
+  console.log(activeFilters.length);
+  if (activeFilters.length === 0) {
+    activeFilters = false;
+  }
+  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
+  $('#results').highlight();
 }
 
 /**
@@ -391,14 +412,14 @@ $(function(){
     resultSelector   : '#results',
     facetSelector    : '#facets',
     resultTemplate   : item_template,
-    paginationCount  : 999,
+    paginationCount  : 8,
     orderByOptions   : {'title': 'Title'},
     facetSortOption  : {},
     facetListContainer : '<ul class=facetlist></ul>',
     listItemTemplate   : '<li><label><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>"> <span><%= name %> <span class="facetitemcount">(<%= count %> Tools)</span></span></label></li>',
     listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> Tools)</span></span>',
     orderByTemplate    : '',
-    countTemplate      : '<div class="facettotalcount" aria-live="true"><%= count %> Results</div>',
+    countTemplate      : '<div class="facettotalcount"><span aria-live="true"><%= count %> Results</span><% if (filters) { %> <span><strong>Selected Filters:</strong> <%= filters.join(", ") %> </span><% } %></div>',
     facetTitleTemplate : '<summary class="facettitle"><%= title %></summary>',
     facetContainer     : '<details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details> <%= obj %>',
   };

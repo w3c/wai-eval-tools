@@ -13,9 +13,15 @@
   margin: 0;
 }
 .tool-item p.desc {
+  font-size: 0.9em;
+  max-height: 5*1.5em;
   overflow:hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+  transition: max-height .75s;
+  &:hover, &:focus {
+    max-height:20*1.5em;
+  }
 }
 .tool-item h4 i {
   font-weight: normal;
@@ -28,9 +34,9 @@
 
 .facetlist {
   margin: 0;
-  padding: .5em;
+  padding: 0 .5em .5em;
   li {
-    display:inline;
+    list-style: none;
     margin-right: 0.5em;
   }
 }
@@ -50,4 +56,46 @@ summary:focus {
 
 [type=checkbox]:disabled + span {
   color: #777;
+}
+
+.bottomline {
+  div, a {
+    display: inline-block;
+  }
+  a, span {
+    margin-left: 0.5em;
+  }
+  span[aria-live] {
+    margin-left: 0;
+  }
+}
+
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  > li {
+    flex-basis: 49%;
+    margin-bottom: 1.333333333em;
+    list-style: none;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    border-radius: .5em;
+    box-shadow: 0 0 3px rgba(#000, .5);
+    overflow:hidden;
+  }
+  h4, p, ul {padding: .25em .5em;}
+  ul {
+    margin-left: 1em;
+  }
+  h4 {
+    font-size: 1em;
+    margin: 0;
+    background-color: #aaa;
+    &, a {
+      color: #fff;
+    }
+  }
 }

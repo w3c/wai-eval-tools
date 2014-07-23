@@ -107,6 +107,27 @@ header[role=banner] {
 	}
 }
 
+.page-title {
+	font-size: 1.75em;
+	@extend .font-secondary;
+	margin-bottom: 1em;
+	line-height: 1;
+	padding: .25em 0 0;
+	.subheading {
+		padding: .25em 0 0;
+		display:block;
+		font-size: .5em;
+		@extend .font-primary;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+}
+
 // Main
 //
 // Markup: <main role="main"></main>
@@ -203,56 +224,8 @@ a {
 }
 
 .navigation {
+	overflow:hidden;
 	background-color: #ddd;
-	&.tabbed {
-		@include container-full();
-		ul {
-			margin:0;
-			padding:0;
-			list-style:none;
-			width: 100%;
-			float: left;
-			@include generate_grid_positions(li, 4);
-			@include background(linear-gradient(to bottom, lighten(#036, 10%), #036));
-			li {
-				@include column(4);
-				margin-bottom: 0 !important;
-				//border-right: 1px solid #eee;
-				//box-sizing:border-box;
-				text-align: center;
-				a:hover, a:focus {
-					background-color: rgba(#fff, .1);
-				}
-				&:last-child {
-					border-right: none;
-				}
-				a {
-					display: block;
-					padding: 1em;
-					//background-color: #036;
-					color: #fff;
-				}
-				&.current {
-					position:relative;
-					overflow: visible;
-					@include background(linear-gradient(to bottom, #360, lighten(#360, 10%)));
-					&::after {
-						position: absolute;
-						display: inline-block;
-						content: "";
-						border-width: 1em 1em;
-						height: 0;
-						width: 0;
-						border-color: #4D9900 transparent transparent transparent;
-						top: 100%;
-						left: 48%;
-						left: calc(50% - .5em);
-						border-style: solid;
-					}
-				}
-			}
-		}
-	}
 	&.main {
 		@include mq($big) {
 			font-size: 1.25em;

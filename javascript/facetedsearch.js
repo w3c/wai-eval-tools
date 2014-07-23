@@ -1,3 +1,19 @@
+jQuery.fn.highlight = function() {
+   $(this).each(function() {
+        var el = $(this);
+        el.before("<div/>")
+        el.prev()
+            .width(el.width())
+            .height(el.height())
+            .css({
+                "position": "absolute",
+                "background-color": "#ffff99",
+                "opacity": ".8"
+            })
+            .fadeOut(750);
+    });
+}
+
 ;(function(){
 
 /**
@@ -22,7 +38,7 @@ var defaults = {
                        '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
   countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
-  deselectTemplate   : '<button class="button-small">Deselect all filters</button>',
+  deselectTemplate   : '<a href="#" class="button-small">Show all tools</button>',
   resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
   noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
@@ -170,17 +186,13 @@ function filter() {
  * Orders the currentResults according to the settings.state.orderBy variable
  */
 function order() {
-  if (settings.state.orderBy) {
-    $(".activeorderby").removeClass("activeorderby");
-    $('#orderby_'+settings.state.orderBy).addClass("activeorderby");
     settings.currentResults = _.sortBy(settings.currentResults, function(item) {
       if (settings.state.orderBy == 'RANDOM') {
         return Math.random()*10000;
       } else {
-        return item[settings.state.orderBy];
+        return item['title'];
       }
     });
-  }
 }
 
 /**
@@ -243,7 +255,7 @@ function createFacetUI() {
   });
   // Append total result count
   var bottom = $(settings.bottomContainer);
-  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length});
+  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: false});
   $(bottom).append(countHtml);
   // generate the "order by" options:
   var ordertemplate = _.template(settings.orderByTemplate);
@@ -294,15 +306,19 @@ function getFilterById(id) {
  * It adds a class to the active filters and shows the correct number for each
  */
 function updateFacetUI() {
+  //$('#results').toggleClass('updated1').toggleClass('updated2');
+  var activeFilters = [];
   var itemtemplate = _.template(settings.listItemInnerTemplate);
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
+      console.log('Filter: ' + filtername);
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
-      console.log(itemtemplate(item));
+      // console.log(itemtemplate(item));
       $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
         $("#"+filter.id).addClass("activefacet");
+        activeFilters.push(filtername);
       } else {
         $("#"+filter.id).removeClass("activefacet");
       }
@@ -313,8 +329,13 @@ function updateFacetUI() {
       }
     });
   });
-  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length});
+  console.log(activeFilters.length);
+  if (activeFilters.length === 0) {
+    activeFilters = false;
+  }
+  countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
+  $('#results').highlight();
 }
 
 /**

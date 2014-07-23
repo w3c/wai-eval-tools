@@ -14,37 +14,24 @@
       <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="//w3c.github.io/wai-tutorials/img/wai-4c28be39.png"></a>
     </div>
   </header>
-  <main role="main">
-<div class="content">
-  <div class="grid">
-    <header>
-      <h1>
-        Web Accessibility Evaluation Tools
-      </h1>
-    </header>
-    <div class="with-filter">
-      <aside class="column-first">
-        <h2>Filters:</h2>
-        <div id="facets">
-
-        </div>
-      </aside>
-      <div class="column-second">
-        <h2>Results:</h2>
-        <div id="infos"></div>
-        <ul id="results"></ul>
-      </div>
+  <main class="with-side-menu" role="main">
+    <div class="page-title">
+      Web Accessibility Evaluation Tools
     </div>
-  </div>
-  </div>
-</main>
-    <script src="dependencies/jquery.js"></script>
-    <script src="dependencies/underscore.js"></script>
-    <script src="facetedsearch.js"></script>
+    <div class="navigation">
+      <h2 class="list-heading">Filters:</h2>
+      <div id="facets"></div>
+    </div>
+    <div class="content">
+      <h2>Results:</h2>
+      <div id="infos"></div>
+      <ul id="results"></ul>
+    </div>
+  </main>
     <script type="text/template" id="results-template">
       <li class="tool-item">
         <h4><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h4>
-        <p class="desc"><%= obj.desc %></p>
+        <p class="desc" tabindex="0"><%= obj.desc %></p>
         <p> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p>
         <ul>
           <% if (obj.assistance) { %>
