@@ -92,10 +92,9 @@ gulp.task('addlivereloadscript', function () {
     .pipe(cheerio({
       run: function ($) {
         // Each file will be run through cheerio and each corresponding `$` will be passed here.
-        // Make all h1 tags uppercase
-        $('body').each(function () {
+        /*$('body').each(function () {
           $(this).append("<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>");
-        });
+        });*/
       }
     }))
     .pipe(gulp.dest(''));
