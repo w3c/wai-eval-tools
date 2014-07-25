@@ -345,11 +345,13 @@ function updateFacetUI() {
       } else {
         $("#"+filter.id).removeClass("activefacet");
       }
+      /*
       if (filter.count === 0) {
         $("#"+filter.id).prop('disabled', true);
       } else {
         $("#"+filter.id).removeProp('disabled');
       }
+      */
     });
   });
   //console.log(activeFilters.length);
