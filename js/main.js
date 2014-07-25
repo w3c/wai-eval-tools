@@ -16,7 +16,7 @@ if(k&&j[k]&&(e||j[k].data)||void 0!==d||"string"!=typeof b)return k||(k=i?a[h]=c
 jQuery.fn.highlight = function() {
    $(this).each(function() {
         var el = $(this);
-        el.before("<div/>")
+        el.before("<div/>");
         el.prev()
             .width(el.width())
             .height(el.height())
@@ -156,15 +156,23 @@ function filter() {
   settings.currentResults = _.select(settings.items, function(item) {
     var filtersApply = true;
     _.each(settings.state.filters, function(filter, facet) {
+      console.log($.isArray(item[facet]));
       if ($.isArray(item[facet])) {
-         var inters = _.intersection(item[facet], filter);
-         if (inters.length === 0) {
-           filtersApply = false;
-         }
+        _.each(filter, function(fil) {
+          console.log(item[facet]);
+          console.log([fil]);
+          var inters = _.intersection(item[facet], [fil]);
+          console.log(inters);
+          if (inters.length === 0) {
+            filtersApply = false;
+          }
+        });
       } else {
-        if (filter.length && _.indexOf(filter, item[facet]) == -1) {
-          filtersApply = false;
-        }
+        _.each(filter, function(fil) {
+          if (filter.length && _.indexOf(fil, item[facet]) == -1) {
+            filtersApply = false;
+          }
+        });
       }
     });
     return filtersApply;
@@ -205,7 +213,7 @@ function order() {
       if (settings.state.orderBy == 'RANDOM') {
         return Math.random()*10000;
       } else {
-        return item['title'];
+        return item.title;
       }
     });
 }
@@ -326,7 +334,7 @@ function updateFacetUI() {
   var itemtemplate = _.template(settings.listItemInnerTemplate);
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
-      console.log('Filter: ' + filtername);
+      //console.log('Filter: ' + filtername);
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
       // console.log(itemtemplate(item));
@@ -344,7 +352,7 @@ function updateFacetUI() {
       }
     });
   });
-  console.log(activeFilters.length);
+  //console.log(activeFilters.length);
   if (activeFilters.length === 0) {
     activeFilters = false;
   }
