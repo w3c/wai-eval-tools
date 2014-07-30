@@ -156,21 +156,25 @@ function filter() {
   settings.currentResults = _.select(settings.items, function(item) {
     var filtersApply = true;
     _.each(settings.state.filters, function(filter, facet) {
-      console.log($.isArray(item[facet]));
+      // console.log(filter);
       if ($.isArray(item[facet])) {
         _.each(filter, function(fil) {
-          console.log(item[facet]);
-          console.log([fil]);
+          //console.log(item[facet]);
+          // console.log(fil);
           var inters = _.intersection(item[facet], [fil]);
-          console.log(inters);
+          //console.log(inters);
           if (inters.length === 0) {
             filtersApply = false;
+          } else {
+            filtersApply = true;
           }
         });
       } else {
         _.each(filter, function(fil) {
           if (filter.length && _.indexOf(fil, item[facet]) == -1) {
             filtersApply = false;
+          } else {
+            filtersApply = true;
           }
         });
       }
