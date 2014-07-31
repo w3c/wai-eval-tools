@@ -138,34 +138,24 @@ function resetFacetCount() {
  */
 function filter() {
   // first apply the filters to the items
-  settings.currentResults = _.select(settings.items, function(item) {
-    var filtersApply = true;
-    _.each(settings.state.filters, function(filter, facet) {
-      // console.log(filter);
-      if ($.isArray(item[facet])) {
-        _.each(filter, function(fil) {
-          //console.log(item[facet]);
-          // console.log(fil);
-          var inters = _.intersection(item[facet], [fil]);
-          //console.log(inters);
-          if (inters.length === 0) {
-            filtersApply = false;
-          } else {
-            filtersApply = true;
-          }
-        });
-      } else {
-        _.each(filter, function(fil) {
-          if (filter.length && _.indexOf(fil, item[facet]) == -1) {
-            filtersApply = false;
-          } else {
-            filtersApply = true;
-          }
-        });
-      }
+  if (Object.keys(settings.state.filters).length === 0) {
+    settings.currentResults = settings.items;
+  } else {
+    settings.currentResults = []; // Cleaning the array
+    var n = 0;
+    _.each(settings.items, function(item) {
+      _.each(settings.state.filters, function(filter, facet) {
+        var itemFacet = item[facet];
+        if (!$.isArray(itemFacet)) {
+          itemFacet = [itemFacet];
+        }
+        if (_.intersection(itemFacet, filter).length == filter.length) {
+          settings.currentResults[n] = item;
+          n++;
+        }
+      });
     });
-    return filtersApply;
-  });
+  }
   // Update the count for each facet and item:
   // intialize the count to be zero
   resetFacetCount();
