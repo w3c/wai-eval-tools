@@ -14,7 +14,8 @@ var gulp = require('gulp'),
     cheerio = require('gulp-cheerio'),
     livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
-    server = lr();
+    server = lr(),
+    jsonlint = require("gulp-jsonlint");
 
     require('gulp-grunt')(gulp);
 
@@ -42,6 +43,13 @@ gulp.task('scripts-clean', function() {
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
     ;//.pipe(notify({ message: 'Scripts task complete' }));
+});
+
+
+gulp.task('json', function() {
+  return gulp.src("js/*.json")
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter());
 });
 
 gulp.task('scripts', function() {
@@ -139,6 +147,11 @@ gulp.task('watch', function() {
     gulp.run('modernizr');
     gulp.run('scripts-clean');
     gulp.run('scripts');
+  });
+
+  gulp.watch('js/*.json', function(event) {
+    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    gulp.run('json');
   });
 
   // Watch image files

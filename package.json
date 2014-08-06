@@ -27,6 +27,7 @@
     "gulp-svgmin": "~0.4.1",
     "gulp-cheerio": "~0.1.0",
     "grunt": "~0.4.2",
-    "grunt-modernizr": "~0.4.1"
+    "grunt-modernizr": "~0.4.1",
+    "gulp-jsonlint": "0.0.3"
   }
 }
