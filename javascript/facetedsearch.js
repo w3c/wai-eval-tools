@@ -38,7 +38,7 @@ var defaults = {
                        '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
   countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
-  deselectTemplate   : '<a href="#" class="button-small">Show all tools</button>',
+  deselectTemplate   : '<a href="#" id="deselect" class="button-small">Show all tools</button>',
   resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
   noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
@@ -108,7 +108,27 @@ function initFacetCount() {
   });
   // sort it:
   _.each(settings.facetStore, function(facet, facettitle) {
-    var sorted = _.keys(settings.facetStore[facettitle]).sort();
+    //console.log(facettitle);
+    if (settings.facets[facettitle].promoted !== undefined) {
+      var sorted = _.keys(settings.facetStore[facettitle]).sort(function(a,b) {
+        var index_a = _.indexOf(settings.facets[facettitle].promoted,a);
+        var index_b = _.indexOf(settings.facets[facettitle].promoted,b);
+        if (index_a > -1 && index_b > -1) { // if both items are promoted, switch the indexes around to make the conclusion correct.
+          var m = index_a;
+          index_a = index_b;
+          index_b = m;
+        }
+        if (index_a>index_b) {
+          return -1;
+        } else if (index_a<index_b) {
+          return 1;
+        } else {
+          return a.localeCompare(b, "en");
+        }
+      });
+    } else {
+      var sorted = _.keys(settings.facetStore[facettitle]).sort();
+    }
     if (settings.facetSortOption && settings.facetSortOption[facettitle]) {
       sorted = _.union(settings.facetSortOption[facettitle], sorted);
     }
@@ -226,9 +246,9 @@ function createFacetUI() {
   var itemtemplate  = _.template(settings.listItemTemplate);
   var titletemplate = _.template(settings.facetTitleTemplate);
   var containertemplate = _.template(settings.facetContainer);
-
   $(settings.facetSelector).html("");
   _.each(settings.facets, function(current, facet) {
+    // console.log(facet);
     var facetHtml     = $(containertemplate({id: facet, obj: current}));
     var facetItem     = current;
     var facetItemHtml = $(titletemplate(facetItem));
@@ -284,7 +304,7 @@ function createFacetUI() {
     settings.state.filters = {};
     jQuery.facetUpdate();
   });
-  $(bottom).append(deselect);
+  $(bottom).append(deselect.hide());
   $(settings.facetSelector).trigger("facetuicreated");
 }
 
@@ -319,10 +339,10 @@ function updateFacetUI() {
       // console.log(itemtemplate(item));
       $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
-        $("#"+filter.id).addClass("activefacet");
+        $("#"+filter.id).addClass("activefacet").prop('checked', true);
         activeFilters.push(filtername);
       } else {
-        $("#"+filter.id).removeClass("activefacet");
+        $("#"+filter.id).removeClass("activefacet").prop('checked', false);
       }
       /*
       if (filter.count === 0) {
@@ -336,6 +356,9 @@ function updateFacetUI() {
   //console.log(activeFilters.length);
   if (activeFilters.length === 0) {
     activeFilters = false;
+    $('#deselect').hide();
+  } else {
+    $('#deselect').show();
   }
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);

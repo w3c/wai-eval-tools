@@ -7,7 +7,7 @@ $(function(){
       var settings = {
         items            : jsn,
         facets           : {
-          'guideline' : {'title': 'Guidelines'},
+          'guideline' : {'title': 'Guidelines', 'promoted': ["WCAG 2: Web Content Accessibility Guidelines 2", "WCAG 1: Web Content Accessibility Guidelines 1"]},
           'language'  : {'title': 'Languages', 'collapsed': true},
           'assistance': {'title': 'Assistance', 'collapsed': true},
           'platform' : {'title': 'Platform', 'collapsed': true},

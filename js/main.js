@@ -53,7 +53,7 @@ var defaults = {
                        '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
   countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
-  deselectTemplate   : '<a href="#" class="button-small">Show all tools</button>',
+  deselectTemplate   : '<a href="#" id="deselect" class="button-small">Show all tools</button>',
   resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
   noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
@@ -123,7 +123,27 @@ function initFacetCount() {
   });
   // sort it:
   _.each(settings.facetStore, function(facet, facettitle) {
-    var sorted = _.keys(settings.facetStore[facettitle]).sort();
+    //console.log(facettitle);
+    if (settings.facets[facettitle].promoted !== undefined) {
+      var sorted = _.keys(settings.facetStore[facettitle]).sort(function(a,b) {
+        var index_a = _.indexOf(settings.facets[facettitle].promoted,a);
+        var index_b = _.indexOf(settings.facets[facettitle].promoted,b);
+        if (index_a > -1 && index_b > -1) { // if both items are promoted, switch the indexes around to make the conclusion correct.
+          var m = index_a;
+          index_a = index_b;
+          index_b = m;
+        }
+        if (index_a>index_b) {
+          return -1;
+        } else if (index_a<index_b) {
+          return 1;
+        } else {
+          return a.localeCompare(b, "en");
+        }
+      });
+    } else {
+      var sorted = _.keys(settings.facetStore[facettitle]).sort();
+    }
     if (settings.facetSortOption && settings.facetSortOption[facettitle]) {
       sorted = _.union(settings.facetSortOption[facettitle], sorted);
     }
@@ -334,10 +354,10 @@ function updateFacetUI() {
       // console.log(itemtemplate(item));
       $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
-	$("#"+filter.id).addClass("activefacet").prop('checked', true);
+        $("#"+filter.id).addClass("activefacet").prop('checked', true);
         activeFilters.push(filtername);
       } else {
-	$("#"+filter.id).removeClass("activefacet").prop('checked', false);
+        $("#"+filter.id).removeClass("activefacet").prop('checked', false);
       }
       /*
       if (filter.count === 0) {
@@ -410,7 +430,7 @@ $(function(){
       var settings = {
         items            : jsn,
         facets           : {
-          'guideline' : {'title': 'Guidelines'},
+          'guideline' : {'title': 'Guidelines', 'promoted': ["WCAG 2: Web Content Accessibility Guidelines 2", "WCAG 1: Web Content Accessibility Guidelines 1"]},
           'language'  : {'title': 'Languages', 'collapsed': true},
           'assistance': {'title': 'Assistance', 'collapsed': true},
           'platform' : {'title': 'Platform', 'collapsed': true},
