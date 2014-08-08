@@ -241,9 +241,9 @@ function createFacetUI() {
   var itemtemplate  = _.template(settings.listItemTemplate);
   var titletemplate = _.template(settings.facetTitleTemplate);
   var containertemplate = _.template(settings.facetContainer);
-
   $(settings.facetSelector).html("");
   _.each(settings.facets, function(current, facet) {
+    // console.log(facet);
     var facetHtml     = $(containertemplate({id: facet, obj: current}));
     var facetItem     = current;
     var facetItemHtml = $(titletemplate(facetItem));
@@ -299,7 +299,7 @@ function createFacetUI() {
     settings.state.filters = {};
     jQuery.facetUpdate();
   });
-  $(bottom).append(deselect);
+  $(bottom).append(deselect.hide());
   $(settings.facetSelector).trigger("facetuicreated");
 }
 
@@ -334,10 +334,10 @@ function updateFacetUI() {
       // console.log(itemtemplate(item));
       $("#"+filter.id + '+ span').html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
-        $("#"+filter.id).addClass("activefacet");
+	$("#"+filter.id).addClass("activefacet").prop('checked', true);
         activeFilters.push(filtername);
       } else {
-        $("#"+filter.id).removeClass("activefacet");
+	$("#"+filter.id).removeClass("activefacet").prop('checked', false);
       }
       /*
       if (filter.count === 0) {
@@ -351,6 +351,9 @@ function updateFacetUI() {
   //console.log(activeFilters.length);
   if (activeFilters.length === 0) {
     activeFilters = false;
+    $('#deselect').hide();
+  } else {
+    $('#deselect').show();
   }
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
