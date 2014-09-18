@@ -725,6 +725,8 @@ form {
 	width: 100%;
 	border: 1px solid #999;
 	border-radius: .5em;
+	padding:0;
+	margin:0;
 }
 
 // Form Row
@@ -751,7 +753,7 @@ form {
 	&:nth-child(odd) {
 		background-color: #eee;
 	}
-	&.radio {
+	&.radio, .radio & {
 		label {
 			width: auto;
 		}
