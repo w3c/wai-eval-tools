@@ -22,7 +22,7 @@
     $section .= '<ul class="form-block radio">';
 
     foreach ($data['data'] as $key => $value) {
-      $section .= '<li class="form-row"><span><input id="'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"> </span><label for="'.$key.'">'.$value.'</label></li>';
+      $section .= '<li class="form-row"><span><input id="'.$data[variable]'_'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"> </span><label for="'.$data[variable]'_'.$key.'">'.$value.'</label></li>';
     }
 
     if($data[other]) {
@@ -35,9 +35,9 @@
     echo $section;
   }
 
-$language = [
+$language = array(
   title => "Tool language",
-  data => [
+  data => array(
     "pt-br" => 'Brazilian Portuguese (<span lang="pt-br">Português Brasileiro</span>)',
     "bg" => 'Bulgarian (<span lang="bg">Български</span>)',
     "zh-hans" => 'Chinese, Simplified (<span lang="zh-hans">简体中文</span>)',
@@ -58,15 +58,15 @@ $language = [
     "ro" => 'Romanian (<span lang="ro">Română</span>)',
     "sr" => 'Serbian (<span lang="sr">Српски</span>)',
     "es" => 'Spanish (<span lang="es">Castellano</span>)'
-  ],
+  ),
   other => true,
   variable => 'language',
   type => 'checkbox'
-];
+);
 
-$guideline = [
+$guideline = array(
   title => "Checks for these Guidelines",
-  data => [
+  data => array(
     "wcag20" => '<strong><acronym title="Web Content Accessibility Guidelines">WCAG</acronym> 2.0 — <acronym title="World Wide Web Consortium">W3C</acronym> Web Content Accessibility Guidelines 2.0</strong>',
     "wcag10" => '<acronym title="Web Content Accessibility Guidelines">WCAG</acronym>, <acronym title="World Wide Web Consortium">W3C</acronym> Web Content Accessibility Guidelines 1.0',
     "section508" => 'Section 508, <acronym title="United States">US</acronym> federal procurement standard',
@@ -74,55 +74,55 @@ $guideline = [
     "stanca" => 'Stanca Act, Italian accessibility legislation',
     "bitv20" => '<acronym lang="de" title="Barrierefreie Informationstechnik-Verordnung 2.0">BITV 2.0</acronym>, German government standard',
     "bitv10" => '<acronym lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</acronym></span>, German government standard'
-  ],
+  ),
   other => true,
   variable => 'guideline',
   type => 'checkbox'
-];
+);
 
-$assists = [
+$assists = array(
   title => "Assists evaluations by:",
-  data => [
+  data => array(
     "report" => 'Generating reports of evaluation results',
     "wizard" => 'Providing step-by-step evaluation guidance',
     "inpage" => 'Displaying information within Web pages',
     "transformation" => 'Modifying the presentation of Web pages'
-  ],
+  ),
   other => true,
   variable => 'assists',
   type => 'checkbox'
-];
+);
 
-$automated = [
+$automated = array(
   title => "Supports automated checking of:",
-  data => [
+  data => array(
     "automated" => 'Single Web pages',
     "crawl" => 'Groups of Web pages or Web sites',
     "authenticated" => 'Restricted or password protected pages'
-  ],
+  ),
   other => true,
   variable => 'automated',
   type => 'checkbox'
-];
+);
 
-$repair = [
+$repair = array(
   title => "Provides these repair options:",
-  data => [
+  data => array(
     "repair" => 'Changes the code of the Web pages',
     "caption" => 'Helps caption audio or video content',
     "pdf2html" => 'Converts <acronym title="Portable Document Format">PDF</acronym> files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
     "word2html" => 'Converts Word files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
     "excel2html" => 'Converts Excel files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
     "ppt2html" => 'Converts PowerPoint files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>'
-  ],
+  ),
   other => true,
   variable => 'repair',
   type => 'checkbox'
-];
+);
 
-$technology = [
+$technology = array(
   title => "Checks the accessibility of:",
-  data => [
+  data => array(
     "css" => '<acronym title="Cascading Style Sheets">CSS</acronym>',
     "html" => '<acronym title="Hypertext Markup Language">HTML</acronym>',
     "xhtml" => '<acronym title="Extensible Hypertext Markup Language">XHTML</acronym>',
@@ -130,41 +130,41 @@ $technology = [
     "pdf" => '<acronym title="Portable Document Format">PDF</acronym>',
     "images" => 'Images',
     "SMIL" => '<acronym title="Synchronized Multimedia Integration Language">SMIL</acronym>'
-  ],
+  ),
   other => true,
   variable => 'technology',
   type => 'checkbox'
-];
+);
 
-$onlineservice = [
+$onlineservice = array(
   title => "Online service:",
-  data => [
+  data => array(
     "online" => 'Online checker',
     "hosted" => 'Hosted service',
     "server" => 'Server installation'
-  ],
+  ),
   other => true,
   variable => 'onlineservice',
   type => 'checkbox'
-];
+);
 
-$desktopapp = [
+$desktopapp = array(
   title => "Desktop application for:",
-  data => [
+  data => array(
     "windows" => 'Microsoft Windows',
     "osx" => 'Apple (Mac) OS X',
     "linux" => 'Linux',
     "solaris" => 'Solaris',
     "bsd" => '<acronym title="Berkley Shell Distribution">BSD</acronym> Unix'
-  ],
+  ),
   other => true,
   variable => 'desktop',
   type => 'checkbox'
-];
+);
 
-$authoringtools = [
+$authoringtools = array(
   title => "Authoring tool plugin for:",
-  data => [
+  data => array(
     "dreamweaver" => 'Adobe Dreamweaver',
     "flash" => 'Adobe Flash',
     "photoshop" => 'Adobe Photoshop',
@@ -173,15 +173,15 @@ $authoringtools = [
     "expressionweb" => 'Microsoft Expression Web',
     "expressionweb" => 'Microsoft Visual Studio',
     "sublimetext" => 'Sublime Text'
-  ],
+  ),
   other => true,
   variable => 'authoringtools',
   type => 'checkbox'
-];
+);
 
-$browsers = [
+$browsers = array(
   title => "Browser plugin for:",
-  data => [
+  data => array(
     "chrome" => 'Chrome',
     "firefox" => 'Firefox',
     "oldie" => 'Internet Explorer &le; 8',
@@ -189,67 +189,67 @@ $browsers = [
     "oldopera" => 'Opera &le; 12',
     "opera" => 'Opera &ge; 15',
     "safari" => 'Safari'
-  ],
+  ),
   other => true,
   variable => 'browsers',
   type => 'checkbox'
-];
+);
 
-$runtime = [
+$runtime = array(
   title => "Runtime application for:",
-  data => [
+  data => array(
     "java" => 'Java',
     "net" => '.NET',
     "flash" => 'Flash',
     "soa" => '<acronym title="Service-Oriented Architecture">SOA</acronym>'
-  ],
+  ),
   other => true,
   variable => 'runtime',
   type => 'checkbox'
-];
+);
 
-$reports = [
+$reports = array(
   title => "Generates reports in:",
-  data => [
+  data => array(
     "html" => '<acronym title="Hypertext Markup Language">HTML</acronym>',
     "pdf" => '<acronym title="Portable Document Format">PDF</acronym>',
     "xml" => '<acronym title="Extensible Markup Language">XML</acronym>',
     "earl" => '<acronym title="Evaluation and Report Language">EARL</acronym>',
     "txt" => 'Text',
     "csv" => '<acronym title="Comma Separated Value">CSV</acronym>'
-  ],
+  ),
   other => true,
   variable => 'reports',
   type => 'checkbox'
-];
+);
 
-$apis = [
+$apis = array(
   title => 'Provides <acronym title="Application Programming Interface">API</acronym>s for:',
-  data => [
+  data => array(
     "c" => 'C, C++, or C#',
     "java" => 'Java',
     "vbasic" => 'Visual Basic',
     "sql" => '<acronym title="Structured Query Language">SQL</acronym>',
     "web" => 'Web service (Rest API, Webhook…)'
-  ],
+  ),
   other => true,
   variable => 'apis',
   type => 'checkbox'
-];
+);
 
-$license = [
+$license = array(
   title => 'License type:',
-  data => [
+  data => array(
     "free" => 'Free Software',
     "open" => 'Open Source',
     "trial" => 'Trial or Demo',
     "commercial" => 'Commercial',
     "enterprise" => 'Enterprise'
-  ],
+  ),
   other => true,
   variable => 'license',
   type => 'checkbox'
-];
+);
 
 function san($s) {
   return filter_var(trim($s), FILTER_SANITIZE_STRING);
@@ -257,21 +257,25 @@ function san($s) {
 
 function iter($input, $reference) {
   $reference_data = $reference['data'];
-  $o = [];
-  foreach ($input as $key => $value) {
-    if ($key !== 'other') {
-      $o[] = $reference_data[$value];
-    } else {
-      if (san($value) !== '') {
-        $o[] = san($value);
+  $o = array();
+  if (count($input)) {
+    foreach ($input as $key => $value) {
+      if ($key !== 'other') {
+        $o[] = $reference_data[$value];
+      } else {
+        if (san($value) !== '') {
+          $o[] = san($value);
+        }
       }
     }
   }
   return $o;
 }
 
-  echo '<pre>';
+
   if ($_POST) {
+    var_dump($_POST);
+    if (trim($_POST['comment'])) { die("This may be spam."); }
 
    // var_dump($_POST);
 
@@ -305,7 +309,7 @@ function iter($input, $reference) {
   $url=replace_accents($url);
 
   // decode html maybe needed if there's html I normally don't use this
-  $url = html_entity_decode($url,ENT_QUOTES,'UTF8');
+  $url = html_entity_decode($url,ENT_QUOTES);
 
   // adding - for spaces and union characters
   $find = array(' ', '&', 'rn', 'n', '+',',');
@@ -328,30 +332,40 @@ function replace_accents($var){ //replace for accents catalan spanish and more
     return $var;
 }
 
-    if (file_put_contents('./data/'.date('YmdHis').'-'.friendly_url($data->title).'.json', json_encode($data))=== FALSE) {
-      die('error, sorry');
-    } else {
-      echo 'thank you!';
-    }
-    var_dump(json_encode($data));
 
-  } else {
-      var_dump(json_decode('{
-"title": "Accessibility Wizard",
-"creator": "Binary Blue",
-"location": "http://www.binaryblue.com.au/access_wizard/",
-"release": "2003-06-24",
-"version": "1.0",
-"language": "English",
-"guideline": ["WCAG 1: Web Content Accessibility Guidelines 1"],
-"assistance": ["Step-by-step evaluations"],
-"platform": ["Flash"],
-"license": ["Freeware"],
-"type": "Online Tool",
-"desc": "The Accessibility Wizard is a tool for web developers and project teams. It breaks down the WAI Checkpoints into individual tasks for each job role in a development team. Every member of a development team is directed to implement the WAI Checkpoints at a specified conformance level (A,AA or AAA). This is a sure way of meeting accessibility conformance. A web client that supports the Flash 6 (or higher) plugin is the minimum requirement to use the wizard."
-}'));
-  }
-  echo '</pre>';
+$multipartSep = '-----'.md5(time()).'-----';
+
+/* create e-mail paramters */
+$recipient = "ee@w3.org";//, shadi@w3.org";
+$subject = "[eval-tools] Entry for \"".$data->title."\"";
+$headers = "From: ".$_POST['name']." <".$_POST['email'].">\r\nReply-To: ".$_POST['email']."\r\nX-Mailer: Automated Script\r\nContent-Type: multipart/mixed; boundary=\"$multipartSep\"";
+
+ $attachment = chunk_split(base64_encode(json_encode($data)));
+
+$message = "Name: ".$_POST['name']." (".$_POST['role'].") <".$_POST['email'].">\r\n\r\n\r\n";
+$body = "--$multipartSep\r\n"
+        . "Content-Type: text/plain; charset=ISO-8859-1; format=flowed\r\n"
+        . "Content-Transfer-Encoding: 7bit\r\n"
+        . "\r\n"
+        . $message.json_encode($data)."\r\n"
+        . "--$multipartSep\r\n"
+        . "Content-Type: text/json\r\n"
+        . "Content-Transfer-Encoding: base64\r\n"
+        . "Content-Disposition: attachment; filename=\"".date('YmdHis').'-'.friendly_url($data->title).".json\"\r\n"
+        . "\r\n"
+        . "$attachment\r\n"
+        . "--$multipartSep--";
+
+/* send e-mail message */
+$mailstatus = mail($recipient, $subject, $body, $headers);
+
+
+    if ($mailstatus) {
+      echo 'thank you!';
+    } else {
+      die('error, sorry!');
+    }
+}
 
 ?>
   <header role="banner">
@@ -365,11 +379,22 @@ function replace_accents($var){ //replace for accents catalan spanish and more
       Web Accessibility Evaluation Tools
     </div>
     <h1>Submit a Web Accessibility Evaluation Tool</h1>
+    <p>This form allows you to submit information about Web accessibility evaluation tools, for example in the following cases:</p>
+
+    <ul><li>You are a tool vendor or developer and want to list your tool</li>
+        <li>You are a tool vendor or developer and want to update information about your tool</li>
+        <li>You are a tool user, or have seen or heard of a tool that is currently not listed</li></ul>
+
+<p>There is no obligation to fill out all information especially if you are not a tool vendor or developer. All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/">W3C/WAI List of Web Accessibility Evaluation Tools mailing list</a> and used to follow up with the tool vendor or developer before the tool is listed. Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
     <form action="submit.php" method="post">
 
   <fieldset>
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden"><a name="contact" id="contact">Information about you</a></h2>
+    <div class="form-block">
+      <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text"></span></div>
+      <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email"></span></div>
+    </div>
     <fieldset class="border-less"><legend><span>Role</span></legend>
       <ul class="form-block">
         <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
@@ -377,10 +402,6 @@ function replace_accents($var){ //replace for accents catalan spanish and more
         <li class="form-row radio"><span><input name="role" id="other" value="vendor" type="radio"></span><label for="other"> Other (heard of the tool, etc)</label></li>
       </ul>
     </fieldset>
-    <div class="form-block">
-      <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text"></span></div>
-      <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email"></span></div>
-    </div>
   </fieldset>
 
   <fieldset>
@@ -398,6 +419,9 @@ function replace_accents($var){ //replace for accents catalan spanish and more
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
         <li class="form-row"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" max-length="300"></textarea></span></li>
       </ul>
+      <div style="display:none" aria-hidden="true">
+        <label for="comment">Comment (Don’t fill out this)</label><span><textarea name="comment" id="comment" cols="60" rows="10" max-length="300"></textarea></span>
+      </div>
     </fieldset>
 
     <?php create_form_cb_section($language); ?>
