@@ -24,7 +24,7 @@ $(function(){
         orderByOptions   : {'title': 'Title'},
         facetSortOption  : {},
         facetListContainer : '<ul class=facetlist></ul>',
-        listItemTemplate   : '<li><label><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>"> <span><%= name %> <span class="facetitemcount">(<%= count %> Tools)</span></span></label></li>',
+        listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;Tools)</span></label></span></li>',
         listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> Tools)</span></span>',
         orderByTemplate    : '',
         countTemplate      : '<div class="facettotalcount"><span aria-live="true"><%= count %> Results</span><% if (filters) { %> <span><strong>Selected Filters:</strong> <%= filters.join(", ") %> </span><% } %></div>',

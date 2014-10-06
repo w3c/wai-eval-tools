@@ -32,9 +32,15 @@
 .facetlist {
   margin: 0;
   padding: 0 .5em .5em;
+  display:table;
+  line-height: 1.25;
   li {
+    display:table-row;
     list-style: none;
-    margin-right: 0.5em;
+    > span {
+      padding: 0 .125em .125em;
+      display: table-cell;
+    }
   }
 }
 
@@ -42,10 +48,6 @@
 }
 
 #facets details:nth-child(even) {
-  background-color: #eee;
-}
-
-#results details li:nth-child(even) {
   background-color: #eee;
 }
 
