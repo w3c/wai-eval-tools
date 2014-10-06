@@ -31,7 +31,7 @@
     <script type="text/template" id="results-template">
       <li class="tool-item">
         <h4><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h4>
-        <p class="desc" tabindex="0"><%= obj.desc %></p>
+        <p class="desc" tabindex="0"><%= obj.description %></p>
         <p> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p>
         <ul>
           <% if (obj.assistance) { %>
@@ -92,4 +92,5 @@
       </li>
 </script>
 <script src="js/main.js"></script>
+  </body>
 </html>
