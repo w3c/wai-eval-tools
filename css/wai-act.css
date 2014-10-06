@@ -978,8 +978,8 @@ summary:focus {
 
 @font-face {
   font-family: "Vollkorn";
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?1406035544');
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1406035544#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1406035544') format('woff');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?1412586074');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1412586074#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1412586074') format('woff');
 }
 /*@include font-face("Vollkorn", font-files("vollkorn/vollkorn-italic.woff"), "vollkorn/vollkorn-italic.eot", normal, italic);
 @include font-face("Vollkorn", font-files("vollkorn/vollkorn-bold.woff"), "vollkorn/vollkorn-bold.eot", bold);
