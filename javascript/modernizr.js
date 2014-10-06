@@ -1,5 +1,5 @@
 /* Modernizr (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-shiv-printshiv-cssclasses-input-svg
+ * Build: http://modernizr.com/download/#-shiv-printshiv-cssclasses-input-svg-json
  */
 ;
 
@@ -657,4 +657,6 @@ window.Modernizr = (function( window, document, undefined ) {
   html5.type += ' print';
   html5.shivPrint = shivPrint;  shivPrint(document);
 
-}(this, document));;
+}(this, document));
+Modernizr.addTest('json', !!window.JSON && !!JSON.parse);
+;
