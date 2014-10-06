@@ -165,12 +165,24 @@ function filter() {
     settings.currentResults = []; // Cleaning the array
     var n = 0;
     _.each(settings.items, function(item) {
+      var qualifiers = {};
       _.each(settings.state.filters, function(filter, facet) {
         var itemFacet = item[facet];
+        qualifiers[facet] = [];
+        var m = 0;
         if (!$.isArray(itemFacet)) {
           itemFacet = [itemFacet];
         }
-        if (_.intersection(itemFacet, filter).length == filter.length) {
+        _.each(filter, function(f) {
+          if (!$.isArray(f)) {
+            f = [f];
+          }
+          if (_.isEqual(_.intersection(itemFacet, f), f)) {
+            qualifiers[facet][m] = f[0];
+            m++;
+          }
+        });
+        if (_.isEqual(qualifiers, settings.state.filters)) {
           settings.currentResults[n] = item;
           n++;
         }
