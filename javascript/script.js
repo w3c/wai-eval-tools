@@ -38,7 +38,7 @@ $(function(){
     // Emulate <details> where necessary and enable open/close event handlers
     // alert($.fn.details.support);
     $('html').addClass($.fn.details.support ? 'details' : 'no-details');
-    $('details').details();
+    $('#facets details').details();
     });
 
 });

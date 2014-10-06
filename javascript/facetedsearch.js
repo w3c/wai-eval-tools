@@ -387,6 +387,13 @@ function showMoreResults() {
     itemHtml = itemHtml + template(item);
   }
   $(settings.resultSelector).append(itemHtml);
+  $('#results details').details();
+  $('#results .desc p').linkify({
+    target: '',
+    linkAttributes: {
+      rel: "nofollow"
+    }
+  });
   if (!moreButton) {
     moreButton = $(settings.showMoreTemplate).click(showMoreResults);
     $(settings.resultSelector).after(moreButton);
