@@ -210,11 +210,7 @@ function filter() {
  */
 function order() {
     settings.currentResults = _.sortBy(settings.currentResults, function(item) {
-      if (settings.state.orderBy == 'RANDOM') {
-        return Math.random()*10000;
-      } else {
-        return item.title;
-      }
+      return item.title.toLowerCase();
     });
 }
 
