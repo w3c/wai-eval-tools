@@ -109,8 +109,9 @@ function initFacetCount() {
   // sort it:
   _.each(settings.facetStore, function(facet, facettitle) {
     //console.log(facettitle);
+    var sorted;
     if (settings.facets[facettitle].promoted !== undefined) {
-      var sorted = _.keys(settings.facetStore[facettitle]).sort(function(a,b) {
+        sorted = _.keys(settings.facetStore[facettitle]).sort(function(a,b) {
         var index_a = _.indexOf(settings.facets[facettitle].promoted,a);
         var index_b = _.indexOf(settings.facets[facettitle].promoted,b);
         if (index_a > -1 && index_b > -1) { // if both items are promoted, switch the indexes around to make the conclusion correct.
@@ -127,7 +128,7 @@ function initFacetCount() {
         }
       });
     } else {
-      var sorted = _.keys(settings.facetStore[facettitle]).sort();
+      sorted = _.keys(settings.facetStore[facettitle]).sort();
     }
     if (settings.facetSortOption && settings.facetSortOption[facettitle]) {
       sorted = _.union(settings.facetSortOption[facettitle], sorted);
