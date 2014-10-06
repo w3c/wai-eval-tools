@@ -7,7 +7,7 @@ $(function(){
       var settings = {
         items            : jsn,
         facets           : {
-          'guideline' : {'title': 'Guidelines', 'promoted': ["WCAG 2: Web Content Accessibility Guidelines 2", "WCAG 1: Web Content Accessibility Guidelines 1"]},
+          'guideline' : {'title': 'Guidelines', 'promoted': ["<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.0<\/strong>", "<abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 1.0"]},
           'language'  : {'title': 'Languages', 'collapsed': true},
           'assistance': {'title': 'Assistance', 'collapsed': true},
           'platform' : {'title': 'Platform', 'collapsed': true},
@@ -35,10 +35,10 @@ $(function(){
     // use them!
     //
     $.facetelize(settings);
+    // Emulate <details> where necessary and enable open/close event handlers
+    // alert($.fn.details.support);
+    $('html').addClass($.fn.details.support ? 'details' : 'no-details');
+    $('details').details();
     });
 
-  // Emulate <details> where necessary and enable open/close event handlers
-  // alert($.fn.details.support);
-  $('html').addClass($.fn.details.support ? 'details' : 'no-details');
-  $('details').details();
 });

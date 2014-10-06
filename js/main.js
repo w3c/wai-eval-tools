@@ -225,11 +225,7 @@ function filter() {
  */
 function order() {
     settings.currentResults = _.sortBy(settings.currentResults, function(item) {
-      if (settings.state.orderBy == 'RANDOM') {
-        return Math.random()*10000;
-      } else {
-        return item.title;
-      }
+      return item.title.toLowerCase();
     });
 }
 
@@ -459,10 +455,10 @@ $(function(){
     // use them!
     //
     $.facetelize(settings);
+    // Emulate <details> where necessary and enable open/close event handlers
+    // alert($.fn.details.support);
+    $('html').addClass($.fn.details.support ? 'details' : 'no-details');
+    $('details').details();
     });
 
-  // Emulate <details> where necessary and enable open/close event handlers
-  // alert($.fn.details.support);
-  $('html').addClass($.fn.details.support ? 'details' : 'no-details');
-  $('details').details();
 });
