@@ -12,17 +12,14 @@
 .tool-item p {
   margin: 0;
 }
-.tool-item p.desc {
-  font-size: 0.9em;
-  max-height: 5*1.5em;
-  overflow:hidden;
-  // white-space: nowrap;
-  // text-overflow: ellipsis;
-  transition: max-height .75s;
-  &:hover, &:focus {
-    max-height:20*1.5em;
-  }
+.tool-item .desc {
+  line-height: 1.25;
 }
+.tool-item .ver {
+  font-size: 0.8em;
+  text-align: right;
+}
+
 .tool-item h4 i {
   font-weight: normal;
   font-size: 0.9em;
@@ -44,7 +41,11 @@
 .facetitem {
 }
 
-details:nth-child(even) {
+#facets details:nth-child(even) {
+  background-color: #eee;
+}
+
+#results details li:nth-child(even) {
   background-color: #eee;
 }
 
@@ -77,14 +78,22 @@ summary:focus {
   margin: 0;
   padding: 0;
   > li {
+    display: flex;
+    flex-direction: column;
     flex-basis: 49%;
     margin-bottom: 1.333333333em;
     list-style: none;
-    border: 1px solid #aaa;
+    border: 1px solid #005A9C;
     background-color: #fff;
     border-radius: .5em;
     box-shadow: 0 0 3px rgba(#000, .5);
     overflow:hidden;
+    > div, > details {
+      justify-content: space-between;
+    }
+    > .desc {
+      flex-grow: 1;
+    }
   }
   h4, p, ul {padding: .25em .5em;}
   ul {
@@ -93,7 +102,7 @@ summary:focus {
   h4 {
     font-size: 1em;
     margin: 0;
-    background-color: #aaa;
+    background-color: #005A9C;
     &, a {
       color: #fff;
     }

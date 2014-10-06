@@ -863,71 +863,74 @@ summary:hover, summary:focus {
 }
 
 /* line 15, ../sass/_toolslist.scss */
-.tool-item p.desc {
-  font-size: 0.9em;
-  max-height: 7.5em;
-  overflow: hidden;
-  -webkit-transition: max-height .75s;
-  transition: max-height .75s;
-}
-/* line 22, ../sass/_toolslist.scss */
-.tool-item p.desc:hover, .tool-item p.desc:focus {
-  max-height: 30em;
+.tool-item .desc {
+  line-height: 1.25;
 }
 
-/* line 26, ../sass/_toolslist.scss */
+/* line 18, ../sass/_toolslist.scss */
+.tool-item .ver {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+/* line 23, ../sass/_toolslist.scss */
 .tool-item h4 i {
   font-weight: normal;
   font-size: 0.9em;
 }
 
-/* line 31, ../sass/_toolslist.scss */
+/* line 28, ../sass/_toolslist.scss */
 .facetitemcount {
   font-size: 0.8em;
 }
 
-/* line 35, ../sass/_toolslist.scss */
+/* line 32, ../sass/_toolslist.scss */
 .facetlist {
   margin: 0;
   padding: 0 .5em .5em;
 }
-/* line 38, ../sass/_toolslist.scss */
+/* line 35, ../sass/_toolslist.scss */
 .facetlist li {
   list-style: none;
   margin-right: 0.5em;
 }
 
-/* line 47, ../sass/_toolslist.scss */
-details:nth-child(even) {
+/* line 44, ../sass/_toolslist.scss */
+#facets details:nth-child(even) {
   background-color: #eee;
 }
 
-/* line 51, ../sass/_toolslist.scss */
+/* line 48, ../sass/_toolslist.scss */
+#results details li:nth-child(even) {
+  background-color: #eee;
+}
+
+/* line 52, ../sass/_toolslist.scss */
 summary:hover,
 summary:focus {
   background: #777;
   color: #fff;
 }
 
-/* line 57, ../sass/_toolslist.scss */
+/* line 58, ../sass/_toolslist.scss */
 [type=checkbox]:disabled + span {
   color: #777;
 }
 
-/* line 62, ../sass/_toolslist.scss */
+/* line 63, ../sass/_toolslist.scss */
 .bottomline div, .bottomline a {
   display: inline-block;
 }
-/* line 65, ../sass/_toolslist.scss */
+/* line 66, ../sass/_toolslist.scss */
 .bottomline a, .bottomline span {
   margin-left: 0.5em;
 }
-/* line 68, ../sass/_toolslist.scss */
+/* line 69, ../sass/_toolslist.scss */
 .bottomline span[aria-live] {
   margin-left: 0;
 }
 
-/* line 73, ../sass/_toolslist.scss */
+/* line 74, ../sass/_toolslist.scss */
 #results {
   display: -webkit-box;
   display: -webkit-flex;
@@ -943,43 +946,66 @@ summary:focus {
   margin: 0;
   padding: 0;
 }
-/* line 79, ../sass/_toolslist.scss */
+/* line 80, ../sass/_toolslist.scss */
 #results > li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-flex-basis: 49%;
   -ms-flex: 0 1 49%;
   flex-basis: 49%;
   margin-bottom: 1.333333333em;
   list-style: none;
-  border: 1px solid #aaa;
+  border: 1px solid #005A9C;
   background-color: #fff;
   border-radius: .5em;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* line 89, ../sass/_toolslist.scss */
+/* line 91, ../sass/_toolslist.scss */
+#results > li > div, #results > li > details {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+/* line 94, ../sass/_toolslist.scss */
+#results > li > .desc {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex: 1;
+  flex-grow: 1;
+}
+/* line 98, ../sass/_toolslist.scss */
 #results h4, #results p, #results ul {
   padding: .25em .5em;
 }
-/* line 90, ../sass/_toolslist.scss */
+/* line 99, ../sass/_toolslist.scss */
 #results ul {
   margin-left: 1em;
 }
-/* line 93, ../sass/_toolslist.scss */
+/* line 102, ../sass/_toolslist.scss */
 #results h4 {
   font-size: 1em;
   margin: 0;
-  background-color: #aaa;
+  background-color: #005A9C;
 }
-/* line 97, ../sass/_toolslist.scss */
+/* line 106, ../sass/_toolslist.scss */
 #results h4, #results h4 a {
   color: #fff;
 }
 
 @font-face {
   font-family: "Vollkorn";
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?1412586074');
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1412586074#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1412586074') format('woff');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?1412586076');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1412586076#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1412586076') format('woff');
 }
 /*@include font-face("Vollkorn", font-files("vollkorn/vollkorn-italic.woff"), "vollkorn/vollkorn-italic.eot", normal, italic);
 @include font-face("Vollkorn", font-files("vollkorn/vollkorn-bold.woff"), "vollkorn/vollkorn-bold.eot", bold);
