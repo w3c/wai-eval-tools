@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     clean = require('gulp-clean'),
     concat = require('gulp-concat'),
+    insert = require('gulp-insert'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     cheerio = require('gulp-cheerio'),
@@ -47,9 +48,12 @@ gulp.task('scripts-clean', function() {
 
 
 gulp.task('json', function() {
-  return gulp.src("js/*.json")
+  return gulp.src("data/**/*")
+    .pipe(concat('data.json', {newLine: ','}))
+    .pipe(insert.wrap('[', ']'))
     .pipe(jsonlint())
-    .pipe(jsonlint.reporter());
+    .pipe(jsonlint.reporter())
+    .pipe(gulp.dest('js'));
 });
 
 gulp.task('scripts', function() {
@@ -149,7 +153,7 @@ gulp.task('watch', function() {
     gulp.run('scripts');
   });
 
-  gulp.watch('js/*.json', function(event) {
+  gulp.watch(['js/*.json','data/**/*'], function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('json');
   });
