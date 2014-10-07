@@ -287,8 +287,10 @@ function createFacetUI() {
       }
       facetlist.append(filteritem);
     });
-    facetHtml.append(facetlist);
-    $(settings.facetSelector).append(facetHtml);
+    if($(facetlist).children().length) {
+      facetHtml.append(facetlist);
+      $(settings.facetSelector).append(facetHtml);
+    }
   });
   // add the click event handler to each facet item:
   $('.facetitem').click(function(event){
