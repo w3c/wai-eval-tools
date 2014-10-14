@@ -400,8 +400,7 @@ function showMoreResults() {
     });
     itemHtml = itemHtml + template(item);
   }
-  $(settings.resultSelector).append(itemHtml);
-  $('#results details').details();
+  $(settings.resultSelector).append(itemHtml).find('details summary:not([tabindex])').parent().details();
   $('#results .desc p').linkify({
     target: '',
     linkAttributes: {
