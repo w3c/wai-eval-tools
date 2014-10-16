@@ -440,12 +440,12 @@ function mailstatus($none, $true, $false) {
   <fieldset>
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden">Information about you</h2>
-    <div class="form-block">
+    <div class="form-block-mini">
       <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
       <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
     </div>
     <fieldset class="border-less"><legend><span>Role</span></legend>
-      <ul class="form-block">
+      <ul class="form-block-mini">
         <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
         <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user or product customer</label></li>
         <li class="form-row radio"><span><input name="role" id="other" value="vendor" type="radio"></span><label for="other"> Other (heard of the tool, etc)</label></li>
@@ -460,7 +460,7 @@ function mailstatus($none, $true, $false) {
     <fieldset>
       <legend><span>Tool Identification</span></legend>
       <h3 class="visuallyhidden">Tool Identification</h3>
-      <ul class="form-block">
+      <ul class="form-block-mini">
         <li class="form-row"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
         <li class="form-row"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
         <li class="form-row"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required></span></li>
