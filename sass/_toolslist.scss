@@ -21,8 +21,6 @@ h1.page-title {
 }
 .tool-item p {
   margin: 0;
-  float: left;
-  width:100%
 }
 .tool-item .desc {
   line-height: 1.25;
@@ -107,7 +105,7 @@ summary:focus {
     list-style: none;
     border: 1px solid #005A9C;
     background-color: #fff;
-    border-radius: .5em;
+    border-radius: .2em;
     box-shadow: 0 0 3px rgba(#000, .5);
     overflow:hidden;
     > div, > details {
@@ -174,6 +172,12 @@ summary:focus {
 .content {
   h2 {
     padding: .33333em 0;
+  }
+}
+
+.navigation {
+  h2 {
+    display: inline;
   }
 }
 

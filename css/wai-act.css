@@ -870,92 +870,90 @@ h1.page-title {
 /* line 22, ../sass/_toolslist.scss */
 .tool-item p {
   margin: 0;
-  float: left;
-  width: 100%;
 }
 
-/* line 27, ../sass/_toolslist.scss */
+/* line 25, ../sass/_toolslist.scss */
 .tool-item .desc {
   line-height: 1.25;
 }
 
-/* line 30, ../sass/_toolslist.scss */
+/* line 28, ../sass/_toolslist.scss */
 .tool-item .ver {
   font-size: 0.8em;
   text-align: right;
 }
 
-/* line 35, ../sass/_toolslist.scss */
+/* line 33, ../sass/_toolslist.scss */
 .tool-item h4 i {
   font-weight: normal;
   font-size: 0.9em;
 }
 
-/* line 40, ../sass/_toolslist.scss */
+/* line 38, ../sass/_toolslist.scss */
 .facetitemcount {
   font-size: 0.8em;
 }
 
-/* line 44, ../sass/_toolslist.scss */
+/* line 42, ../sass/_toolslist.scss */
 .facetlist {
   margin: 0;
   padding: 0 .5em .5em;
   display: table;
   line-height: 1.25;
 }
-/* line 49, ../sass/_toolslist.scss */
+/* line 47, ../sass/_toolslist.scss */
 .facetlist li {
   display: table-row;
   list-style: none;
 }
-/* line 52, ../sass/_toolslist.scss */
+/* line 50, ../sass/_toolslist.scss */
 .facetlist li > span {
   padding: 0 .125em .125em;
   display: table-cell;
 }
 
-/* line 62, ../sass/_toolslist.scss */
+/* line 60, ../sass/_toolslist.scss */
 #facets {
   font-size: 0.85em;
 }
 
-/* line 66, ../sass/_toolslist.scss */
+/* line 64, ../sass/_toolslist.scss */
 #facets details:nth-child(even) {
   background-color: #eee;
 }
 
-/* line 70, ../sass/_toolslist.scss */
+/* line 68, ../sass/_toolslist.scss */
 summary:hover,
 summary:focus {
   background: #777;
   color: #fff;
 }
 
-/* line 76, ../sass/_toolslist.scss */
+/* line 74, ../sass/_toolslist.scss */
 [type=checkbox]:disabled + span {
   color: #777;
 }
 
-/* line 81, ../sass/_toolslist.scss */
+/* line 79, ../sass/_toolslist.scss */
 .bottomline div, .bottomline a {
   display: inline-block;
 }
-/* line 84, ../sass/_toolslist.scss */
+/* line 82, ../sass/_toolslist.scss */
 .bottomline a, .bottomline span {
   margin-left: 0.5em;
 }
-/* line 87, ../sass/_toolslist.scss */
+/* line 85, ../sass/_toolslist.scss */
 .bottomline span[aria-live] {
   margin-left: 0;
 }
 
-/* line 92, ../sass/_toolslist.scss */
+/* line 90, ../sass/_toolslist.scss */
 #results {
   margin: 0;
   padding: 0;
 }
 @media screen and (min-width: 43em) {
-  /* line 92, ../sass/_toolslist.scss */
+  /* line 90, ../sass/_toolslist.scss */
   #results {
     display: -webkit-box;
     display: -webkit-flex;
@@ -970,19 +968,19 @@ summary:focus {
     justify-content: space-between;
   }
 }
-/* line 100, ../sass/_toolslist.scss */
+/* line 98, ../sass/_toolslist.scss */
 #results > li {
   margin-bottom: 1.333333333em;
   list-style: none;
   border: 1px solid #005A9C;
   background-color: #fff;
-  border-radius: .5em;
+  border-radius: .2em;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 @media screen and (min-width: 43em) {
-  /* line 100, ../sass/_toolslist.scss */
+  /* line 98, ../sass/_toolslist.scss */
   #results > li {
     display: -webkit-box;
     display: -webkit-flex;
@@ -998,14 +996,14 @@ summary:focus {
     flex-basis: 49%;
   }
 }
-/* line 113, ../sass/_toolslist.scss */
+/* line 111, ../sass/_toolslist.scss */
 #results > li > div, #results > li > details {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-/* line 116, ../sass/_toolslist.scss */
+/* line 114, ../sass/_toolslist.scss */
 #results > li > .desc {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -1013,30 +1011,30 @@ summary:focus {
   flex-grow: 1;
   -ms-flex: auto;
 }
-/* line 121, ../sass/_toolslist.scss */
+/* line 119, ../sass/_toolslist.scss */
 #results h4, #results p, #results ul {
   padding: .25em .5em;
 }
-/* line 122, ../sass/_toolslist.scss */
+/* line 120, ../sass/_toolslist.scss */
 #results ul {
   margin-left: 1em;
 }
-/* line 125, ../sass/_toolslist.scss */
+/* line 123, ../sass/_toolslist.scss */
 #results h4 {
   font-size: 1em;
   margin: 0;
   background-color: #005A9C;
 }
-/* line 129, ../sass/_toolslist.scss */
+/* line 127, ../sass/_toolslist.scss */
 #results h4, #results h4 a {
   color: #fff;
 }
-/* line 132, ../sass/_toolslist.scss */
+/* line 130, ../sass/_toolslist.scss */
 #results h4 a, #results h4 i {
   display: block;
 }
 
-/* line 139, ../sass/_toolslist.scss */
+/* line 137, ../sass/_toolslist.scss */
 .disclaimer {
   background-color: #fff;
   border: 1px solid #923e25;
@@ -1044,7 +1042,7 @@ summary:focus {
   line-height: 1.25;
 }
 
-/* line 146, ../sass/_toolslist.scss */
+/* line 144, ../sass/_toolslist.scss */
 .disclaimer h2, .disclaimer .navigation .topic, .navigation .disclaimer .topic {
   color: #fff;
   background-color: #923e25;
@@ -1053,47 +1051,52 @@ summary:focus {
   margin: 0;
 }
 
-/* line 154, ../sass/_toolslist.scss */
+/* line 152, ../sass/_toolslist.scss */
 .disclaimer p {
   padding: .25em;
   margin: 0;
 }
 
-/* line 159, ../sass/_toolslist.scss */
+/* line 157, ../sass/_toolslist.scss */
 #showmorebutton {
   display: block;
   width: 100%;
 }
 
-/* line 165, ../sass/_toolslist.scss */
+/* line 163, ../sass/_toolslist.scss */
 .content {
   margin-bottom: 2em !important;
 }
 
-/* line 168, ../sass/_toolslist.scss */
+/* line 166, ../sass/_toolslist.scss */
 .navigation h2, .navigation .topic, .content h2, .content .navigation .topic, .navigation .content .topic {
   font-size: 1.5em;
   margin: 0;
 }
 
-/* line 175, ../sass/_toolslist.scss */
+/* line 173, ../sass/_toolslist.scss */
 .content h2, .content .navigation .topic, .navigation .content .topic {
   padding: .33333em 0;
 }
 
-/* line 180, ../sass/_toolslist.scss */
+/* line 179, ../sass/_toolslist.scss */
+.navigation h2, .navigation .topic {
+  display: inline;
+}
+
+/* line 184, ../sass/_toolslist.scss */
 #infos {
   padding-bottom: .5em;
 }
 
-/* line 184, ../sass/_toolslist.scss */
+/* line 188, ../sass/_toolslist.scss */
 .submit {
   padding: 1em 0;
   background-color: #fff;
   text-align: center;
 }
 
-/* line 193, ../sass/_toolslist.scss */
+/* line 197, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > span, .form-block-mini > .form-row > label {
   padding: .2em .1em;
 }
