@@ -90,15 +90,19 @@ summary:focus {
 }
 
 #results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  @include mq($medium) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   margin: 0;
   padding: 0;
   > li {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 49%;
+    @include mq($medium) {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 49%;
+    }
     margin-bottom: 1.333333333em;
     list-style: none;
     border: 1px solid #005A9C;
