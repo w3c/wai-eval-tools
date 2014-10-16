@@ -15,12 +15,19 @@
     </div>
   </header>
   <main class="with-side-menu" role="main">
-    <div class="page-title">
-      Web Accessibility Evaluation Tools
-    </div>
+    <h1 class="page-title">Web Accessibility Evaluation Tools</h1>
+    <p>Web accessibility evaluation tools are software programs or online services that help determine if a Web site meets accessibility guidelines. While Web accessibility evaluation tools can significantly reduce the time and effort to evaluate Web sites, no tool can automatically determine the accessibility of Web sites.</p>
     <div class="navigation">
-      <h2 class="list-heading">Filters:</h2>
-      <div id="facets"></div>
+      <details open>
+        <summary><h2 class="list-heading">Filters:</h2></summary>
+        <div id="facets"></div>
+      </details>
+      <aside role="complementary"><a href="./submit/" class="btn-primary">Submit your tool!</a></aside>
+
+      <aside role="complementary" class="disclaimer">
+        <h2>Disclaimer</h2>
+        <p><abbr title="World Wide Web Consortium">W3C</abbr> does not endorse specific vendor products. Inclusion of products in this reference list does not indicate endorsement by <abbr title="World Wide Web Consortium">W3C</abbr>. Products and search criteria are listed with no quality rating. Information in this database (including the search criteria) reflects claims made by tool developers, vendors, or users; and it can change at any time. <abbr title="World Wide Web Consortium">W3C</abbr> does not verify the accuracy of these claims. The list is not a review of evaluation tools, nor a complete or definitive listing of all tools.</p>
+      </aside>
     </div>
     <div class="content">
       <h2>Results:</h2>
@@ -28,6 +35,12 @@
       <ul id="results"></ul>
     </div>
   </main>
+  <footer role="contentinfo">
+  <h2 class="visuallyhidden">Document Information</h2>
+  <p>Editors: <a href="/People/shadi/">Shadi Abou-Zahra</a>, <a href="http://www.w3.org/People/yatil/">Eric Eggert</a>, and the Education and Outreach Working Group (<a href="/WAI/EO/"><abbr title="Education and Outreach Working Group">EOWG</abbr></a>). <a href="acknowledgements">Acknowledgements</a> lists contributors and previous editors. The Evaluation and Repair Tools Working Group (<a href="/WAI/ER/"><abbr title="Evaluation and Repair Tools">ERT</abbr> <abbr title="Working Group">WG</abbr></a>) maintains the database of tools. Developed with support from the <a href="/WAI/TIES/">WAI-TIES Project</a> in 2006, and updated with support from the <a href="/WAI/ACT/">WAI-ACT Project</a> in 2014.</p>
+  <p>[<a href="/WAI/contacts">Contacting WAI</a>] Feedback welcome to <a href="mailto:public-wai-ert-tools@w3.org">public-wai-ert-tools@w3.org</a> (a publicly archived list).</p>
+  <div class="copyright"><p><a rel="Copyright" href="/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2014 <a href="/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, <a rel="Copyright" href="/Consortium/Legal/copyright-documents">document use</a> and <a rel="Copyright" href="/Consortium/Legal/copyright-software">software licensing</a> rules apply. Your interactions with this site are in accordance with our <a href="/Consortium/Legal/privacy-statement#Public">public</a> and <a href="/Consortium/Legal/privacy-statement#Members">Member</a> privacy statements.</p></div>
+</footer>
     <script type="text/template" id="results-template">
       <li class="tool-item" tabindex="0">
         <div>
