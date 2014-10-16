@@ -15,18 +15,20 @@
 </head>
 <body class="texts">
 <?php
+  $demo = false;
+  $mailstatus = 'none';
   function create_form_cb_section($data) {
     $section  = "<fieldset>";
     $section .= '<legend>'.$data[title].'</legend>';
     $section .= '<h3 class="visuallyhidden" id="'.$data[variable].'">'.$data[title].'</h3>';
-    $section .= '<ul class="form-block radio">';
+    $section .= '<ul class="form-block-mini radio">';
 
     foreach ($data['data'] as $key => $value) {
-      $section .= '<li class="form-row"><span><input id="'.$data[variable]'_'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"> </span><label for="'.$data[variable]'_'.$key.'">'.$value.'</label></li>';
+      $section .= '<li class="form-row"><span><input id="'.$data[variable].'_'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.(($_POST && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.$key.'">'.$value.'</label></li>';
     }
 
     if($data[other]) {
-      $section .= '<li class="form-row"><span></span><label for="'.$data[variable].'_other">Other: <input id="'.$data[variable].'_other" name="'.$data[variable].'[other]" type="text"></label></li>';
+      $section .= '<li class="form-row"><span></span><label for="'.$data[variable].'_other">Other: <input id="'.$data[variable].'_other" name="'.$data[variable].'[other]" type="text">'.$_POST[$data[variable]]['other'].'</label></li>';
     }
 
     $section .= '</ul>';
@@ -67,13 +69,14 @@ $language = array(
 $guideline = array(
   title => "Checks for these Guidelines",
   data => array(
-    "wcag20" => '<strong><acronym title="Web Content Accessibility Guidelines">WCAG</acronym> 2.0 — <acronym title="World Wide Web Consortium">W3C</acronym> Web Content Accessibility Guidelines 2.0</strong>',
-    "wcag10" => '<acronym title="Web Content Accessibility Guidelines">WCAG</acronym>, <acronym title="World Wide Web Consortium">W3C</acronym> Web Content Accessibility Guidelines 1.0',
-    "section508" => 'Section 508, <acronym title="United States">US</acronym> federal procurement standard',
-    "jis" => '<acronym title="Japanese Industry Standard">JIS</acronym>, Japanese industry standard',
+    "wcag20" => '<strong><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0 — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 2.0</strong>',
+    "wcag10" => '<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 1.0',
+    "section508" => 'Section 508, <abbr title="United States">US</abbr> federal procurement standard',
+    "jis" => '<abbr title="Japanese Industry Standard">JIS</abbr>, Japanese industry standard',
     "stanca" => 'Stanca Act, Italian accessibility legislation',
-    "bitv20" => '<acronym lang="de" title="Barrierefreie Informationstechnik-Verordnung 2.0">BITV 2.0</acronym>, German government standard',
-    "bitv10" => '<acronym lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</acronym></span>, German government standard'
+    "bitv20" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung 2.0">BITV 2.0</abbr>, German government standard',
+    "bitv10" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr></span>, German government standard',
+    "rgaa" => '<abbr lang="fr" title="Référentiel Général d’Accessibilité pour les Administrations">RGAA</abbr>, French government standard'
   ),
   other => true,
   variable => 'guideline',
@@ -110,10 +113,10 @@ $repair = array(
   data => array(
     "repair" => 'Changes the code of the Web pages',
     "caption" => 'Helps caption audio or video content',
-    "pdf2html" => 'Converts <acronym title="Portable Document Format">PDF</acronym> files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
-    "word2html" => 'Converts Word files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
-    "excel2html" => 'Converts Excel files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>',
-    "ppt2html" => 'Converts PowerPoint files into accessible <acronym title="Hypertext Markup Language">HTML</acronym>'
+    "pdf2html" => 'Converts <abbr title="Portable Document Format">PDF</abbr> files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>',
+    "word2html" => 'Converts Word files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>',
+    "excel2html" => 'Converts Excel files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>',
+    "ppt2html" => 'Converts PowerPoint files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>'
   ),
   other => true,
   variable => 'repair',
@@ -123,13 +126,13 @@ $repair = array(
 $technology = array(
   title => "Checks the accessibility of:",
   data => array(
-    "css" => '<acronym title="Cascading Style Sheets">CSS</acronym>',
-    "html" => '<acronym title="Hypertext Markup Language">HTML</acronym>',
-    "xhtml" => '<acronym title="Extensible Hypertext Markup Language">XHTML</acronym>',
-    "svg" => '<acronym title="Scalabale Vector Grpahics">SVG</acronym>',
-    "pdf" => '<acronym title="Portable Document Format">PDF</acronym>',
+    "css" => '<abbr title="Cascading Style Sheets">CSS</abbr>',
+    "html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
+    "xhtml" => '<abbr title="Extensible Hypertext Markup Language">XHTML</abbr>',
+    "svg" => '<abbr title="Scalabale Vector Grpahics">SVG</abbr>',
+    "pdf" => '<abbr title="Portable Document Format">PDF</abbr>',
     "images" => 'Images',
-    "SMIL" => '<acronym title="Synchronized Multimedia Integration Language">SMIL</acronym>'
+    "SMIL" => '<abbr title="Synchronized Multimedia Integration Language">SMIL</abbr>'
   ),
   other => true,
   variable => 'technology',
@@ -155,7 +158,7 @@ $desktopapp = array(
     "osx" => 'Apple (Mac) OS X',
     "linux" => 'Linux',
     "solaris" => 'Solaris',
-    "bsd" => '<acronym title="Berkley Shell Distribution">BSD</acronym> Unix'
+    "bsd" => '<abbr title="Berkley Shell Distribution">BSD</abbr> Unix'
   ),
   other => true,
   variable => 'desktop',
@@ -201,7 +204,7 @@ $runtime = array(
     "java" => 'Java',
     "net" => '.NET',
     "flash" => 'Flash',
-    "soa" => '<acronym title="Service-Oriented Architecture">SOA</acronym>'
+    "soa" => '<abbr title="Service-Oriented Architecture">SOA</abbr>'
   ),
   other => true,
   variable => 'runtime',
@@ -211,12 +214,12 @@ $runtime = array(
 $reports = array(
   title => "Generates reports in:",
   data => array(
-    "html" => '<acronym title="Hypertext Markup Language">HTML</acronym>',
-    "pdf" => '<acronym title="Portable Document Format">PDF</acronym>',
-    "xml" => '<acronym title="Extensible Markup Language">XML</acronym>',
-    "earl" => '<acronym title="Evaluation and Report Language">EARL</acronym>',
+    "html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
+    "pdf" => '<abbr title="Portable Document Format">PDF</abbr>',
+    "xml" => '<abbr title="Extensible Markup Language">XML</abbr>',
+    "earl" => '<abbr title="Evaluation and Report Language">EARL</abbr>',
     "txt" => 'Text',
-    "csv" => '<acronym title="Comma Separated Value">CSV</acronym>'
+    "csv" => '<abbr title="Comma Separated Value">CSV</abbr>'
   ),
   other => true,
   variable => 'reports',
@@ -224,12 +227,12 @@ $reports = array(
 );
 
 $apis = array(
-  title => 'Provides <acronym title="Application Programming Interface">API</acronym>s for:',
+  title => 'Provides <abbr title="Application Programming Interface">API</abbr>s for:',
   data => array(
     "c" => 'C, C++, or C#',
     "java" => 'Java',
     "vbasic" => 'Visual Basic',
-    "sql" => '<acronym title="Structured Query Language">SQL</acronym>',
+    "sql" => '<abbr title="Structured Query Language">SQL</abbr>',
     "web" => 'Web service (Rest API, Webhook…)'
   ),
   other => true,
@@ -274,7 +277,7 @@ function iter($input, $reference) {
 
 
   if ($_POST) {
-    var_dump($_POST);
+
     if (trim($_POST['comment'])) { die("This may be spam."); }
 
    // var_dump($_POST);
@@ -284,9 +287,14 @@ function iter($input, $reference) {
     $data->location = san($_POST['location']);
     $data->release = san($_POST['release']);
     $data->version = san($_POST['version']);
+    $data->description = san($_POST['description']);
+
+    if ($data->title == "" || $data->creator == "" || $data->location == "" || $data->release == "" || san($_POST['name']) == "" || san($_POST['email']) == "") {
+      $mailstatus = false;
+    }
 
     $data->language = iter($_POST['language'], $language);
-    $data->guidelines = iter($_POST['guidelines'], $guidelines);
+    $data->guideline = iter($_POST['guideline'], $guideline);
     $data->assists = iter($_POST['assists'], $assists);
     $data->automated = iter($_POST['automated'], $automated);
     $data->repairs = iter($_POST['repairs'], $repairs);
@@ -300,6 +308,7 @@ function iter($input, $reference) {
     $data->apis = iter($_POST['apis'], $apis);
     $data->license = iter($_POST['license'], $license);
 
+if ($mailstatus !== false) {
 
   function friendly_url($url) {
   // everything to lower and no spaces begin or end
@@ -336,13 +345,17 @@ function replace_accents($var){ //replace for accents catalan spanish and more
 $multipartSep = '-----'.md5(time()).'-----';
 
 /* create e-mail paramters */
-$recipient = "ee@w3.org";//, shadi@w3.org";
+if ($demo == true) {
+  $recipient = "ee@w3.org, shadi@w3.org";
+} else {
+  $recipient = "public-wai-ert-tools@w3.org";
+}
 $subject = "[eval-tools] Entry for \"".$data->title."\"";
-$headers = "From: ".$_POST['name']." <".$_POST['email'].">\r\nReply-To: ".$_POST['email']."\r\nX-Mailer: Automated Script\r\nContent-Type: multipart/mixed; boundary=\"$multipartSep\"";
+$headers = "From: shadi+cgi@w3.org\r\nReply-To: ".san($_POST['email'])."\r\nX-Mailer: Automated Script\r\nContent-Type: multipart/mixed; boundary=\"$multipartSep\"";
 
  $attachment = chunk_split(base64_encode(json_encode($data)));
 
-$message = "Name: ".$_POST['name']." (".$_POST['role'].") <".$_POST['email'].">\r\n\r\n\r\n";
+$message = "Name: ".san($_POST['name'])." (".san($_POST['role']).") <".san($_POST['email']).">\r\n\r\n\r\n";
 $body = "--$multipartSep\r\n"
         . "Content-Type: text/plain; charset=ISO-8859-1; format=flowed\r\n"
         . "Content-Transfer-Encoding: 7bit\r\n"
@@ -358,17 +371,22 @@ $body = "--$multipartSep\r\n"
 
 /* send e-mail message */
 $mailstatus = mail($recipient, $subject, $body, $headers);
+  }
+}
 
-
-    if ($mailstatus) {
-      echo 'thank you!';
+function mailstatus($none, $true, $false) {
+  $mailstatus = $GLOBALS['mailstatus'];
+  if ($mailstatus === true) {
+      return $true;
+    } elseif ($mailstatus === false) {
+      return $false;
     } else {
-      die('error, sorry!');
+      return $none;
     }
 }
 
 ?>
-  <header role="banner">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <div class="w3c-wai-header">
       <a href="http://w3.org/"><img alt="W3C" width="90" src="//w3c.github.io/wai-tutorials/img/w3c-796023c4.png"></a>
       <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="//w3c.github.io/wai-tutorials/img/wai-4c28be39.png"></a>
@@ -378,22 +396,52 @@ $mailstatus = mail($recipient, $subject, $body, $headers);
     <div class="page-title">
       Web Accessibility Evaluation Tools
     </div>
-    <h1>Submit a Web Accessibility Evaluation Tool</h1>
+    <h1><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h1>
     <p>This form allows you to submit information about Web accessibility evaluation tools, for example in the following cases:</p>
 
     <ul><li>You are a tool vendor or developer and want to list your tool</li>
         <li>You are a tool vendor or developer and want to update information about your tool</li>
         <li>You are a tool user, or have seen or heard of a tool that is currently not listed</li></ul>
 
-<p>There is no obligation to fill out all information especially if you are not a tool vendor or developer. All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/">W3C/WAI List of Web Accessibility Evaluation Tools mailing list</a> and used to follow up with the tool vendor or developer before the tool is listed. Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
-    <form action="submit.php" method="post">
+  <?php
+  if ($mailstatus === false) {
+      $msg = array();
+      if($data->title == "") {
+        $msg[] = '<label for="title">Tool name is a required field.</label>';
+      }
+      if($data->creator == "") {
+        $msg[] = '<label for="creator">Vendor name is a required field.</label>';
+      }
+      if($data->location == "") {
+        $msg[] = '<label for="location">Web address is a required field.</label>';
+      }
+      if($data->release == "") {
+        $msg[] = '<label for="release">Release date is a required field.</label>';
+      }
+      if(san($_POST['name']) == "") {
+        $msg[] = '<label for="name">Name is a required field.</label>';
+      }
+      if(san($_POST['email']) == "") {
+        $msg[] = '<label for="email">Email is a required field.</label>';
+      }
 
+      if (count($msg)) {
+        echo '<ul><li>';
+        echo implode('</li><li>', $msg);
+        echo '</li></ul>';
+      }
+
+  }
+  ?>
+
+  <div id="hForm">
+  <form name="submission" id="submission" method="post" action="submission.php">
   <fieldset>
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden"><a name="contact" id="contact">Information about you</a></h2>
     <div class="form-block">
-      <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text"></span></div>
-      <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email"></span></div>
+      <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
+      <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
     </div>
     <fieldset class="border-less"><legend><span>Role</span></legend>
       <ul class="form-block">
@@ -412,15 +460,15 @@ $mailstatus = mail($recipient, $subject, $body, $headers);
       <legend><span>Tool Identification</span></legend>
       <h3 class="visuallyhidden"><a name="identification" id="identification">Tool Identification</a></h3>
       <ul class="form-block">
-        <li class="form-row"><label for="title">Tool name</label><span><input name="title" id="title" type="text"></span></li>
-        <li class="form-row"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text"></span></li>
-        <li class="form-row"><label for="location">Web Address (<acronym title="Universal Resource Identifier">URI</acronym>)</label><span><input name="location" id="location" type="url"></span></li>
-        <li class="form-row"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date"></span></li>
+        <li class="form-row"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
+        <li class="form-row"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
+        <li class="form-row"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required></span></li>
+        <li class="form-row"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="<?php echo $data->release ?>" required></span></li>
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
-        <li class="form-row"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" max-length="300"></textarea></span></li>
+        <li class="form-row"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300"><?php echo $data->description ?></textarea></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
-        <label for="comment">Comment (Don’t fill out this)</label><span><textarea name="comment" id="comment" cols="60" rows="10" max-length="300"></textarea></span>
+        <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
       </div>
     </fieldset>
 
@@ -461,7 +509,15 @@ $mailstatus = mail($recipient, $subject, $body, $headers);
   <p><input value="Send Information" name="send" id="send" type="submit"></p>
 
     </form>
-  </main>
+  </div>
+
+</div>
+<footer role="complementary">
+<h2 class="visuallyhidden">Document Information</h2>
+  <p>Editors: <a href="/People/shadi/">Shadi Abou-Zahra</a>, <a href="http://www.w3.org/People/yatil/">Eric Eggert</a>, and the Education and Outreach Working Group (<a href="/WAI/EO/"><abbr title="Education and Outreach Working Group">EOWG</abbr></a>). <a href="acknowledgements">Acknowledgements</a> lists contributors and previous editors. The Evaluation and Repair Tools Working Group (<a href="/WAI/ER/"><abbr title="Evaluation and Repair Tools">ERT</abbr> <abbr title="Working Group">WG</abbr></a>) maintains the database of tools. Developed with support from the <a href="/WAI/TIES/">WAI-TIES Project</a> in 2006, and updated with support from the <a href="/WAI/ACT/">WAI-ACT Project</a> in 2014.</p>
+  <p>[<a href="/WAI/contacts">Contacting WAI</a>] Feedback welcome to <a href="mailto:public-wai-ert-tools@w3.org">public-wai-ert-tools@w3.org</a> (a publicly archived list).</p>
+  <div class="copyright"><p><a rel="Copyright" href="/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 2014 <a href="/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, <a rel="Copyright" href="/Consortium/Legal/copyright-documents">document use</a> and <a rel="Copyright" href="/Consortium/Legal/copyright-software">software licensing</a> rules apply. Your interactions with this site are in accordance with our <a href="/Consortium/Legal/privacy-statement#Public">public</a> and <a href="/Consortium/Legal/privacy-statement#Members">Member</a> privacy statements.</p></div>
+</footer>
 <script src="js/main.js"></script>
 </body>
 </html>

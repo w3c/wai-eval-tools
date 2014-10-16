@@ -60,7 +60,6 @@ h1.page-title {
 }
 
 #facets {
-  margin-bottom: 2em;
   font-size: 0.85em;
 }
 
@@ -176,4 +175,19 @@ summary:focus {
 
 #infos {
   padding-bottom: .5em;
+}
+
+.submit {
+padding: 1em 0;
+background-color: #fff;
+text-align: center;
+}
+
+.form-block-mini {
+  @extend .form-block;
+  > .form-row {
+    > span, > label {
+      padding: .2em .1em;
+    }
+  }
 }
