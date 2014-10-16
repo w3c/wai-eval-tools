@@ -53,7 +53,7 @@ var defaults = {
                        '<li class="orderbyitem" id="orderby_<%= key %>">'+
                        '<%= value %> </li> <% }); %></ul></div>',
   countTemplate      : '<div class="facettotalcount"><%= count %> Results</div>',
-  deselectTemplate   : '<a href="#" id="deselect" class="button-small">Show all tools</button>',
+  deselectTemplate   : '<button type="button" id="deselect" class="btn-small">Show all tools</button>',
   resultTemplate     : '<div class="facetresultbox"><%= name %></div>',
   noResults          : '<div class="results">Sorry, but no items match these criteria</div>',
   orderByOptions     : {'a': 'by A', 'b': 'by B', 'RANDOM': 'by random'},
@@ -493,7 +493,7 @@ $(function(){
     // Emulate <details> where necessary and enable open/close event handlers
     // alert($.fn.details.support);
     $('html').addClass($.fn.details.support ? 'details' : 'no-details');
-    $('#facets details').details();
+    $('#facets details, .navigation > details').details();
     });
 
 });

@@ -1,3 +1,8 @@
+h1.page-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .facetsearch {
   display:inline-block;
   width: 100%;
@@ -6,11 +11,18 @@
   background: #000 !important;
   color: #fff !important;
 }
-.tool-item h4 {
-  margin-bottom: 0;
+.tool-item {
+  h4 {
+    margin-bottom: 0;
+  }
+  details {
+    clear:both;
+  }
 }
 .tool-item p {
   margin: 0;
+  float: left;
+  width:100%
 }
 .tool-item .desc {
   line-height: 1.25;
@@ -45,6 +57,11 @@
 }
 
 .facetitem {
+}
+
+#facets {
+  margin-bottom: 2em;
+  font-size: 0.85em;
 }
 
 #facets details:nth-child(even) {
@@ -95,6 +112,7 @@ summary:focus {
     }
     > .desc {
       flex-grow: 1;
+      -ms-flex: auto;
     }
   }
   h4, p, ul {padding: .25em .5em;}
@@ -108,5 +126,54 @@ summary:focus {
     &, a {
       color: #fff;
     }
+    a, i {
+      display:block;
+    }
   }
+
+}
+
+.disclaimer {
+  background-color: #fff;
+  border: 1px solid #923e25;
+  font-size: 0.85em;
+  line-height: 1.25;
+}
+
+.disclaimer h2 {
+  color: #fff;
+  background-color:#923e25;
+  font-size: 1em;
+  padding: .25em;
+  margin: 0;
+}
+
+.disclaimer p {
+  padding: .25em;
+  margin: 0;
+}
+
+#showmorebutton {
+  @extend .btn;
+  display:block;
+  width: 100%;
+}
+
+.content {margin-bottom: 2em !important;}
+
+.navigation, .content {
+  h2 {
+    font-size: 1.5em;
+    margin:0;
+  }
+}
+
+.content {
+  h2 {
+    padding: .33333em 0;
+  }
+}
+
+#infos {
+  padding-bottom: .5em;
 }
