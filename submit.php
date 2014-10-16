@@ -75,7 +75,7 @@ $guideline = array(
     "jis" => '<abbr title="Japanese Industry Standard">JIS</abbr>, Japanese industry standard',
     "stanca" => 'Stanca Act, Italian accessibility legislation',
     "bitv20" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung 2.0">BITV 2.0</abbr>, German government standard',
-    "bitv10" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr></span>, German government standard',
+    "bitv10" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr>, German government standard',
     "rgaa" => '<abbr lang="fr" title="Référentiel Général d’Accessibilité pour les Administrations">RGAA</abbr>, French government standard'
   ),
   other => true,
@@ -386,23 +386,24 @@ function mailstatus($none, $true, $false) {
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <header role="banner">
     <div class="w3c-wai-header">
       <a href="http://w3.org/"><img alt="W3C" width="90" src="//w3c.github.io/wai-tutorials/img/w3c-796023c4.png"></a>
       <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="//w3c.github.io/wai-tutorials/img/wai-4c28be39.png"></a>
     </div>
   </header>
   <main class="with-side-menu" role="main">
-    <div class="page-title">
-      Web Accessibility Evaluation Tools
-    </div>
-    <h1><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h1>
+    <h1 class="page-title">
+      <a href="../">Web Accessibility Evaluation Tools</a>
+    </h1>
+    <p><a href="../">Back to the Evaluations Tools List</a></p>
+    <h2><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h2>
     <p>This form allows you to submit information about Web accessibility evaluation tools, for example in the following cases:</p>
 
     <ul><li>You are a tool vendor or developer and want to list your tool</li>
         <li>You are a tool vendor or developer and want to update information about your tool</li>
         <li>You are a tool user, or have seen or heard of a tool that is currently not listed</li></ul>
-
+    <p>There is no obligation to fill out all information especially if you are not a tool vendor or developer. All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a> and used to follow up with the tool vendor or developer before the tool is listed. Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
   <?php
   if ($mailstatus === false) {
       $msg = array();
@@ -438,7 +439,7 @@ function mailstatus($none, $true, $false) {
   <form name="submission" id="submission" method="post" action="submission.php">
   <fieldset>
     <legend><span>Information about you</span></legend>
-    <h2 class="visuallyhidden"><a name="contact" id="contact">Information about you</a></h2>
+    <h2 class="visuallyhidden">Information about you</h2>
     <div class="form-block">
       <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
       <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
@@ -446,7 +447,7 @@ function mailstatus($none, $true, $false) {
     <fieldset class="border-less"><legend><span>Role</span></legend>
       <ul class="form-block">
         <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
-        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span></span><label for="user"> Tool user or product customer</label></li>
+        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user or product customer</label></li>
         <li class="form-row radio"><span><input name="role" id="other" value="vendor" type="radio"></span><label for="other"> Other (heard of the tool, etc)</label></li>
       </ul>
     </fieldset>
@@ -454,11 +455,11 @@ function mailstatus($none, $true, $false) {
 
   <fieldset>
     <legend><span>Description of the tool</span></legend>
-    <h2 class="visuallyhidden"><a name="features" id="features">Description of the tool</a></h2>
+    <h2 class="visuallyhidden">Description of the tool</h2>
 
     <fieldset>
       <legend><span>Tool Identification</span></legend>
-      <h3 class="visuallyhidden"><a name="identification" id="identification">Tool Identification</a></h3>
+      <h3 class="visuallyhidden">Tool Identification</h3>
       <ul class="form-block">
         <li class="form-row"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
         <li class="form-row"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
@@ -506,12 +507,12 @@ function mailstatus($none, $true, $false) {
     </fieldset>
   </fieldset>
 
-  <p><input value="Send Information" name="send" id="send" type="submit"></p>
+  <p><button class="btn-primary" style="float:none;" name="send" id="send" type="submit">Send Information</button></p>
 
     </form>
   </div>
 
-</div>
+</main>
 <footer role="complementary">
 <h2 class="visuallyhidden">Document Information</h2>
   <p>Editors: <a href="/People/shadi/">Shadi Abou-Zahra</a>, <a href="http://www.w3.org/People/yatil/">Eric Eggert</a>, and the Education and Outreach Working Group (<a href="/WAI/EO/"><abbr title="Education and Outreach Working Group">EOWG</abbr></a>). <a href="acknowledgements">Acknowledgements</a> lists contributors and previous editors. The Evaluation and Repair Tools Working Group (<a href="/WAI/ER/"><abbr title="Evaluation and Repair Tools">ERT</abbr> <abbr title="Working Group">WG</abbr></a>) maintains the database of tools. Developed with support from the <a href="/WAI/TIES/">WAI-TIES Project</a> in 2006, and updated with support from the <a href="/WAI/ACT/">WAI-ACT Project</a> in 2014.</p>
