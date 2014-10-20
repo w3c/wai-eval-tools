@@ -400,7 +400,10 @@ function showMoreResults() {
     });
     itemHtml = itemHtml + template(item);
   }
-  $(settings.resultSelector).append(itemHtml).find('details summary:not([tabindex])').parent().details();
+  var newelems = $(settings.resultSelector).append(itemHtml).find('details summary:not([tabindex])');
+  newelems.parent().details();
+  $('.tofocus').last().next().focus();
+  newelems.last().parent().parent().addClass('tofocus');
   $('#results .desc p').linkify({
     target: '',
     linkAttributes: {
