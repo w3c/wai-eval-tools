@@ -91,6 +91,9 @@ summary:focus {
   @include mq($medium) {
     display: flex;
     flex-wrap: wrap;
+    @supports not (flex-wrap: wrap) {
+      flex-direction: column;
+    }
     justify-content: space-between;
   }
   margin: 0;
@@ -176,7 +179,7 @@ summary:focus {
 }
 
 .navigation {
-  h2 {
+  details h2 {
     display: inline;
   }
 }
