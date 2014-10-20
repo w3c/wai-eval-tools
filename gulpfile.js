@@ -14,8 +14,6 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     cheerio = require('gulp-cheerio'),
     livereload = require('gulp-livereload'),
-    lr = require('tiny-lr'),
-    server = lr(),
     jsonlint = require("gulp-jsonlint");
 
     require('gulp-grunt')(gulp);
@@ -28,14 +26,14 @@ gulp.task('styles', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
     .pipe(gulp.dest('css'))
-    .pipe(livereload(server))
+    .pipe(livereload())
     ;//.pipe(notify({ message: 'Styles task complete' }));
 });
 
 gulp.task('icomoon', function() {
   return gulp.src('icomoon/**/*')
     .pipe(gulp.dest('css/icomoon'))
-    .pipe(livereload(server))
+    .pipe(livereload())
     ;//.pipe(notify({ message: 'Styles task complete' }));
 });
 
@@ -63,7 +61,7 @@ gulp.task('scripts', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest(''))
-    .pipe(livereload(server))
+    .pipe(livereload())
     ;//.pipe(notify({ message: 'Scripts task complete' }));
 });
 
@@ -78,7 +76,7 @@ gulp.task('modernizr', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('js'))
-    .pipe(livereload(server))
+    .pipe(livereload())
     ;//.pipe(notify({ message: 'Modernizr task complete' }));
 });
 
@@ -86,7 +84,7 @@ gulp.task('images', function() {
   return gulp.src('images/**/*.png')
     .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist/assets/img'))
-    .pipe(livereload(server))
+    .pipe(livereload())
     ;//.pipe(notify({ message: 'Images task complete' }));
 });
 
@@ -123,11 +121,6 @@ gulp.task('default', ['clean'], function() {
 });
 
 gulp.task('watch', function() {
-    // Listen on port 35729
-      server.listen(35729, function (err) {
-        if (err) {
-          return console.log(err)
-        };
 
   gulp.watch('src/*.html', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
@@ -170,7 +163,5 @@ gulp.task('watch', function() {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('icomoon');
   });
-
-});
 
 });
