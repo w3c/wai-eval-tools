@@ -1062,8 +1062,8 @@ summary:focus {
 
 @font-face {
   font-family: "Vollkorn";
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?1413716907');
-  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1413716907#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1413716907') format('woff');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?1413802792');
+  src: url('../fonts/vollkorn/vollkorn-regular.eot?&1413802792#iefix') format('embedded-opentype'), url('../fonts/vollkorn/vollkorn-regular.woff?1413802792') format('woff');
 }
 /*@include font-face("Vollkorn", font-files("vollkorn/vollkorn-italic.woff"), "vollkorn/vollkorn-italic.eot", normal, italic);
 @include font-face("Vollkorn", font-files("vollkorn/vollkorn-bold.woff"), "vollkorn/vollkorn-bold.eot", bold);
