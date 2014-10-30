@@ -288,6 +288,7 @@ function iter($input, $reference) {
     $data->release = san($_POST['release']);
     $data->version = san($_POST['version']);
     $data->description = san($_POST['description']);
+    $data->update = san(date('Y-m-d'));
 
     if ($data->title == "" || $data->creator == "" || $data->location == "" || $data->release == "" || san($_POST['name']) == "" || san($_POST['email']) == "") {
       $mailstatus = false;
