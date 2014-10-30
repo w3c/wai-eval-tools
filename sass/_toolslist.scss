@@ -88,22 +88,9 @@ summary:focus {
 }
 
 #results {
-  @include mq($medium) {
-    display: flex;
-    flex-wrap: wrap;
-    @supports not (flex-wrap: wrap) {
-      flex-direction: column;
-    }
-    justify-content: space-between;
-  }
   margin: 0;
   padding: 0;
   > li {
-    @include mq($medium) {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 49%;
-    }
     margin-bottom: 1.333333333em;
     list-style: none;
     border: 1px solid #005A9C;
@@ -111,13 +98,6 @@ summary:focus {
     border-radius: .2em;
     box-shadow: 0 0 3px rgba(#000, .5);
     overflow:hidden;
-    > div, > details {
-      justify-content: space-between;
-    }
-    > .desc {
-      flex-grow: 1;
-      -ms-flex: auto;
-    }
   }
   h4, p, ul {padding: .25em .5em;}
   ul {
