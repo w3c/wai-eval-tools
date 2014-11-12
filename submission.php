@@ -395,7 +395,7 @@ function mailstatus($none, $true, $false) {
   </header>
   <main class="with-side-menu" role="main">
     <h1 class="page-title">
-      <a href="../">Web Accessibility Evaluation Tools</a>
+      <a href="../">Web Accessibility Evaluation Tools List</a>
     </h1>
     <p><a href="../">Back to the Evaluations Tools List</a></p>
     <h2><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h2>
