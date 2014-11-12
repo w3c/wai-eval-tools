@@ -24,6 +24,7 @@ $(function(){
         resultSelector   : '#results',
         facetSelector    : '#facets',
         resultTemplate   : item_template,
+        enablePagination : false,
         paginationCount  : 10,
         orderByOptions   : {'title': 'Title'},
         facetSortOption  : {},
