@@ -315,7 +315,7 @@ function createFacetUI() {
     settings.state.filters = {};
     jQuery.facetUpdate();
   });
-  $(bottom).append(deselect.hide());
+  $(bottom).append(' ').append(deselect.hide());
   $(settings.facetSelector).trigger("facetuicreated");
 }
 
