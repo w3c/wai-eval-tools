@@ -980,24 +980,28 @@ summary:focus {
   padding: .33333em 0;
 }
 
-/* line 162, ../sass/_toolslist.scss */
+/* line 161, ../sass/_toolslist.scss */
+.navigation {
+  margin-bottom: 1em;
+}
+/* line 163, ../sass/_toolslist.scss */
 .navigation details h2, .navigation details .topic {
   display: inline;
 }
 
-/* line 167, ../sass/_toolslist.scss */
+/* line 168, ../sass/_toolslist.scss */
 #infos {
   padding-bottom: .5em;
 }
 
-/* line 171, ../sass/_toolslist.scss */
+/* line 172, ../sass/_toolslist.scss */
 .submit {
   padding: 1em 0;
   background-color: #fff;
   text-align: center;
 }
 
-/* line 180, ../sass/_toolslist.scss */
+/* line 181, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > span, .form-block-mini > .form-row > label {
   padding: .2em .1em;
 }
