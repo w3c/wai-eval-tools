@@ -88,8 +88,8 @@ $assists = array(
   data => array(
     "report" => 'Generating reports of evaluation results',
     "wizard" => 'Providing step-by-step evaluation guidance',
-    "inpage" => 'Displaying information within Web pages',
-    "transformation" => 'Modifying the presentation of Web pages'
+    "inpage" => 'Displaying information within web pages',
+    "transformation" => 'Modifying the presentation of web pages'
   ),
   other => true,
   variable => 'assists',
@@ -99,8 +99,8 @@ $assists = array(
 $automated = array(
   title => "Supports automated checking of:",
   data => array(
-    "automated" => 'Single Web pages',
-    "crawl" => 'Groups of Web pages or Web sites',
+    "automated" => 'Single web pages',
+    "crawl" => 'Groups of web pages or web sites',
     "authenticated" => 'Restricted or password protected pages'
   ),
   other => true,
@@ -111,7 +111,7 @@ $automated = array(
 $repair = array(
   title => "Provides these repair options:",
   data => array(
-    "repair" => 'Changes the code of the Web pages',
+    "repair" => 'Changes the code of the web pages',
     "caption" => 'Helps caption audio or video content',
     "pdf2html" => 'Converts <abbr title="Portable Document Format">PDF</abbr> files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>',
     "word2html" => 'Converts Word files into accessible <abbr title="Hypertext Markup Language">HTML</abbr>',
