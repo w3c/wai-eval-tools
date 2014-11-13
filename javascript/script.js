@@ -11,7 +11,7 @@ $(function(){
           'language'  : {'title': 'Languages', 'collapsed': true},
           'assists': {'title': 'Features', 'collapsed': true},
           'automated': {'title': 'Automatically checks…', 'collapsed': true},
-          'authoringtools': {'title': 'Authoring Tools', 'collapsed': true},
+          'authoringtools': {'title': 'Authoring Tool PlugIns', 'collapsed': true},
           'desktopapp': {'title': 'Operating system', 'collapsed': true},
           'onlineservice': {'title': 'Online Service', 'collapsed': true},
           'repairs': {'title': 'Repairs', 'collapsed': true},
