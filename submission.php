@@ -397,7 +397,7 @@ function mailstatus($none, $true, $false) {
     <h1 class="page-title">
       <a href="../">Web Accessibility Evaluation Tools List</a>
     </h1>
-    <p><a href="../">Back to the Evaluations Tools List</a></p>
+    <p><a href="../">Back to the Evaluation Tools List</a></p>
     <h2><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h2>
     <p>This form allows you to submit information about web accessibility evaluation tools, for example in the following cases:</p>
 
