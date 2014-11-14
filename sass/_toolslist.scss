@@ -79,12 +79,12 @@ summary:focus {
   div, a {
     display: inline-block;
   }
-  a, span {
-    margin-left: 0.5em;
-  }
-  span[aria-live] {
-    margin-left: 0;
-  }
+  // a, span {
+  //   margin-left: 0.5em;
+  // }
+  // span[aria-live] {
+  //   margin-left: 0;
+  // }
 }
 
 #results {

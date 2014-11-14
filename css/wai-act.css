@@ -888,14 +888,6 @@ summary:focus {
 .bottomline div, .bottomline a {
   display: inline-block;
 }
-/* line 82, ../sass/_toolslist.scss */
-.bottomline a, .bottomline span {
-  margin-left: 0.5em;
-}
-/* line 85, ../sass/_toolslist.scss */
-.bottomline span[aria-live] {
-  margin-left: 0;
-}
 
 /* line 90, ../sass/_toolslist.scss */
 #results {
