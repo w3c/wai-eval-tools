@@ -123,7 +123,6 @@ function initFacetCount() {
   });
   // sort it:
   _.each(settings.facetStore, function(facet, facettitle) {
-    //console.log(facettitle);
     var sorted;
     if (settings.facets[facettitle].promoted !== undefined) {
         sorted = _.keys(settings.facetStore[facettitle]).sort(function(a,b) {
@@ -272,7 +271,6 @@ function createFacetUI() {
   var containertemplate = _.template(settings.facetContainer);
   $(settings.facetSelector).html("");
   _.each(settings.facets, function(current, facet) {
-    // console.log(facet);
     var facetHtml     = $(containertemplate({id: facet, obj: current}));
     var facetItem     = current;
     var facetItemHtml = $(titletemplate(facetItem));
@@ -342,7 +340,7 @@ function getFilterById(id) {
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
       if (filter.id == id) {
-        result =  {'facetname': facetname, 'filtername': filtername};
+        result = {'facetname': facetname, 'filtername': filtername};
       }
     });
   });
@@ -354,32 +352,21 @@ function getFilterById(id) {
  * It adds a class to the active filters and shows the correct number for each
  */
 function updateFacetUI() {
-  //$('#results').toggleClass('updated1').toggleClass('updated2');
   var activeFilters = [];
   var itemtemplate = _.template(settings.listItemInnerTemplate);
   _.each(settings.facetStore, function(facet, facetname) {
     _.each(facet, function(filter, filtername){
-      //console.log('Filter: ' + filtername);
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item)).html();
-      // console.log(itemtemplate(item));
-      $("#"+filter.id + '+ span').html(filteritem);
+      $("[for="+filter.id+"]").html(filteritem);
       if (settings.state.filters[facetname] && _.indexOf(settings.state.filters[facetname], filtername) >= 0) {
         $("#"+filter.id).addClass("activefacet").prop('checked', true);
         activeFilters.push(filtername);
       } else {
         $("#"+filter.id).removeClass("activefacet").prop('checked', false);
       }
-      /*
-      if (filter.count === 0) {
-        $("#"+filter.id).prop('disabled', true);
-      } else {
-        $("#"+filter.id).removeProp('disabled');
-      }
-      */
     });
   });
-  //console.log(activeFilters.length);
   if (activeFilters.length === 0) {
     activeFilters = false;
     $('#deselect').hide();
@@ -483,7 +470,7 @@ $(function(){
         facetSortOption  : {},
         facetListContainer : '<ul class=facetlist></ul>',
         listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;Tools)</span></label></span></li>',
-        listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> Tools)</span></span>',
+        listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> tools)</span></span>',
         orderByTemplate    : '',
         countTemplate      : '<div class="facettotalcount"><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters: <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } %></div>',
         facetTitleTemplate : '<summary class="facettitle"><%= title %></summary>',
