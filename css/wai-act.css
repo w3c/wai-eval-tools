@@ -1032,6 +1032,18 @@ summary:focus {
   white-space: nowrap;
 }
 
+/* line 208, ../sass/_toolslist.scss */
+.facettotalcount strong {
+  font-weight: normal;
+}
+/* line 209, ../sass/_toolslist.scss */
+.facettotalcount .filter {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: .1em .25em;
+  border-radius: 2px;
+}
+
 @font-face {
   font-family: "Vollkorn";
   src: url('../fonts/vollkorn/vollkorn-regular.eot?1414704507');

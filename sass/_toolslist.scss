@@ -203,3 +203,8 @@ text-align: center;
 	color: #555;
 	white-space: nowrap;
 }
+
+.facettotalcount {
+	strong { font-weight: normal; }
+	.filter { background-color: #fff; border: 1px solid #ddd; padding: .1em .25em; border-radius: 2px; }
+}
