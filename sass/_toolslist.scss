@@ -91,7 +91,7 @@ summary:focus {
   margin: 0;
   padding: 0;
   > li {
-    margin-bottom: 1.333333333em;
+    margin-bottom: .85em;
     list-style: none;
     border: 1px solid #005A9C;
     background-color: #fff;
@@ -110,11 +110,21 @@ summary:focus {
     &, a {
       color: #fff;
     }
-    a, i {
-      display:block;
-    }
   }
-
+  details {
+  	font-size: 0.85em;
+  	ul {
+  		@include mq($medium) {
+				columns: 2;
+			}
+			@include mq($big) {
+				columns: 3;
+			}
+			li {
+				break-inside: avoid-column;
+			}
+  	}
+  }
 }
 
 .disclaimer {
@@ -182,4 +192,14 @@ text-align: center;
       padding: .2em .1em;
     }
   }
+}
+
+.intro {
+	font-size: .9em;
+	line-height: 1.25;
+}
+
+.version {
+	color: #555;
+	white-space: nowrap;
 }

@@ -896,7 +896,7 @@ summary:focus {
 }
 /* line 93, ../sass/_toolslist.scss */
 #results > li {
-  margin-bottom: 1.333333333em;
+  margin-bottom: .85em;
   list-style: none;
   border: 1px solid #005A9C;
   background-color: #fff;
@@ -922,12 +922,34 @@ summary:focus {
 #results h4, #results h4 a {
   color: #fff;
 }
-/* line 113, ../sass/_toolslist.scss */
-#results h4 a, #results h4 i {
-  display: block;
+/* line 114, ../sass/_toolslist.scss */
+#results details {
+  font-size: 0.85em;
+}
+@media screen and (min-width: 43em) {
+  /* line 116, ../sass/_toolslist.scss */
+  #results details ul {
+    -webkit-columns: 2;
+       -moz-columns: 2;
+            columns: 2;
+  }
+}
+@media screen and (min-width: 56em) {
+  /* line 116, ../sass/_toolslist.scss */
+  #results details ul {
+    -webkit-columns: 3;
+       -moz-columns: 3;
+            columns: 3;
+  }
+}
+/* line 123, ../sass/_toolslist.scss */
+#results details ul li {
+  -webkit-column-break-inside: avoid;
+     page-break-inside: avoid;
+          break-inside: avoid-column;
 }
 
-/* line 120, ../sass/_toolslist.scss */
+/* line 130, ../sass/_toolslist.scss */
 .disclaimer {
   background-color: #fff;
   border: 1px solid #923e25;
@@ -935,7 +957,7 @@ summary:focus {
   line-height: 1.25;
 }
 
-/* line 127, ../sass/_toolslist.scss */
+/* line 137, ../sass/_toolslist.scss */
 .disclaimer h2, .disclaimer .navigation .topic, .navigation .disclaimer .topic {
   color: #fff;
   background-color: #923e25;
@@ -944,58 +966,70 @@ summary:focus {
   margin: 0;
 }
 
-/* line 135, ../sass/_toolslist.scss */
+/* line 145, ../sass/_toolslist.scss */
 .disclaimer p {
   padding: .25em;
   margin: 0;
 }
 
-/* line 140, ../sass/_toolslist.scss */
+/* line 150, ../sass/_toolslist.scss */
 #showmorebutton {
   display: block;
   width: 100%;
 }
 
-/* line 146, ../sass/_toolslist.scss */
+/* line 156, ../sass/_toolslist.scss */
 .content {
   margin-bottom: 2em !important;
 }
 
-/* line 149, ../sass/_toolslist.scss */
+/* line 159, ../sass/_toolslist.scss */
 .navigation h2, .navigation .topic, .content h2, .content .navigation .topic, .navigation .content .topic {
   font-size: 1.5em;
   margin: 0;
 }
 
-/* line 156, ../sass/_toolslist.scss */
+/* line 166, ../sass/_toolslist.scss */
 .content h2, .content .navigation .topic, .navigation .content .topic {
   padding: .33333em 0;
 }
 
-/* line 161, ../sass/_toolslist.scss */
+/* line 171, ../sass/_toolslist.scss */
 .navigation {
   margin-bottom: 1em;
 }
-/* line 163, ../sass/_toolslist.scss */
+/* line 173, ../sass/_toolslist.scss */
 .navigation details h2, .navigation details .topic {
   display: inline;
 }
 
-/* line 168, ../sass/_toolslist.scss */
+/* line 178, ../sass/_toolslist.scss */
 #infos {
   padding-bottom: .5em;
 }
 
-/* line 172, ../sass/_toolslist.scss */
+/* line 182, ../sass/_toolslist.scss */
 .submit {
   padding: 1em 0;
   background-color: #fff;
   text-align: center;
 }
 
-/* line 181, ../sass/_toolslist.scss */
+/* line 191, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > span, .form-block-mini > .form-row > label {
   padding: .2em .1em;
+}
+
+/* line 197, ../sass/_toolslist.scss */
+.intro {
+  font-size: .9em;
+  line-height: 1.25;
+}
+
+/* line 202, ../sass/_toolslist.scss */
+.version {
+  color: #555;
+  white-space: nowrap;
 }
 
 @font-face {
