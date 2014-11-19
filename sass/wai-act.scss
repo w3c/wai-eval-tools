@@ -753,6 +753,15 @@ form {
 	&:nth-child(odd) {
 		background-color: #eee;
 	}
+	&.required {
+		label {
+			font-weight: bold;
+			&:after {
+				content: " (Required)";
+				font-weight: normal;
+			}
+		}
+	}
 	&.radio, .radio & {
 		label {
 			width: auto;

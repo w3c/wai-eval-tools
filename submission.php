@@ -426,6 +426,9 @@ function mailstatus($none, $true, $false) {
       if(san($_POST['email']) == "") {
         $msg[] = '<label for="email">Email is a required field.</label>';
       }
+      if($data->description == "") {
+        $msg[] = '<label for="description">Tool description is a required field.</label>';
+      }
 
       if (count($msg)) {
         echo '<ul><li>';
@@ -442,8 +445,8 @@ function mailstatus($none, $true, $false) {
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden">Information about you</h2>
     <div class="form-block-mini">
-      <div class="form-row"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
-      <div class="form-row"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
+      <div class="form-row required"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
+      <div class="form-row required"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
     </div>
     <fieldset class="border-less"><legend><span>Role</span></legend>
       <ul class="form-block-mini">
@@ -462,12 +465,12 @@ function mailstatus($none, $true, $false) {
       <legend><span>Tool Identification</span></legend>
       <h3 class="visuallyhidden">Tool Identification</h3>
       <ul class="form-block-mini">
-        <li class="form-row"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
-        <li class="form-row"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
-        <li class="form-row"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required></span></li>
-        <li class="form-row"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="<?php echo $data->release ?>" required></span></li>
+        <li class="form-row required"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
+        <li class="form-row required"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
+        <li class="form-row required"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required></span></li>
+        <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="<?php echo $data->release ?>" required></span></li>
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
-        <li class="form-row"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300"><?php echo $data->description ?></textarea></span></li>
+        <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required><?php echo $data->description ?></textarea></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
         <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
