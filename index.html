@@ -107,8 +107,17 @@
           <span class="version">(<% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %>)</span></p>
         </div>
         <details>
-          <summary>Detailed Information</summary>
+          <summary>Detailed Information for <%= obj.title %></summary>
           <ul>
+          <% if (obj.guideline && obj.guideline.length) { %>
+            <li>
+            <% if (obj.guideline instanceof Array && obj.guideline.length > 1) { %>
+              <strong>Guidelines:</strong> <%= obj.guideline.join(', ') %>
+            <% } else { %>
+              <strong>Guidelines:</strong> <%= obj.guideline %>
+            <% } %>
+            </li>
+          <% }; %>
           <% if (obj.assists.length) { %>
             <li>
             <% if (obj.assists instanceof Array && obj.assists.length > 1) { %>
