@@ -100,14 +100,14 @@
       } %>
       <li class="tool-item" tabindex="0">
         <div>
-          <h4><a href="<%= obj.location %>" rel="nofollow"><%= obj.title %></a> <i>by <%= obj.creator %></i></h4>
+          <h3><a href="<%= obj.location %>" rel="nofollow"><%= obj.title %></a> <i>by <%= obj.creator %></i></h3>
         </div>
         <div class="desc">
           <p><%= obj.description.replace( /\n/g, "<br/>" ) %>
-          <span class="version">(<% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %>)</span></p>
+          <span class="version">(<a href="<%= obj.location %>" rel="nofollow">Link</a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %>)</span></p>
         </div>
         <details>
-          <summary>Detailed Information for <%= obj.title %></summary>
+          <summary><strong>Detailed Information</strong> about <%= obj.title %></summary>
           <ul>
           <% if (obj.guideline && obj.guideline.length) { %>
             <li>
