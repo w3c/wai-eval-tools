@@ -27,6 +27,9 @@ h1.page-title {
   }
   details {
     clear:both;
+    a {
+    	word-break: break-all;
+    }
   }
   h3 {
     font-size: 1em;
@@ -74,6 +77,11 @@ h1.page-title {
   background-color: #eee;
 }
 
+#facets input[type=checkbox]:focus {
+	box-shadow: 0 0 3px #005A9C;
+	outline: none;
+}
+
 summary:hover,
 summary:focus {
   background: #777;
@@ -115,15 +123,33 @@ summary:focus {
   details {
   	font-size: 0.85em;
   	ul {
+  		column-rule: 1px solid #777;
+  		column-gap: 2.5em;
+  		margin: 0;
+  		padding: 0 0 .5em;
   		@include mq($medium) {
 				columns: 2;
 			}
-			@include mq($big) {
+			@include mq($large) {
 				columns: 3;
 			}
 			li {
+				list-style: disc;
+				margin-left: 1.5em;
 				break-inside: avoid-column;
 			}
+  	}
+  }
+  summary {
+  	color: #606060;
+  	strong, &:before {
+  		color: #333;
+  	}
+  	&:hover, &:focus {
+  		color: #fff;
+	  	strong, &:before {
+	  		color: #fff;
+	  	}
   	}
   }
 }

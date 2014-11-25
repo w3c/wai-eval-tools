@@ -769,7 +769,7 @@ summary:hover, summary:focus {
 /* line 26, ../sass/_details.scss */
 .no-details details > summary:before {
   float: left;
-  width: 20px;
+  width: 1.25em;
   content: '► ';
 }
 
@@ -827,84 +827,94 @@ h1.page-title {
 .tool-item details {
   clear: both;
 }
-/* line 31, ../sass/_toolslist.scss */
+/* line 30, ../sass/_toolslist.scss */
+.tool-item details a {
+  word-break: break-all;
+}
+/* line 34, ../sass/_toolslist.scss */
 .tool-item h3 {
   font-size: 1em;
   margin: 0;
 }
 
-/* line 36, ../sass/_toolslist.scss */
+/* line 39, ../sass/_toolslist.scss */
 .tool-item p {
   margin: 0;
 }
 
-/* line 39, ../sass/_toolslist.scss */
+/* line 42, ../sass/_toolslist.scss */
 .tool-item .desc {
   line-height: 1.25;
 }
 
-/* line 42, ../sass/_toolslist.scss */
+/* line 45, ../sass/_toolslist.scss */
 .tool-item .ver {
   font-size: 0.8em;
   text-align: right;
 }
 
-/* line 47, ../sass/_toolslist.scss */
+/* line 50, ../sass/_toolslist.scss */
 .facetitemcount {
   font-size: 0.8em;
 }
 
-/* line 51, ../sass/_toolslist.scss */
+/* line 54, ../sass/_toolslist.scss */
 .facetlist {
   margin: 0;
   padding: 0 .5em .5em;
   display: table;
   line-height: 1.25;
 }
-/* line 56, ../sass/_toolslist.scss */
+/* line 59, ../sass/_toolslist.scss */
 .facetlist li {
   display: table-row;
   list-style: none;
 }
-/* line 59, ../sass/_toolslist.scss */
+/* line 62, ../sass/_toolslist.scss */
 .facetlist li > span {
   padding: 0 .125em .125em;
   display: table-cell;
 }
 
-/* line 69, ../sass/_toolslist.scss */
+/* line 72, ../sass/_toolslist.scss */
 #facets {
   font-size: 0.85em;
 }
 
-/* line 73, ../sass/_toolslist.scss */
+/* line 76, ../sass/_toolslist.scss */
 #facets details:nth-child(even) {
   background-color: #eee;
 }
 
-/* line 77, ../sass/_toolslist.scss */
+/* line 80, ../sass/_toolslist.scss */
+#facets input[type=checkbox]:focus {
+  box-shadow: 0 0 3px #005A9C;
+  outline: none;
+}
+
+/* line 85, ../sass/_toolslist.scss */
 summary:hover,
 summary:focus {
   background: #777;
   color: #fff;
 }
 
-/* line 83, ../sass/_toolslist.scss */
+/* line 91, ../sass/_toolslist.scss */
 [type=checkbox]:disabled + span {
   color: #777;
 }
 
-/* line 88, ../sass/_toolslist.scss */
+/* line 96, ../sass/_toolslist.scss */
 .bottomline div, .bottomline a {
   display: inline-block;
 }
 
-/* line 99, ../sass/_toolslist.scss */
+/* line 107, ../sass/_toolslist.scss */
 #results {
   margin: 0;
   padding: 0;
 }
-/* line 102, ../sass/_toolslist.scss */
+/* line 110, ../sass/_toolslist.scss */
 #results > li {
   margin-bottom: .85em;
   list-style: none;
@@ -914,42 +924,71 @@ summary:focus {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* line 111, ../sass/_toolslist.scss */
+/* line 119, ../sass/_toolslist.scss */
 #results p, #results ul {
   padding: .25em .5em;
 }
-/* line 112, ../sass/_toolslist.scss */
+/* line 120, ../sass/_toolslist.scss */
 #results ul {
   margin-left: 1em;
 }
-/* line 115, ../sass/_toolslist.scss */
+/* line 123, ../sass/_toolslist.scss */
 #results details {
   font-size: 0.85em;
 }
+/* line 125, ../sass/_toolslist.scss */
+#results details ul {
+  -webkit-column-rule: 1px solid #777;
+     -moz-column-rule: 1px solid #777;
+          column-rule: 1px solid #777;
+  -webkit-column-gap: 2.5em;
+     -moz-column-gap: 2.5em;
+          column-gap: 2.5em;
+  margin: 0;
+  padding: 0 0 .5em;
+}
 @media screen and (min-width: 43em) {
-  /* line 117, ../sass/_toolslist.scss */
+  /* line 125, ../sass/_toolslist.scss */
   #results details ul {
     -webkit-columns: 2;
        -moz-columns: 2;
             columns: 2;
   }
 }
-@media screen and (min-width: 56em) {
-  /* line 117, ../sass/_toolslist.scss */
+@media screen and (min-width: 81em) {
+  /* line 125, ../sass/_toolslist.scss */
   #results details ul {
     -webkit-columns: 3;
        -moz-columns: 3;
             columns: 3;
   }
 }
-/* line 124, ../sass/_toolslist.scss */
+/* line 136, ../sass/_toolslist.scss */
 #results details ul li {
+  list-style: disc;
+  margin-left: 1.5em;
   -webkit-column-break-inside: avoid;
      page-break-inside: avoid;
           break-inside: avoid-column;
 }
+/* line 143, ../sass/_toolslist.scss */
+#results summary {
+  color: #606060;
+}
+/* line 145, ../sass/_toolslist.scss */
+#results summary strong, #results summary:before {
+  color: #333;
+}
+/* line 148, ../sass/_toolslist.scss */
+#results summary:hover, #results summary:focus {
+  color: #fff;
+}
+/* line 150, ../sass/_toolslist.scss */
+#results summary:hover strong, #results summary:hover:before, #results summary:focus strong, #results summary:focus:before {
+  color: #fff;
+}
 
-/* line 131, ../sass/_toolslist.scss */
+/* line 157, ../sass/_toolslist.scss */
 .disclaimer {
   background-color: #fff;
   border: 1px solid #923e25;
@@ -957,7 +996,7 @@ summary:focus {
   line-height: 1.25;
 }
 
-/* line 138, ../sass/_toolslist.scss */
+/* line 164, ../sass/_toolslist.scss */
 .disclaimer h2, .disclaimer .navigation .topic, .navigation .disclaimer .topic {
   color: #fff;
   background-color: #923e25;
@@ -966,77 +1005,77 @@ summary:focus {
   margin: 0;
 }
 
-/* line 146, ../sass/_toolslist.scss */
+/* line 172, ../sass/_toolslist.scss */
 .disclaimer p {
   padding: .25em;
   margin: 0;
 }
 
-/* line 151, ../sass/_toolslist.scss */
+/* line 177, ../sass/_toolslist.scss */
 #showmorebutton {
   display: block;
   width: 100%;
 }
 
-/* line 157, ../sass/_toolslist.scss */
+/* line 183, ../sass/_toolslist.scss */
 .content {
   margin-bottom: 2em !important;
 }
 
-/* line 160, ../sass/_toolslist.scss */
+/* line 186, ../sass/_toolslist.scss */
 .navigation h2, .navigation .topic, .content h2, .content .navigation .topic, .navigation .content .topic {
   font-size: 1.5em;
   margin: 0;
 }
 
-/* line 167, ../sass/_toolslist.scss */
+/* line 193, ../sass/_toolslist.scss */
 .content h2, .content .navigation .topic, .navigation .content .topic {
   padding: .33333em 0;
 }
 
-/* line 172, ../sass/_toolslist.scss */
+/* line 198, ../sass/_toolslist.scss */
 .navigation {
   margin-bottom: 1em;
 }
-/* line 174, ../sass/_toolslist.scss */
+/* line 200, ../sass/_toolslist.scss */
 .navigation details h2, .navigation details .topic {
   display: inline;
 }
 
-/* line 179, ../sass/_toolslist.scss */
+/* line 205, ../sass/_toolslist.scss */
 #infos {
   padding-bottom: .5em;
 }
 
-/* line 183, ../sass/_toolslist.scss */
+/* line 209, ../sass/_toolslist.scss */
 .submit {
   padding: 1em 0;
   background-color: #fff;
   text-align: center;
 }
 
-/* line 192, ../sass/_toolslist.scss */
+/* line 218, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > span, .form-block-mini > .form-row > label {
   padding: .2em .1em;
 }
 
-/* line 198, ../sass/_toolslist.scss */
+/* line 224, ../sass/_toolslist.scss */
 .intro {
   font-size: .9em;
   line-height: 1.25;
 }
 
-/* line 203, ../sass/_toolslist.scss */
+/* line 229, ../sass/_toolslist.scss */
 .version {
   color: #555;
   white-space: nowrap;
 }
 
-/* line 209, ../sass/_toolslist.scss */
+/* line 235, ../sass/_toolslist.scss */
 .facettotalcount strong {
   font-weight: normal;
 }
-/* line 210, ../sass/_toolslist.scss */
+/* line 236, ../sass/_toolslist.scss */
 .facettotalcount .filter {
   background-color: #fff;
   border: 1px solid #ddd;
