@@ -107,7 +107,7 @@
           <span class="version">(<a href="<%= obj.location %>" rel="nofollow">Link</a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %>)</span></p>
         </div>
         <details>
-          <summary><strong>Detailed Information</strong> about <%= obj.title %></summary>
+          <summary><strong>Detailed Information</strong> about “<%= obj.title %>”</summary>
           <ul>
           <% if (obj.guideline && obj.guideline.length) { %>
             <li>
@@ -240,6 +240,7 @@
               <strong>Information updated:</strong> <%= parsedate(obj.update) %>
             </li>
           <% }; %>
+          <li>URL: <a href="<%= obj.location %>" rel="nofollow"><%= obj.location %></a></li>
         </ul>
         </details>
       </li>
