@@ -391,12 +391,6 @@ function showMoreResults() {
   newelems.parent().details();
   $('.tofocus').last().next().focus();
   newelems.last().parent().parent().addClass('tofocus');
-  $('#results .desc p').linkify({
-    target: '',
-    linkAttributes: {
-      rel: "nofollow"
-    }
-  });
   if (!moreButton) {
     moreButton = $(settings.showMoreTemplate).click(showMoreResults);
     $(settings.resultSelector).after(moreButton);
