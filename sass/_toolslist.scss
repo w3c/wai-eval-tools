@@ -78,8 +78,7 @@ h1.page-title {
 }
 
 #facets input[type=checkbox]:focus {
-	box-shadow: 0 0 3px #005A9C;
-	outline: none;
+	outline: 3px solid #005A9C;
 }
 
 summary:hover,
