@@ -886,40 +886,44 @@ h1.page-title {
 #facets {
   font-size: 0.85em;
 }
+/* line 79, ../sass/_toolslist.scss */
+#facets summary {
+  font-weight: bold;
+}
 
-/* line 81, ../sass/_toolslist.scss */
+/* line 84, ../sass/_toolslist.scss */
 #facets details:nth-child(even) {
   background-color: #eee;
 }
 
-/* line 85, ../sass/_toolslist.scss */
+/* line 88, ../sass/_toolslist.scss */
 #facets input[type=checkbox]:focus {
   outline: 3px solid #005A9C;
 }
 
-/* line 89, ../sass/_toolslist.scss */
+/* line 92, ../sass/_toolslist.scss */
 summary:hover,
 summary:focus {
   background: #777;
   color: #fff;
 }
 
-/* line 95, ../sass/_toolslist.scss */
+/* line 98, ../sass/_toolslist.scss */
 [type=checkbox]:disabled + span {
   color: #777;
 }
 
-/* line 100, ../sass/_toolslist.scss */
+/* line 103, ../sass/_toolslist.scss */
 .bottomline div, .bottomline a {
   display: inline-block;
 }
 
-/* line 111, ../sass/_toolslist.scss */
+/* line 114, ../sass/_toolslist.scss */
 #results {
   margin: 0;
   padding: 0;
 }
-/* line 114, ../sass/_toolslist.scss */
+/* line 117, ../sass/_toolslist.scss */
 #results > li {
   margin-bottom: .85em;
   list-style: none;
@@ -929,19 +933,19 @@ summary:focus {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* line 123, ../sass/_toolslist.scss */
+/* line 126, ../sass/_toolslist.scss */
 #results p, #results ul {
   padding: .25em .5em;
 }
-/* line 124, ../sass/_toolslist.scss */
+/* line 127, ../sass/_toolslist.scss */
 #results ul {
   margin-left: 1em;
 }
-/* line 127, ../sass/_toolslist.scss */
+/* line 130, ../sass/_toolslist.scss */
 #results details {
   font-size: 0.85em;
 }
-/* line 129, ../sass/_toolslist.scss */
+/* line 132, ../sass/_toolslist.scss */
 #results details ul {
   -webkit-column-rule: 1px solid #777;
      -moz-column-rule: 1px solid #777;
@@ -953,7 +957,7 @@ summary:focus {
   padding: 0 0 .5em;
 }
 @media screen and (min-width: 43em) {
-  /* line 129, ../sass/_toolslist.scss */
+  /* line 132, ../sass/_toolslist.scss */
   #results details ul {
     -webkit-columns: 2;
        -moz-columns: 2;
@@ -961,14 +965,14 @@ summary:focus {
   }
 }
 @media screen and (min-width: 81em) {
-  /* line 129, ../sass/_toolslist.scss */
+  /* line 132, ../sass/_toolslist.scss */
   #results details ul {
     -webkit-columns: 3;
        -moz-columns: 3;
             columns: 3;
   }
 }
-/* line 140, ../sass/_toolslist.scss */
+/* line 143, ../sass/_toolslist.scss */
 #results details ul li {
   list-style: disc;
   margin-left: 1.5em;
@@ -976,24 +980,24 @@ summary:focus {
      page-break-inside: avoid;
           break-inside: avoid-column;
 }
-/* line 147, ../sass/_toolslist.scss */
+/* line 150, ../sass/_toolslist.scss */
 #results summary {
   color: #606060;
 }
-/* line 149, ../sass/_toolslist.scss */
+/* line 152, ../sass/_toolslist.scss */
 #results summary strong, #results summary:before {
   color: #333;
 }
-/* line 152, ../sass/_toolslist.scss */
+/* line 155, ../sass/_toolslist.scss */
 #results summary:hover, #results summary:focus {
   color: #fff;
 }
-/* line 154, ../sass/_toolslist.scss */
+/* line 157, ../sass/_toolslist.scss */
 #results summary:hover strong, #results summary:hover:before, #results summary:focus strong, #results summary:focus:before {
   color: #fff;
 }
 
-/* line 161, ../sass/_toolslist.scss */
+/* line 164, ../sass/_toolslist.scss */
 .disclaimer {
   background-color: #fff;
   border: 1px solid #923e25;
@@ -1001,7 +1005,7 @@ summary:focus {
   line-height: 1.25;
 }
 
-/* line 168, ../sass/_toolslist.scss */
+/* line 171, ../sass/_toolslist.scss */
 .disclaimer h2, .disclaimer .navigation .topic, .navigation .disclaimer .topic {
   color: #fff;
   background-color: #923e25;
@@ -1010,81 +1014,81 @@ summary:focus {
   margin: 0;
 }
 
-/* line 176, ../sass/_toolslist.scss */
+/* line 179, ../sass/_toolslist.scss */
 .disclaimer p {
   padding: .25em;
   margin: 0;
 }
 
-/* line 181, ../sass/_toolslist.scss */
+/* line 184, ../sass/_toolslist.scss */
 #showmorebutton {
   display: block;
   width: 100%;
 }
 
-/* line 187, ../sass/_toolslist.scss */
+/* line 190, ../sass/_toolslist.scss */
 .content {
   margin-bottom: 2em !important;
 }
 
-/* line 190, ../sass/_toolslist.scss */
+/* line 193, ../sass/_toolslist.scss */
 .navigation h2, .navigation .topic, .content h2, .content .navigation .topic, .navigation .content .topic {
   font-size: 1.5em;
   margin: 0;
 }
 
-/* line 197, ../sass/_toolslist.scss */
+/* line 200, ../sass/_toolslist.scss */
 .content h2, .content .navigation .topic, .navigation .content .topic {
   padding: .33333em 0;
 }
 
-/* line 202, ../sass/_toolslist.scss */
+/* line 205, ../sass/_toolslist.scss */
 .navigation {
   margin-bottom: 1em;
 }
-/* line 204, ../sass/_toolslist.scss */
+/* line 207, ../sass/_toolslist.scss */
 .navigation details h2, .navigation details .topic {
   display: inline;
 }
 
-/* line 209, ../sass/_toolslist.scss */
+/* line 212, ../sass/_toolslist.scss */
 #infos {
   padding-bottom: .5em;
 }
 
-/* line 213, ../sass/_toolslist.scss */
+/* line 216, ../sass/_toolslist.scss */
 .submit {
   padding: 1em 0;
   background-color: #fff;
   text-align: center;
 }
 
-/* line 222, ../sass/_toolslist.scss */
+/* line 225, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > span, .form-block-mini > .form-row > label {
   padding: .2em;
 }
-/* line 225, ../sass/_toolslist.scss */
+/* line 228, ../sass/_toolslist.scss */
 .form-block-mini > .form-row > label {
   width: 30%;
 }
 
-/* line 231, ../sass/_toolslist.scss */
+/* line 234, ../sass/_toolslist.scss */
 .intro {
   font-size: .9em;
   line-height: 1.25;
 }
 
-/* line 236, ../sass/_toolslist.scss */
+/* line 239, ../sass/_toolslist.scss */
 .version {
   color: #555;
   white-space: nowrap;
 }
 
-/* line 242, ../sass/_toolslist.scss */
+/* line 245, ../sass/_toolslist.scss */
 .facettotalcount strong {
   font-weight: normal;
 }
-/* line 243, ../sass/_toolslist.scss */
+/* line 246, ../sass/_toolslist.scss */
 .facettotalcount .filter {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -1092,7 +1096,7 @@ summary:focus {
   border-radius: 2px;
 }
 
-/* line 246, ../sass/_toolslist.scss */
+/* line 249, ../sass/_toolslist.scss */
 .permalink {
   position: absolute;
   top: 0;
@@ -1101,14 +1105,16 @@ summary:focus {
   opacity: 0;
   font-weight: normal;
 }
-/* line 253, ../sass/_toolslist.scss */
+/* line 256, ../sass/_toolslist.scss */
 .tool-item:hover .permalink, .permalink:focus {
   opacity: 1;
 }
 
-/* line 256, ../sass/_toolslist.scss */
+/* line 259, ../sass/_toolslist.scss */
 .plainitem {
-  padding: .75em 0 0;
+  margin: .375em 0 0;
+  padding: .375em 0 0;
+  border-top: 1px solid #666;
 }
 
 @font-face {

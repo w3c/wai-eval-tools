@@ -76,6 +76,9 @@ h1.page-title {
 
 #facets {
   font-size: 0.85em;
+  summary {
+  	font-weight: bold;
+  }
 }
 
 #facets details:nth-child(even) {
@@ -254,5 +257,7 @@ text-align: center;
 }
 
 .plainitem {
-	padding: .75em 0 0;
+	margin: .375em 0 0;
+	padding: .375em 0 0;
+	border-top: 1px solid #666;
 }
