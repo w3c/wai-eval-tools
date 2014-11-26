@@ -234,3 +234,13 @@ text-align: center;
 	strong { font-weight: normal; }
 	.filter { background-color: #fff; border: 1px solid #ddd; padding: .1em .25em; border-radius: 2px; }
 }
+
+.permalink {
+	position: absolute;
+	top:0;
+	right: .5em;
+	text-decoration: none;
+	opacity:0;
+	font-weight: normal;
+	.tool-item:hover &, &:focus { opacity: 1; }
+}
