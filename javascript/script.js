@@ -9,15 +9,11 @@ $(function(){
         facets           : {
           'guideline' : {'title': 'Guidelines', 'promoted': ["<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.0<\/strong>", "<abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 1.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 1.0"]},
           'language'  : {'title': 'Languages', 'collapsed': true},
+          'type': {'title': 'Type of tool', 'collapsed': true},
           'assists': {'title': 'Assists by …', 'collapsed': true, 'promoted': ['Generating reports of evaluation results', 'Providing step-by-step evaluation guidance', 'Displaying information within web pages', 'Modifying the presentation of web pages']},
           'automated': {'title': 'Automatically checks…', 'collapsed': true, 'promoted': ['Single web pages', 'Groups of web pages or web sites', 'Restricted or password protected pages']},
-          'type': {'title': 'Type of tool', 'collapsed': true},
-          //'authoringtools': {'title': 'Authoring Tool PlugIns', 'collapsed': true},
-          //'desktopapp': {'title': 'Operating system', 'collapsed': true},
-          //'onlineservice': {'title': 'Online Service', 'collapsed': true},
-          //'repairs': {'title': 'Repairs', 'collapsed': true},
-          //'checks': {'title': 'Checks', 'collapsed': true},
-          'license' : {'title': 'License', 'collapsed': true}
+          'license' : {'title': 'License', 'collapsed': true},
+          'a11ystatement' : {'title': 'Accessibility Statement', 'plain': true }
         },
         resultSelector   : '#results',
         facetSelector    : '#facets',
@@ -31,8 +27,8 @@ $(function(){
         listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> tools)</span></span>',
         orderByTemplate    : '',
         countTemplate      : '<div class="facettotalcount"><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters: <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } %></div>',
-        facetTitleTemplate : '<summary class="facettitle"><%= title %></summary>',
-        facetContainer     : '<details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details> <%= obj %>',
+        facetTitleTemplate : '<% if (!obj.plain) { %><summary class="facettitle"><%= title %></summary><% } %>',
+        facetContainer     : '<% if (!obj.plain) { %><details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details><% } else { %><div class="plainitem"></div><% } %>',
         showMoreTemplate   : '<button type="button" id="showmorebutton">Show more</button>'
       };
 
