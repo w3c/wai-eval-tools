@@ -16,9 +16,14 @@ h1.page-title {
     margin-bottom: 0;
     background-color: #005A9C;
     padding: .25em .5em;
-    &, h3, a {
+    color: #fff;
+    position: relative;
+    h3 {
     	@extend .font-primary;
-      color: #fff;
+    	color: #fff;
+    }
+    a {
+    	color: #fff;
     }
     i {
 		  font-weight: normal;
@@ -215,7 +220,10 @@ text-align: center;
   @extend .form-block;
   > .form-row {
     > span, > label {
-      padding: .2em .1em;
+      padding: .2em;
+    }
+    > label {
+    	width:30%;
     }
   }
 }
