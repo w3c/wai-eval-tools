@@ -260,6 +260,11 @@
               <strong>Information updated:</strong> <%= parsedate(obj.update) %>
             </li>
           <% }; %>
+          <% if (obj.a11yloc) { %>
+            <li>
+              <strong><a href="<%= obj.a11yloc %>">Accessibility statement</a></strong>
+            </li>
+          <% }; %>
           <li>URL: <a href="<%= obj.location %>" rel="nofollow"><%= obj.location %></a></li>
         </ul>
         </details>

@@ -244,3 +244,7 @@ text-align: center;
 	font-weight: normal;
 	.tool-item:hover &, &:focus { opacity: 1; }
 }
+
+.plainitem {
+	padding: .75em 0 0;
+}
