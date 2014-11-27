@@ -1099,13 +1099,25 @@ summary:focus {
 /* line 249, ../sass/_toolslist.scss */
 .permalink {
   position: absolute;
-  top: 0;
+  top: .2em;
   right: .5em;
   text-decoration: none;
   font-weight: normal;
+  width: 1.25em;
+  height: 1.25em;
+  border: 1px solid rgba(255, 255, 255, 0);
+  text-align: center;
+}
+/* line 260, ../sass/_toolslist.scss */
+.permalink:hover {
+  border: 1px solid #fff;
+}
+/* line 263, ../sass/_toolslist.scss */
+.permalink img {
+  display: inline-block;
 }
 
-/* line 259, ../sass/_toolslist.scss */
+/* line 269, ../sass/_toolslist.scss */
 .plainitem {
   margin: .375em 0 0;
   padding: .375em 0 0;

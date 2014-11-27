@@ -248,11 +248,21 @@ text-align: center;
 
 .permalink {
 	position: absolute;
-	top:0;
+	top:.2em;
 	right: .5em;
 	text-decoration: none;
 //	opacity:0;
 	font-weight: normal;
+	width: 1.25em;
+	height: 1.25em;
+	border: 1px solid rgba(#fff,0);
+	text-align: center;
+	&:hover {
+		border: 1px solid #fff;
+	}
+	img {
+		display: inline-block;
+	}
 //	.tool-item:hover &, &:focus { opacity: 1; }
 }
 
