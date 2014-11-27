@@ -1102,12 +1102,7 @@ summary:focus {
   top: 0;
   right: .5em;
   text-decoration: none;
-  opacity: 0;
   font-weight: normal;
-}
-/* line 256, ../sass/_toolslist.scss */
-.tool-item:hover .permalink, .permalink:focus {
-  opacity: 1;
 }
 
 /* line 259, ../sass/_toolslist.scss */
