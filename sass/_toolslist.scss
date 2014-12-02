@@ -123,7 +123,7 @@ summary:focus {
     box-shadow: 0 0 3px rgba(#000, .5);
     overflow:hidden;
   }
-  p, ul {padding: .25em .5em;}
+  .desc, ul {padding: .25em .5em;}
   ul {
     margin-left: 1em;
   }
@@ -266,8 +266,12 @@ text-align: center;
 //	.tool-item:hover &, &:focus { opacity: 1; }
 }
 
-.plainitem {
-	margin: .375em 0 0;
+.plainitem .facetlist {
+	margin: .375em;
 	padding: .375em 0 0;
-	border-top: 1px solid #666;
+	border-top: 1px solid #777;
+}
+
+.link {
+	font-size: 0.85em;
 }

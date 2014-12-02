@@ -934,7 +934,7 @@ summary:focus {
   overflow: hidden;
 }
 /* line 126, ../sass/_toolslist.scss */
-#results p, #results ul {
+#results .desc, #results ul {
   padding: .25em .5em;
 }
 /* line 127, ../sass/_toolslist.scss */
@@ -1118,10 +1118,15 @@ summary:focus {
 }
 
 /* line 269, ../sass/_toolslist.scss */
-.plainitem {
-  margin: .375em 0 0;
+.plainitem .facetlist {
+  margin: .375em;
   padding: .375em 0 0;
-  border-top: 1px solid #666;
+  border-top: 1px solid #777;
+}
+
+/* line 275, ../sass/_toolslist.scss */
+.link {
+  font-size: 0.85em;
 }
 
 @font-face {
