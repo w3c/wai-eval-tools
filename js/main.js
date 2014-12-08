@@ -463,6 +463,12 @@ $(function(){
 		// alert($.fn.details.support);
 		$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 		$('#facets details, .navigation > details').details();
+
+		if(window.location.hash) {
+			var elem = $(window.location.hash).focus();
+			$('html, body').animate({scrollTop: elem.offset().top}, 800);
+		}
+
 		});
 
 });
