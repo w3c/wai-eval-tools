@@ -30,7 +30,7 @@
     <p><strong>Please note:</strong></p>
     <ul>
     	<li>There is no obligation to fill out all information especially if you are not a tool vendor or developer.</li>
-    	<li>Information sent using this form will be reviewed before publishing, it usually takes around 10 business days until a tool gets published.</li>
+    	<li>Information sent using this form will be reviewed before publishing, it can take up to 10 business days until the information is published.</li>
     	<li>Some submitted information may be adapted to fit into the categories in the Evaluation Tools List.</li>
     	<li>If information is submitted by a user of a tool, we may follow up with the tool’s vendor before the tool is listed.</li>
     	<li>All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a>.</li>
@@ -43,8 +43,8 @@
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden">Information about you</h2>
     <div class="form-block-mini">
-      <div class="form-row required"><label for="name">Name</label><span><input name="name" id="name" type="text" value="" required  aria-required="true"></span></div>
-      <div class="form-row required"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="" required aria-required="true"></span></div>
+      <div class="form-row required"><label for="name">Your Name</label><span><input name="name" id="name" type="text" value="" required  aria-required="true"></span></div>
+      <div class="form-row required"><label for="email">Your E-Mail</label><span><input name="email" id="email" type="email" value="" required aria-required="true"></span></div>
     </div>
     <fieldset class="border-less"><legend><span>Your Role</span></legend>
       <ul class="form-block-mini">
@@ -63,9 +63,11 @@
         <li class="form-row required"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="" required aria-required="true"></span></li>
         <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required aria-required="true" aria-describedby="descdesc"></textarea><br><span id="descdesc">Please enter only plain text, no HTML is allowed. URIs won’t be linked.</span></span></li>
         <li class="form-row required"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="" required aria-required="true"></span></li>
-        <li class="form-row"><label for="location_a11yinfo">Tool Accessibility Information Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value=""></span></li>
         <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="" required aria-required="true"></span></li>
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
+      </ul><br>
+      <ul class="form-block-mini">
+      	<li class="form-row"><label for="location_a11yinfo">Tool Web address to information about the accessibility of the tool (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value=""></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
         <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
