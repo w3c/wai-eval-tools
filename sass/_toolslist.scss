@@ -275,3 +275,12 @@ text-align: center;
 .link {
 	font-size: 0.85em;
 }
+
+.group {
+	fieldset {
+		margin-left: 3em;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}

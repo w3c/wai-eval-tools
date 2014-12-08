@@ -15,16 +15,17 @@
 </head>
 <body class="texts">
 <?php
-  $demo = false;
+	date_default_timezone_set('UTC');
+  $demo = true;
   $mailstatus = 'none';
   function create_form_cb_section($data) {
-    $section  = "<fieldset>";
+    $section  = '<fieldset id="fs-'.$data[variable].'">';
     $section .= '<legend>'.$data[title].'</legend>';
     $section .= '<h3 class="visuallyhidden" id="'.$data[variable].'">'.$data[title].'</h3>';
     $section .= '<ul class="form-block-mini radio">';
 
     foreach ($data['data'] as $key => $value) {
-      $section .= '<li class="form-row"><span><input id="'.$data[variable].'_'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.(($_POST && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.$key.'">'.$value.'</label></li>';
+      $section .= '<li class="form-row"><span><input id="'.$data[variable].'_'.$key.'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.((isset($_POST[$data[variable]]) && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.$key.'">'.$value.'</label></li>';
     }
 
     if($data[other]) {
@@ -38,7 +39,7 @@
   }
 
 $language = array(
-  title => "Tool language",
+  title => "Tool languages:",
   data => array(
     "pt-br" => 'Brazilian Portuguese (<span lang="pt-br">Português Brasileiro</span>)',
     "bg" => 'Bulgarian (<span lang="bg">Български</span>)',
@@ -67,7 +68,7 @@ $language = array(
 );
 
 $guideline = array(
-  title => "Checks for these Guidelines",
+  title => "Select Guidelines that can be checked using this tool:",
   data => array(
     "wcag20" => '<strong><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0 — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 2.0</strong>',
     "wcag10" => '<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 1.0',
@@ -91,7 +92,7 @@ $assists = array(
     "inpage" => 'Displaying information within web pages',
     "transformation" => 'Modifying the presentation of web pages'
   ),
-  other => true,
+  other => false,
   variable => 'assists',
   type => 'checkbox'
 );
@@ -103,7 +104,7 @@ $automated = array(
     "crawl" => 'Groups of web pages or web sites',
     "authenticated" => 'Restricted or password protected pages'
   ),
-  other => true,
+  other => false,
   variable => 'automated',
   type => 'checkbox'
 );
@@ -130,9 +131,10 @@ $technology = array(
     "html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
     "xhtml" => '<abbr title="Extensible Hypertext Markup Language">XHTML</abbr>',
     "svg" => '<abbr title="Scalabale Vector Grpahics">SVG</abbr>',
-    "pdf" => '<abbr title="Portable Document Format">PDF</abbr>',
+    "pdf" => '<abbr title="Portable Document Format">PDF</abbr> documents',
     "images" => 'Images',
-    "SMIL" => '<abbr title="Synchronized Multimedia Integration Language">SMIL</abbr>'
+    "smil" => '<abbr title="Synchronized Multimedia Integration Language">SMIL</abbr>',
+    "office" => 'Microsoft Office documents'
   ),
   other => true,
   variable => 'technology',
@@ -146,7 +148,7 @@ $onlineservice = array(
     "hosted" => 'Hosted service',
     "server" => 'Server installation'
   ),
-  other => true,
+  other => false,
   variable => 'onlineservice',
   type => 'checkbox'
 );
@@ -165,6 +167,20 @@ $desktopapp = array(
   type => 'checkbox'
 );
 
+$mobileapp = array(
+  title => "Mobile application for:",
+  data => array(
+    "ios" => 'Apple iOS',
+    "android" => 'Android',
+    "windows" => 'Microsoft Windows Phone',
+    "blackberry" => 'Blackberry',
+    "firefox" => 'Firefox OS'
+  ),
+  other => true,
+  variable => 'mobile',
+  type => 'checkbox'
+);
+
 $authoringtools = array(
   title => "Authoring tool plugin for:",
   data => array(
@@ -174,7 +190,7 @@ $authoringtools = array(
     "edge" => 'Adobe Edge',
     "eclipse" => "Eclipse",
     "expressionweb" => 'Microsoft Expression Web',
-    "expressionweb" => 'Microsoft Visual Studio',
+    "visualstudio" => 'Microsoft Visual Studio',
     "sublimetext" => 'Sublime Text'
   ),
   other => true,
@@ -198,48 +214,6 @@ $browsers = array(
   type => 'checkbox'
 );
 
-$runtime = array(
-  title => "Runtime application for:",
-  data => array(
-    "java" => 'Java',
-    "net" => '.NET',
-    "flash" => 'Flash',
-    "soa" => '<abbr title="Service-Oriented Architecture">SOA</abbr>'
-  ),
-  other => true,
-  variable => 'runtime',
-  type => 'checkbox'
-);
-
-$reports = array(
-  title => "Generates reports in:",
-  data => array(
-    "html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
-    "pdf" => '<abbr title="Portable Document Format">PDF</abbr>',
-    "xml" => '<abbr title="Extensible Markup Language">XML</abbr>',
-    "earl" => '<abbr title="Evaluation and Report Language">EARL</abbr>',
-    "txt" => 'Text',
-    "csv" => '<abbr title="Comma Separated Value">CSV</abbr>'
-  ),
-  other => true,
-  variable => 'reports',
-  type => 'checkbox'
-);
-
-$apis = array(
-  title => 'Provides <abbr title="Application Programming Interface">API</abbr>s for:',
-  data => array(
-    "c" => 'C, C++, or C#',
-    "java" => 'Java',
-    "vbasic" => 'Visual Basic',
-    "sql" => '<abbr title="Structured Query Language">SQL</abbr>',
-    "web" => 'Web service (Rest API, Webhook…)'
-  ),
-  other => true,
-  variable => 'apis',
-  type => 'checkbox'
-);
-
 $license = array(
   title => 'License type:',
   data => array(
@@ -249,8 +223,23 @@ $license = array(
     "commercial" => 'Commercial',
     "enterprise" => 'Enterprise'
   ),
-  other => true,
+  other => false,
   variable => 'license',
+  type => 'checkbox'
+);
+
+$tooltype = array(
+  title => 'Type of tool:',
+  data => array(
+    "desktop" => 'Desktop application',
+    "mobile" => 'Mobile application',
+    "cli" => 'Command line tool',
+    "browserplugin" => 'Browser plugin',
+    "atplugin" => 'Authoring tool plugin',
+    "online" => 'Online tool'
+  ),
+  other => false,
+  variable => 'tooltype',
   type => 'checkbox'
 );
 
@@ -266,8 +255,9 @@ function iter($input, $reference) {
       if ($key !== 'other') {
         $o[] = $reference_data[$value];
       } else {
-        if (san($value) !== '') {
-          $o[] = san($value);
+      	$val = san($value);
+        if ($val !== '') {
+          $o[] = $val;
         }
       }
     }
@@ -282,12 +272,20 @@ function iter($input, $reference) {
 
    // var_dump($_POST);
 
+    $data = (object) array();
+
     $data->title = san($_POST['title']);
     $data->creator = san($_POST['creator']);
     $data->location = san($_POST['location']);
     $data->release = san($_POST['release']);
     $data->version = san($_POST['version']);
     $data->description = san($_POST['description']);
+    $data->a11yloc = san($_POST['location_a11yinfo']);
+    if ($data->a11yloc != "") {
+    	$data->a11yinfo = "Tools providing accessibility information";
+    } else {
+    	$data->a11yinfo = "";
+    }
     $data->update = san(date('Y-m-d'));
 
     if ($data->title == "" || $data->creator == "" || $data->location == "" || $data->release == "" || san($_POST['name']) == "" || san($_POST['email']) == "") {
@@ -298,15 +296,14 @@ function iter($input, $reference) {
     $data->guideline = iter($_POST['guideline'], $guideline);
     $data->assists = iter($_POST['assists'], $assists);
     $data->automated = iter($_POST['automated'], $automated);
-    $data->repairs = iter($_POST['repairs'], $repairs);
+    # $data->repairs = iter($_POST['repairs'], $repairs);
     $data->technology = iter($_POST['technology'], $technology);
+    $data->type = iter($_POST['tooltype'], $tooltype);
     $data->onlineservice = iter($_POST['onlineservice'], $onlineservice);
-    $data->desktopapp = iter($_POST['desktopapp'], $desktopapp);
+    $data->desktop = iter($_POST['desktop'], $desktopapp);
+    $data->mobile = iter($_POST['mobile'], $mobileapp);
     $data->authoringtools = iter($_POST['authoringtools'], $authoringtools);
     $data->browsers = iter($_POST['browsers'], $browsers);
-    $data->runtime = iter($_POST['runtime'], $runtime);
-    $data->reports = iter($_POST['reports'], $reports);
-    $data->apis = iter($_POST['apis'], $apis);
     $data->license = iter($_POST['license'], $license);
 
 if ($mailstatus !== false) {
@@ -322,7 +319,7 @@ if ($mailstatus !== false) {
   $url = html_entity_decode($url,ENT_QUOTES);
 
   // adding - for spaces and union characters
-  $find = array(' ', '&', 'rn', 'n', '+',',');
+  $find = array(' ', '&', '+',',');
   $url = str_replace ($find, '-', $url);
 
   //delete and replace rest of special chars
@@ -347,7 +344,7 @@ $multipartSep = '-----'.md5(time()).'-----';
 
 /* create e-mail paramters */
 if ($demo == true) {
-  $recipient = "ee@w3.org, shadi@w3.org";
+  $recipient = "ee@w3.org";//, shadi@w3.org";
 } else {
   $recipient = "public-wai-ert-tools@w3.org";
 }
@@ -361,7 +358,8 @@ $body = "--$multipartSep\r\n"
         . "Content-Type: text/plain; charset=ISO-8859-1; format=flowed\r\n"
         . "Content-Transfer-Encoding: 7bit\r\n"
         . "\r\n"
-        . $message.json_encode($data)."\r\n"
+        . $message.var_export($data, true)."\r\n"
+     #   . json_encode($data)."\r\n"
         . "--$multipartSep\r\n"
         . "Content-Type: text/json\r\n"
         . "Content-Transfer-Encoding: base64\r\n"
@@ -398,13 +396,17 @@ function mailstatus($none, $true, $false) {
       <a href="../">Web Accessibility Evaluation Tools List</a>
     </h1>
     <p><a href="../">Back to the Evaluation Tools List</a></p>
-    <h2><?php echo mailstatus('', '[Submitted] ', '[Errors] ') ?>Submit Information about Web Accessibility Evaluation Tools</h2>
-    <p>This form allows you to submit information about web accessibility evaluation tools, for example in the following cases:</p>
-
-    <ul><li>You are a tool vendor or developer and want to list your tool</li>
-        <li>You are a tool vendor or developer and want to update information about your tool</li>
-        <li>You are a tool user, or have seen or heard of a tool that is currently not listed</li></ul>
-    <p>There is no obligation to fill out all information especially if you are not a tool vendor or developer. All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a> and used to follow up with the tool vendor or developer before the tool is listed. Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
+    <h2><?php echo mailstatus('', '<mark>[Submitted]</mark> ', '<mark>[Errors]</mark> ') ?>Submit Information about a Web Accessibility Evaluation Tool</h2>
+    <p>This form allows you to submit information about web accessibility evaluation tools. Please fill out the form you’re a tool vendor or developer and want to add or update information on your tool. You can also use this form if you’re a tool user, or have seen or heard of a tool that is currently not listed.</p>
+    <p><strong>Please note:</strong></p>
+    <ul>
+    	<li>There is no obligation to fill out all information especially if you are not a tool vendor or developer.</li>
+    	<li>Information sent using this form will be reviewed before publishing, it usually takes around 10 business days until a tool gets published.</li>
+    	<li>Some submitted information may be adapted to fit into the categories in the Evaluation Tools List.</li>
+    	<li>If information is submitted by a user of a tool, we may follow up with the tool’s vendor before the tool is listed.</li>
+    	<li>All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a>.</li>
+    </ul>
+    <p>Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
   <?php
   if ($mailstatus === false) {
       $msg = array();
@@ -445,10 +447,10 @@ function mailstatus($none, $true, $false) {
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden">Information about you</h2>
     <div class="form-block-mini">
-      <div class="form-row required"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required></span></div>
-      <div class="form-row required"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required></span></div>
+      <div class="form-row required"><label for="name">Name</label><span><input name="name" id="name" type="text" value="<?php echo san($_POST[name]) ?>" required  aria-required="true"></span></div>
+      <div class="form-row required"><label for="email">E-Mail</label><span><input name="email" id="email" type="email" value="<?php echo san($_POST[email]) ?>" required aria-required="true"></span></div>
     </div>
-    <fieldset class="border-less"><legend><span>Role</span></legend>
+    <fieldset class="border-less"><legend><span>Your Role</span></legend>
       <ul class="form-block-mini">
         <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
         <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user or product customer</label></li>
@@ -457,20 +459,17 @@ function mailstatus($none, $true, $false) {
     </fieldset>
   </fieldset>
 
-  <fieldset>
-    <legend><span>Description of the tool</span></legend>
-    <h2 class="visuallyhidden">Description of the tool</h2>
-
     <fieldset>
-      <legend><span>Tool Identification</span></legend>
-      <h3 class="visuallyhidden">Tool Identification</h3>
+      <legend><span>Tool identification</span></legend>
+      <h3 class="visuallyhidden">Tool identification</h3>
       <ul class="form-block-mini">
-        <li class="form-row required"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required></span></li>
-        <li class="form-row required"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required></span></li>
-        <li class="form-row required"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required></span></li>
-        <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="<?php echo $data->release ?>" required></span></li>
+        <li class="form-row required"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="<?php echo $data->title ?>" required aria-required="true"></span></li>
+        <li class="form-row required"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="<?php echo $data->creator ?>" required aria-required="true"></span></li>
+        <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required aria-required="true" aria-describedby="descdesc"><?php echo $data->description ?></textarea><br><span id="descdesc">Please enter only plain text, no HTML is allowed. URIs won’t be linked.</span></span></li>
+        <li class="form-row required"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="<?php echo $data->location ?>" required aria-required="true"></span></li>
+        <li class="form-row"><label for="location_a11yinfo">Tool Accessibility Information Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value="<?php echo $data->a11yloc ?>"></span></li>
+        <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="<?php echo $data->release ?>" required aria-required="true"></span></li>
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
-        <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required><?php echo $data->description ?></textarea></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
         <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
@@ -485,31 +484,27 @@ function mailstatus($none, $true, $false) {
 
     <?php create_form_cb_section($automated); ?>
 
-    <?php create_form_cb_section($repair); ?>
+    <?php # create_form_cb_section($repair); ?>
 
     <?php create_form_cb_section($technology); ?>
 
-    <fieldset>
-      <legend><span>Type of tool:</span></legend>
-      <h3 id="type" class="visuallyhidden">Type of tool:</h3>
+		<div class="group">
 
-      <?php create_form_cb_section($onlineservice); ?>
+	    <?php create_form_cb_section($tooltype); ?>
 
-      <?php create_form_cb_section($desktopapp); ?>
+	    <?php create_form_cb_section($desktopapp); ?>
 
-      <?php create_form_cb_section($authoringtools); ?>
+	    <?php create_form_cb_section($mobileapp); ?>
 
-      <?php create_form_cb_section($browsers); ?>
+			<?php create_form_cb_section($browsers); ?>
 
-      <?php create_form_cb_section($runtime); ?>
+	    <?php create_form_cb_section($authoringtools); ?>
 
-      <?php create_form_cb_section($reports); ?>
+	    <?php create_form_cb_section($onlineservice); ?>
 
-      <?php create_form_cb_section($apis); ?>
+    </div>
 
-      <?php create_form_cb_section($license); ?>
-    </fieldset>
-  </fieldset>
+    <?php create_form_cb_section($license); ?>
 
   <p><button class="btn-primary" style="float:none;" name="send" id="send" type="submit">Send Information</button></p>
 
@@ -530,5 +525,31 @@ function mailstatus($none, $true, $false) {
 	</div><!-- end copyright -->
 </footer>
 <script src="js/main.js"></script>
+<script>
+	$('#fs-tooltype input[type="checkbox"]').on('change', function(e) {
+		var theid = $(this).attr('id').replace(/tooltype_/,'')
+		switch (theid) {
+			case 'cli':
+			break;
+			case 'browserplugin':
+				$('#fs-browsers').toggle();
+			break;
+			case 'atplugin':
+				$('#fs-authoringtools').toggle();
+			break;
+			case 'online':
+				$('#fs-onlineservice').toggle();
+			break;
+			default:
+				$('#fs-' + theid).toggle();
+			break;
+		}
+	});
+
+	var hidefieldsets = document.querySelectorAll('#fs-desktop,#fs-mobile,#fs-authoringtools,#fs-browsers,#fs-onlineservice');
+	Array.prototype.forEach.call(hidefieldsets, function(el, i){
+		el.style.display = "none";
+	});
+</script>
 </body>
 </html>
