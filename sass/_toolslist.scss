@@ -284,3 +284,16 @@ text-align: center;
 		}
 	}
 }
+
+#file {
+	display:none;
+}
+
+.editbox {
+	float:right;
+	width: 14%;
+	border: 1px solid #777;
+	padding: .5% 1.5% 1%;
+	margin-left: 1em;
+	font-size: 0.85em;
+}
