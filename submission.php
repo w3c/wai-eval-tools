@@ -353,12 +353,25 @@ $headers = "From: shadi+cgi@w3.org\r\nReply-To: ".san($_POST['email'])."\r\nX-Ma
 
  $attachment = chunk_split(base64_encode(json_encode($data)));
 
+
+$o = "";
+foreach($data as $key => $value) {
+    $o .= "\r\n$key\r\n";
+    if (is_array($value)) {
+	foreach($value as $v) {
+		$o .= "\t$v\r\n";
+	}
+    } else {
+	$o .= "\t$value\r\n";
+    }
+}
+
 $message = "Name: ".san($_POST['name'])." (".san($_POST['role']).") <".san($_POST['email']).">\r\n\r\n\r\n";
 $body = "--$multipartSep\r\n"
         . "Content-Type: text/plain; charset=ISO-8859-1; format=flowed\r\n"
         . "Content-Transfer-Encoding: 7bit\r\n"
         . "\r\n"
-        . $message.var_export($data, true)."\r\n"
+        . $message.$o."\r\n"
      #   . json_encode($data)."\r\n"
         . "--$multipartSep\r\n"
         . "Content-Type: text/json\r\n"
