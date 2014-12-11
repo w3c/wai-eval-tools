@@ -263,25 +263,24 @@ function mailstatus($none, $true, $false) {
       <a href="../">Web Accessibility Evaluation Tools List</a>
     </h1>
     <p><a href="../">Back to the Evaluation Tools List</a></p>
-    <h2><?php echo mailstatus('', '<mark>[Submitted]</mark> ', '<mark>[Errors]</mark> ') ?>Submit Information about a Web Accessibility Evaluation Tool</h2>
-    <aside class="editbox">
-			<p>Want to edit an entry? Upload the data file that was sent to you here:</p>
-			<button class="btn" id="uploadbutton">Upload</button>
-    	<input type="file" id="file" name="file">
-    	<output id="list" aria-live="assertive"></output>
-    </detail>
-    </aside>
-    <p>This form allows you to submit information about web accessibility evaluation tools. Please fill out the form you’re a tool vendor or developer and want to add or update information on your tool. You can also use this form if you’re a tool user, or have seen or heard of a tool that is currently not listed.</p>
-    <p><strong>Please note:</strong></p>
-    <ul>
-    	<li>There is no obligation to fill out all information especially if you are not a tool vendor or developer.</li>
-    	<li>Information sent using this form will be reviewed before publishing, it can take up to 10 business days until the information is published.</li>
-    	<li>Some submitted information may be adapted to fit into the categories in the Evaluation Tools List.</li>
-    	<li>If information is submitted by a user of a tool, we may follow up with the tool’s vendor before the tool is listed.</li>
-    	<li>All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a>.</li>
-    </ul>
+    <?php if ($mailstatus !== true): ?>
+    <h2><?php echo mailstatus('', '<mark>[Submitted]</mark> ', '<mark>[Errors]</mark> ') ?>List a Web Accessibility Evaluation Tool</h2>
+    <p>This form allows you to provide information about web accessibility evaluation tools. Tool vendors can use this form to add and update information about their tools. You can also use this form to let us know about tools, for example if you are a tool user, and we will try to contact the corresponding tool vendor.</p>
+    <p><strong>Note:</strong> Information sent using this form is reviewed before publishing. It can take <em>up to 10 business days</em> until the information is published. A notification email is sent to you after submitting this form. This email is also copied to a publicly archived <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/">mailing list</a>.</p>
+
     <p>Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
 
+    <aside class="editbox">
+	<h3>Edit an entry</h3>
+			<p>You can load the information of an existing entry, if you want to edit it. Use the following button to load the data file that was sent to you in the notification email from your previous form submission:</p>
+			<button class="btn" id="uploadbutton">Load tool information</button>
+    	<input type="file" id="file" name="file">
+    	<output id="list" aria-live="assertive"></output>
+    </aside>
+  <?php else: ?>
+		<h2><mark>Thank you for submitting information about a Web Accessibility Evaluation Tool.</mark></h2>
+		<p><strong>Note:</strong> Note: Information sent using this form is reviewed before publishing. It can take <em>up to 10 business days</em> until the information is published. A notification email is sent to you after submitting this form. This email is also copied to a publicly archived <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/">mailing list</a>.</p>
+	<?php endif ?>
   <?php
   if ($mailstatus === false) {
       $msg = array();
