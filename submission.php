@@ -140,35 +140,92 @@ function replace_accents($var){ //replace for accents catalan spanish and more
 $multipartSep = '-----'.md5(time()).'-----';
 
 /* create e-mail paramters */
+
+$recipient = san($_POST['email']);
+
 if ($demo == true) {
-  $recipient = "ee@w3.org";//, shadi@w3.org";
+  $cc = "";
 } else {
-  $recipient = "public-wai-ert-tools@w3.org";
+  $cc = "Cc: public-wai-ert-tools@w3.org\r\n";
 }
+
 $subject = "[eval-tools] Entry for \"".$data->title."\"";
-$headers = "From: shadi+cgi@w3.org\r\nReply-To: ".san($_POST['email'])."\r\nX-Mailer: Automated Script\r\nContent-Type: multipart/mixed; boundary=\"$multipartSep\"";
+$headers = "From: shadi+cgi@w3.org\r\n".
+           "Reply-To: shadi@w3.org\r\n".
+           $cc.
+           "X-Mailer: Automated Script\r\n".
+           "Content-Type: multipart/mixed; boundary=\"$multipartSep\"";
 
  $attachment = chunk_split(base64_encode(json_encode($data)));
 
 
 $o = "";
 foreach($data as $key => $value) {
-    $o .= "\r\n$key\r\n";
+		$o .= "\r\n$key:\r\n";
     if (is_array($value)) {
+	$i = 0;
     	foreach($value as $v) {
-    		$o .= "\t$v\r\n";
+		if ($i >= (count($value)-$others[$key])) {
+			$o .= "\tother: $v\r\n";
+		} else {
+			$o .= "\t$v\r\n";
+		}
+		$i++;
     	}
     } else {
     	$o .= "\t$value\r\n";
     }
 }
 
-$message = "Name: ".san($_POST['name'])." (".san($_POST['role']).") <".san($_POST['email']).">\r\n\r\n\r\n";
+$o .= "\r\ncomment:\r\n";
+$o .= "\t".san($_POST['cmnt'])."\r\n";
+
+if ($_POST['role']=='vendor') {
+
+$message = <<<EOV
+(This is an automatically generated message)
+
+Thank you for providing information on “[title]”.
+
+We will review this information and might contact you if we have any questions about it. It can take up to 10 business days until the information is published on the WAI website.
+
+Note: You can update the information about your tool at any time using the same submission form that you used to provide this information. Attached is the data file from your submission, which you can use to load the information into the submission form to avoid re-typing it.
+
+Below is the information that you provided:
+
+
+EOV;
+
+} else {
+
+$message = <<<EOV
+(This is an automatically generated message)
+
+Thank you for providing information on “[title]”. We will review this information and try to contact the corresponding tool vendor. We can only publish information that is provided with consent of the vendors.
+
+Below is the information that you provided:
+
+
+EOV;
+
+}
+
+$message = str_replace('[title]', $data->title, $message);
+
+$endmessage = <<<EOV
+
+
+This email is also copied to a publicly archived mailing list: http://lists.w3.org/Archives/Public/public-wai-ert-tools/
+
+Regards,
+  Shadi
+EOV;
+
 $body = "--$multipartSep\r\n"
-        . "Content-Type: text/plain; charset=ISO-8859-1; format=flowed\r\n"
+        . "Content-Type: text/plain; charset=UTF-8; format=flowed\r\n"
         . "Content-Transfer-Encoding: 7bit\r\n"
         . "\r\n"
-        . $message.$o."\r\n"
+        . $message.$o.$endmessage."\r\n"
      #   . json_encode($data)."\r\n"
         . "--$multipartSep\r\n"
         . "Content-Type: text/json\r\n"
