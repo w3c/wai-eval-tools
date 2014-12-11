@@ -2,7 +2,7 @@
 <html class="no-js no-svg" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Submit a Web Accessibility Evaluation Tool</title>
+  <title>List a Web Accessibility Evaluation Tool</title>
   <meta name="viewport" content="width=device-width">
   <link href="css/wai-act.css" media="screen" rel="stylesheet" type="text/css">
   <script src="js/modernizr.min.js" type="text/javascript"></script>
@@ -25,26 +25,21 @@
       <a href="../">Web Accessibility Evaluation Tools List</a>
     </h1>
     <p><a href="../">Back to the Evaluation Tools List</a></p>
-    <h2>Submit Information about a Web Accessibility Evaluation Tool</h2>
-    <aside class="editbox">
-			<p>Want to edit an entry? Upload the data file that was sent to you here:</p>
-			<button class="btn" id="uploadbutton">Upload</button>
+    <h2>List a Web Accessibility Evaluation Tool</h2>
+    <p>This form allows you to provide information about web accessibility evaluation tools. Tool vendors can use this form to add and update information about their tools. You can also use this form to let us know about tools, for example if you are a tool user, and we will try to contact the corresponding tool vendor.</p>
+    <p><strong>Note:</strong> Information sent using this form is reviewed before publishing. It can take <em>up to 10 business days</em> until the information is published. A notification email is sent to you after submitting this form. This email is also copied to a publicly archived <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/">mailing list</a>.</p>
+
+    <aside>
+    	<h3>Edit an entry</h3>
+	<p>You can load the information of an existing entry, if you want to edit it. Use the following button to load the data file that was sent to you in the notification email from your previous form submission:</p>
+	<button class="btn" id="uploadbutton">Load to information</button>
     	<input type="file" id="file" name="file">
     	<output id="list" aria-live="assertive"></output>
     </detail>
     </aside>
-    <p>This form allows you to submit information about web accessibility evaluation tools. Please fill out the form you’re a tool vendor or developer and want to add or update information on your tool. You can also use this form if you’re a tool user, or have seen or heard of a tool that is currently not listed.</p>
-    <p><strong>Please note:</strong></p>
-    <ul>
-    	<li>There is no obligation to fill out all information especially if you are not a tool vendor or developer.</li>
-    	<li>Information sent using this form will be reviewed before publishing, it can take up to 10 business days until the information is published.</li>
-    	<li>Some submitted information may be adapted to fit into the categories in the Evaluation Tools List.</li>
-    	<li>If information is submitted by a user of a tool, we may follow up with the tool’s vendor before the tool is listed.</li>
-    	<li>All information you provide via this form will be publicly archived on the <a href="http://lists.w3.org/Archives/Public/public-wai-ert-tools/"><abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Web Accessibility Initiative">WAI</abbr> List of Web Accessibility Evaluation Tools mailing list</a>.</li>
-    </ul>
+
     <p>Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
 
-  
   <div id="hForm">
   <form name="submission" id="submission" method="post" action="submission.php">
   <fieldset>
@@ -56,9 +51,8 @@
     </div>
     <fieldset class="border-less"><legend><span>Your Role</span></legend>
       <ul class="form-block-mini">
-        <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
-        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user or product customer</label></li>
-        <li class="form-row radio"><span><input name="role" id="other" value="vendor" type="radio"></span><label for="other"> Other (heard of the tool, etc)</label></li>
+        <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool vendor (includes tool developer, owner, etc.)</label></li>
+        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user (or if you happen to know if a tool, etc.)</label></li>
       </ul>
     </fieldset>
   </fieldset>
@@ -69,13 +63,13 @@
       <ul class="form-block-mini">
         <li class="form-row required"><label for="title">Tool name</label><span><input name="title" id="title" type="text"  value="" required aria-required="true"></span></li>
         <li class="form-row required"><label for="creator">Vendor name</label><span><input name="creator" id="creator" type="text" value="" required aria-required="true"></span></li>
-        <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required aria-required="true" aria-describedby="descdesc"></textarea><br><span id="descdesc">Please enter only plain text, no HTML is allowed. URIs won’t be linked.</span></span></li>
+        <li class="form-row required"><label for="description">Tool Description (max.: 300 chars)</label><span><textarea name="description" id="description" cols="60" rows="10" maxlength="300" required aria-required="true" aria-describedby="descdesc"></textarea><br><span id="descdesc">Please enter only plain text (no HTML). URIs are not linked.</span></span></li>
         <li class="form-row required"><label for="location">Web Address (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location" id="location" type="url" value="" required aria-required="true"></span></li>
-        <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="" required aria-required="true"></span></li>
+        <li class="form-row required"><label for="release">Release date (format: YYYY-MM-DD)</label><span><input name="release" id="release" type="date" value="" required aria-required="true" aria-describedby="releasedesc"><br><span id="releasedesc">You can enter the current date if you are not a tool vendor.</span></span></li>
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
       </ul><br>
       <ul class="form-block-mini">
-      	<li class="form-row"><label for="location_a11yinfo">Tool Web address to information about the accessibility of the tool (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value=""></span></li>
+      	<li class="form-row"><label for="location_a11yinfo">Web address to information about the accessibility of the tool (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value=""></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
         <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
