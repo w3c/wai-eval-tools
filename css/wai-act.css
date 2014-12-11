@@ -1071,24 +1071,28 @@ summary:focus {
 .form-block-mini > .form-row > label {
   width: 30%;
 }
+/* line 231, ../sass/_toolslist.scss */
+.form-block-mini > .form-row .btn, .form-block-mini > .form-row #showmorebutton, .form-block-mini > .form-row .btn-primary, .form-block-mini > .form-row .btn-small {
+  font-size: 0.85em;
+}
 
-/* line 234, ../sass/_toolslist.scss */
+/* line 237, ../sass/_toolslist.scss */
 .intro {
   font-size: .9em;
   line-height: 1.25;
 }
 
-/* line 239, ../sass/_toolslist.scss */
+/* line 242, ../sass/_toolslist.scss */
 .version {
   color: #555;
   white-space: nowrap;
 }
 
-/* line 245, ../sass/_toolslist.scss */
+/* line 248, ../sass/_toolslist.scss */
 .facettotalcount strong {
   font-weight: normal;
 }
-/* line 246, ../sass/_toolslist.scss */
+/* line 249, ../sass/_toolslist.scss */
 .facettotalcount .filter {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -1096,7 +1100,7 @@ summary:focus {
   border-radius: 2px;
 }
 
-/* line 249, ../sass/_toolslist.scss */
+/* line 252, ../sass/_toolslist.scss */
 .permalink {
   position: absolute;
   top: .2em;
@@ -1108,58 +1112,70 @@ summary:focus {
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: center;
 }
-/* line 260, ../sass/_toolslist.scss */
+/* line 263, ../sass/_toolslist.scss */
 .permalink:hover {
   border: 1px solid #fff;
 }
-/* line 263, ../sass/_toolslist.scss */
+/* line 266, ../sass/_toolslist.scss */
 .permalink img {
   display: inline-block;
 }
 
-/* line 269, ../sass/_toolslist.scss */
+/* line 272, ../sass/_toolslist.scss */
 .plainitem .facetlist {
   margin: .375em;
   padding: .375em 0 0;
   border-top: 1px solid #777;
 }
 
-/* line 275, ../sass/_toolslist.scss */
+/* line 278, ../sass/_toolslist.scss */
 .tool-item p.link {
   font-size: .85em;
   margin-top: .5em;
 }
-/* line 278, ../sass/_toolslist.scss */
+/* line 281, ../sass/_toolslist.scss */
 .tool-item p.link a {
   color: inherit;
 }
-/* line 280, ../sass/_toolslist.scss */
+/* line 283, ../sass/_toolslist.scss */
 .tool-item p.link a:hover {
   color: #fff;
 }
 
-/* line 287, ../sass/_toolslist.scss */
+/* line 290, ../sass/_toolslist.scss */
 .group fieldset {
   margin-left: 3em;
 }
-/* line 289, ../sass/_toolslist.scss */
+/* line 292, ../sass/_toolslist.scss */
 .group fieldset:first-child {
   margin-left: 0;
 }
 
-/* line 295, ../sass/_toolslist.scss */
+/* line 298, ../sass/_toolslist.scss */
 #file {
   display: none;
 }
 
-/* line 299, ../sass/_toolslist.scss */
+/* line 302, ../sass/_toolslist.scss */
 .editbox {
-  float: right;
-  width: 14%;
+  padding: 1% 0;
   border: 1px solid #777;
-  padding: .5% 1.5% 1%;
-  margin-left: 1em;
+  border-width: 1px 0;
   font-size: 0.85em;
+}
+@media screen and (min-width: 43em) {
+  /* line 302, ../sass/_toolslist.scss */
+  .editbox {
+    float: right;
+    width: 14%;
+    padding: .5% 1.5% 1%;
+    margin-left: 1em;
+    border-width: 1px;
+  }
+}
+/* line 315, ../sass/_toolslist.scss */
+.editbox h3 {
+  margin-bottom: 0.5em;
 }
 
 @font-face {
