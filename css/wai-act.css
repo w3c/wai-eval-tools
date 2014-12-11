@@ -1125,25 +1125,34 @@ summary:focus {
 }
 
 /* line 275, ../sass/_toolslist.scss */
-.link {
-  font-size: 0.85em;
+.tool-item p.link {
+  font-size: .85em;
+  margin-top: .5em;
+}
+/* line 278, ../sass/_toolslist.scss */
+.tool-item p.link a {
+  color: inherit;
+}
+/* line 280, ../sass/_toolslist.scss */
+.tool-item p.link a:hover {
+  color: #fff;
 }
 
-/* line 280, ../sass/_toolslist.scss */
+/* line 287, ../sass/_toolslist.scss */
 .group fieldset {
   margin-left: 3em;
 }
-/* line 282, ../sass/_toolslist.scss */
+/* line 289, ../sass/_toolslist.scss */
 .group fieldset:first-child {
   margin-left: 0;
 }
 
-/* line 288, ../sass/_toolslist.scss */
+/* line 295, ../sass/_toolslist.scss */
 #file {
   display: none;
 }
 
-/* line 292, ../sass/_toolslist.scss */
+/* line 299, ../sass/_toolslist.scss */
 .editbox {
   float: right;
   width: 14%;
@@ -1250,7 +1259,8 @@ header[role=banner] a {
 }
 /* line 104, ../sass/wai-act.scss */
 header[role=banner] a:hover, header[role=banner] a:focus {
-  text-decoration: underline;
+  border-bottom: 5px solid #444;
+  background: none;
 }
 
 /* line 110, ../sass/wai-act.scss */

@@ -101,7 +101,7 @@ header[role=banner] {
 	a {
 			text-decoration: none;
 			display: inline-block;
-			&:hover, &:focus {text-decoration: underline;}
+			&:hover, &:focus {border-bottom:5px solid #444; background: none;}
 	}
 	.wai {
 	}
