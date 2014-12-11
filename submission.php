@@ -265,9 +265,9 @@ function mailstatus($none, $true, $false) {
   </header>
   <main class="with-side-menu" role="main">
     <h1 class="page-title">
-      <a href="../">Web Accessibility Evaluation Tools List</a>
+      <a href="index.html">Web Accessibility Evaluation Tools List</a>
     </h1>
-    <p><a href="../">Back to the Evaluation Tools List</a></p>
+    <p><a href="index.html">Back to the Evaluation Tools List</a></p>
     <?php if ($mailstatus !== true): ?>
     <h2><?php echo mailstatus('', '<mark>[Submitted]</mark> ', '<mark>[Errors]</mark> ') ?>List a Web Accessibility Evaluation Tool</h2>
     <p>This form allows you to provide information about web accessibility evaluation tools. Tool vendors can use this form to add and update information about their tools. You can also use this form to let us know about tools, for example if you are a tool user, and we will try to contact the corresponding tool vendor.</p>
