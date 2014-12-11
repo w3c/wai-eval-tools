@@ -2,9 +2,9 @@
 <html class="no-js no-svg" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Submit a Web Accessibility Evaluation Tool</title>
+  <title>List a Web Accessibility Evaluation Tool</title>
   <meta name="viewport" content="width=device-width">
-  <link href="css/wai-act.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="css/wai-act.min.css" media="screen" rel="stylesheet" type="text/css">
   <script src="js/modernizr.min.js" type="text/javascript"></script>
   <style>
     fieldset {border:none; padding:0 0 0 .5em; border-left: .25em solid #ccc; margin-bottom: 2em;}
@@ -16,8 +16,9 @@
 <body class="texts">
 <?php
 	date_default_timezone_set('UTC');
-  $demo = true;
+  $demo = false;
   $mailstatus = 'none';
+  $others = array();
   function create_form_cb_section($data) {
     $section  = '<fieldset id="fs-'.$data[variable].'">';
     $section .= '<legend>'.$data[title].'</legend>';
@@ -25,7 +26,7 @@
     $section .= '<ul class="form-block-mini radio">';
 
     foreach ($data['data'] as $key => $value) {
-      $section .= '<li class="form-row"><span><input data-id="'.$data[variable].'_'.$key.'" id="'.$data[variable].'_'.md5($value).'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.((isset($_POST[$data[variable]]) && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.md5($value).'">'.$value.'</label></li>';
+      $section .= '<li class="form-row"><span><input data-id="'.$data[variable].'_'.$key.'" id="'.$data[variable].'_'.md5($value).'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.((isset($_POST[$data[variable]]) && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.md5($value).'">'.$value.((isset($data['explanation'][$key]) ? ' <a href="'.$data['explanation'][$key].'" title="opens new window" class="btn" target="selectingtools">Info</a>' : '')).'</label></li>';
     }
 
     if($data[other]) {
@@ -52,9 +53,13 @@ function iter($input, $reference) {
       if ($key !== 'other') {
         $o[] = $reference_data[$value];
       } else {
-      	$val = san($value);
+        $val = san($value);
         if ($val !== '') {
-          $o[] = $val;
+        	$val = explode(',', san($value));
+        	$GLOBALS['others'][$reference["variable"]] = count($val);
+					foreach ($val as $v) {
+          	$o[] = san($v);
+          }
         }
       }
     }
@@ -163,14 +168,14 @@ $o = "";
 foreach($data as $key => $value) {
 		$o .= "\r\n$key:\r\n";
     if (is_array($value)) {
-	$i = 0;
+    	$i = 0;
     	foreach($value as $v) {
-		if ($i >= (count($value)-$others[$key])) {
-			$o .= "\tother: $v\r\n";
-		} else {
-			$o .= "\t$v\r\n";
-		}
-		$i++;
+    		if ($i >= (count($value)-$others[$key])) {
+    			$o .= "\tother: $v\r\n";
+    		} else {
+    			$o .= "\t$v\r\n";
+    		}
+    		$i++;
     	}
     } else {
     	$o .= "\t$value\r\n";
@@ -271,7 +276,7 @@ function mailstatus($none, $true, $false) {
     <p>Contact <a href="mailto:shadi@w3.org">Shadi Abou-Zahra (shadi@w3.org)</a> if you have questions or comments.</p>
 
     <aside class="editbox">
-	<h3>Edit an entry</h3>
+    	<h3>Edit an entry</h3>
 			<p>You can load the information of an existing entry, if you want to edit it. Use the following button to load the data file that was sent to you in the notification email from your previous form submission:</p>
 			<button class="btn" id="uploadbutton">Load tool information</button>
     	<input type="file" id="file" name="file">
@@ -315,6 +320,8 @@ function mailstatus($none, $true, $false) {
   }
   ?>
 
+<?php if ($mailstatus !== true): ?>
+
   <div id="hForm">
   <form name="submission" id="submission" method="post" action="submission.php">
   <fieldset>
@@ -326,9 +333,8 @@ function mailstatus($none, $true, $false) {
     </div>
     <fieldset class="border-less"><legend><span>Your Role</span></legend>
       <ul class="form-block-mini">
-        <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool developer, vendor, or owner</label></li>
-        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user or product customer</label></li>
-        <li class="form-row radio"><span><input name="role" id="other" value="vendor" type="radio"></span><label for="other"> Other (heard of the tool, etc)</label></li>
+        <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool vendor (includes tool developer, owner, etc.)</label></li>
+        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user (or if you happen to know if a tool, etc.)</label></li>
       </ul>
     </fieldset>
   </fieldset>
@@ -345,7 +351,7 @@ function mailstatus($none, $true, $false) {
         <li class="form-row"><label for="version">Version Number</label><span><input name="version" id="version" type="text"></span></li>
       </ul><br>
       <ul class="form-block-mini">
-	<li class="form-row"><label for="location_a11yinfo">Web address to information about the accessibility of the tool (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value="<?php echo $data->a11yloc ?>"></span></li>
+      	<li class="form-row"><label for="location_a11yinfo">Web address to information about the accessibility of the tool (<abbr title="Universal Resource Identifier">URI</abbr>)</label><span><input name="location_a11yinfo" id="location_a11yinfo" type="url" value="<?php echo $data->a11yloc ?>"></span></li>
       </ul>
       <div style="display:none" aria-hidden="true">
         <label for="comment">Comment (Don’t fill out this field)</label><span><textarea name="comment" id="comment" cols="60" rows="10" maxlength="300"></textarea></span>
@@ -382,11 +388,15 @@ function mailstatus($none, $true, $false) {
 
     <?php create_form_cb_section($license); ?>
 
+		<ul class="form-block-mini">
+			<li class="form-row"><label for="cmnt">Comment:</label><span><textarea name="cmnt" id="cmnt" cols="60" rows="10" maxlength="300" required="" aria-required="true" aria-describedby="cmntdesc"></textarea><br><span id="cmntdesc">This comment will be included in email but not published on the tools list.</span></span></li>
+		</ul>
+
   <p><button class="btn-primary" style="float:none;" name="send" id="send" type="submit">Send Information</button></p>
 
     </form>
   </div>
-
+<?php endif ?>
 </main>
 <footer role="contentinfo">
   <h2 class="visuallyhidden">Document Information</h2>
@@ -699,7 +709,7 @@ $(document).ready(function(){
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
 
 		function clearAll() {
-			$('input').each(function(){
+			$('input, textarea').each(function(){
 				var el = $(this);
 				if ((el.attr('type') == 'checkbox' ) || (el.attr('type') == 'radio' )) {
 					el.removeAttr('checked');
