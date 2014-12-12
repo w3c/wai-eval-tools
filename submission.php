@@ -149,7 +149,7 @@ $multipartSep = '-----'.md5(time()).'-----';
 $recipient = san($_POST['email']);
 
 if ($demo == true) {
-  $cc = "";
+  $cc = "Cc: ee@w3.org\r\n";
 } else {
   $cc = "Cc: public-wai-ert-tools@w3.org\r\n";
 }
