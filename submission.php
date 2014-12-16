@@ -15,8 +15,8 @@
 </head>
 <body class="texts">
 <?php
-	date_default_timezone_set('UTC');
-  $demo = false;
+	include_once("config.php");
+
   $mailstatus = 'none';
   $others = array();
   function create_form_cb_section($data) {
@@ -38,8 +38,6 @@
 
     echo $section;
   }
-
-include_once("config.php");
 
 function san($s) {
   return filter_var(trim($s), FILTER_SANITIZE_STRING);
@@ -365,8 +363,6 @@ function mailstatus($none, $true, $false) {
     <?php create_form_cb_section($assists); ?>
 
     <?php create_form_cb_section($automated); ?>
-
-    <?php # create_form_cb_section($repair); ?>
 
     <?php create_form_cb_section($technology); ?>
 

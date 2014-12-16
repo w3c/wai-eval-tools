@@ -1,4 +1,25 @@
 <?php
+date_default_timezone_set('UTC');
+$demo = false;
+
+$assists = array(
+	title => "Assists evaluations by:",
+	data => array(
+		"report" => 'Generating reports of evaluation results',
+		"wizard" => 'Providing step-by-step evaluation guidance',
+		"inpage" => 'Displaying information within web pages',
+		"transformation" => 'Modifying the presentation of web pages'
+	),
+	other => false,
+	variable => 'assists',
+	type => 'checkbox',
+	explanation => array(
+		"report" => 'http://www.w3.org/WAI/eval/selectingtools.html#reports',
+		"wizard" => 'http://www.w3.org/WAI/eval/selectingtools.html#wizards',
+		"inpage" => 'http://www.w3.org/WAI/eval/selectingtools.html#in-page',
+		"transformation" => 'http://www.w3.org/WAI/eval/selectingtools.html#transformation'
+	)
+);
 
 $language = array(
 	title => "Tool languages:",
@@ -44,25 +65,6 @@ $guideline = array(
 	other => true,
 	variable => 'guideline',
 	type => 'checkbox'
-);
-
-$assists = array(
-	title => "Assists evaluations by:",
-	data => array(
-		"report" => 'Generating reports of evaluation results',
-		"wizard" => 'Providing step-by-step evaluation guidance',
-		"inpage" => 'Displaying information within web pages',
-		"transformation" => 'Modifying the presentation of web pages'
-	),
-	other => false,
-	variable => 'assists',
-	type => 'checkbox',
-	explanation => array(
-		"report" => 'http://www.w3.org/WAI/eval/selectingtools.html#reports',
-		"wizard" => 'http://www.w3.org/WAI/eval/selectingtools.html#wizards',
-		"inpage" => 'http://www.w3.org/WAI/eval/selectingtools.html#in-page',
-		"transformation" => 'http://www.w3.org/WAI/eval/selectingtools.html#transformation'
-	)
 );
 
 $automated = array(
