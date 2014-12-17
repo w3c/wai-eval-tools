@@ -138,7 +138,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.assists.length) { %>
+          <% if (obj.assists && obj.assists.length) { %>
             <li>
             <% if (obj.assists instanceof Array && obj.assists.length > 1) { %>
               <strong>Assists by:</strong> <%= obj.assists.join(', ') %>
@@ -147,7 +147,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.authoringtools.length) { %>
+          <% if (obj.authoringtools && obj.authoringtools.length) { %>
             <li>
             <% if (obj.authoringtools instanceof Array && obj.authoringtools.length > 1) { %>
               <strong>Authoring tools:</strong> <%= obj.authoringtools.join(', ') %>
@@ -156,7 +156,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.automated.length) { %>
+          <% if (obj.automated && obj.automated.length) { %>
             <li>
             <% if (obj.automated instanceof Array && obj.automated.length > 1) { %>
               <strong>Automatically checks:</strong> <%= obj.automated.join(', ') %>
@@ -165,7 +165,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.desktopapp.length) { %>
+          <% if (obj.desktopapp && obj.desktopapp.length) { %>
             <li>
             <% if (obj.desktopapp instanceof Array && obj.desktopapp.length > 1) { %>
               <strong>Operating System:</strong> <%= obj.desktopapp.join(', ') %>
@@ -174,7 +174,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.language.length) { %>
+          <% if (obj.language && obj.language.length) { %>
             <li>
             <% if (obj.language instanceof Array && obj.language.length > 1) { %>
               <strong>Languages:</strong> <%= obj.language.join(', ') %>
@@ -183,7 +183,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.browsers.length) { %>
+          <% if (obj.browsers && obj.browsers.length) { %>
             <li>
             <% if (obj.browsers instanceof Array && obj.browsers.length > 1) { %>
               <strong>Browser plugins:</strong> <%= obj.browsers.join(', ') %>
@@ -192,7 +192,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.apis.length) { %>
+          <% if (obj.apis && obj.apis.length) { %>
             <li>
             <% if (obj.apis instanceof Array && obj.apis.length > 1) { %>
               <strong>APIs:</strong> <%= obj.apis.join(', ') %>
@@ -201,7 +201,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.technology.length) { %>
+          <% if (obj.technology && obj.technology.length) { %>
             <li>
             <% if (obj.technology instanceof Array && obj.technology.length > 1) { %>
               <strong>Supported formats:</strong> <%= obj.technology.join(', ') %>
@@ -210,7 +210,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.repairs.length) { %>
+          <% if (obj.repairs && obj.repairs.length) { %>
             <li>
             <% if (obj.repairs instanceof Array && obj.repairs.length > 1) { %>
               <strong>Repairs:</strong> <%= obj.repairs.join(', ') %>
@@ -219,7 +219,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.onlineservice.length) { %>
+          <% if (obj.onlineservice && obj.onlineservice.length) { %>
             <li>
             <% if (obj.onlineservice instanceof Array && obj.onlineservice.length > 1) { %>
               <strong>Online Service:</strong> <%= obj.onlineservice.join(', ') %>
@@ -228,7 +228,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.repairs.length) { %>
+          <% if (obj.repairs && obj.repairs.length) { %>
             <li>
             <% if (obj.repairs instanceof Array && obj.repairs.length > 1) { %>
               <strong>Repairs:</strong> <%= obj.repairs.join(', ') %>
@@ -237,7 +237,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.reports.length) { %>
+          <% if (obj.reports && obj.reports.length) { %>
             <li>
             <% if (obj.reports instanceof Array && obj.reports.length > 1) { %>
               <strong>Report formats:</strong> <%= obj.reports.join(', ') %>
@@ -246,7 +246,7 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.license.length) { %>
+          <% if (obj.license && obj.license.length) { %>
             <li>
             <% if (obj.license instanceof Array && obj.license.length > 1) { %>
               <strong>License:</strong> <%= obj.license.join(', ') %>
