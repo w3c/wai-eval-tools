@@ -741,13 +741,19 @@ $(document).ready(function(){
 						}
         	} else {
 
-        		if(key=="type") {var repkey = 'tooltype';}
+        		if(key=="type") {
+        			var repkey = 'tooltype';
+        		} else {
+        			var repkey = key;
+        		}
 
 						var oel = $('#' + key + '_other');
 						var oval = oel.val();
 						if (Array.isArray(JsonObj[key])) {
 							for (var i = JsonObj[key].length - 1; i >= 0; i--) {
-								var elem = $('#' + ((repkey) ? repkey : key) + '_' + $.md5(JsonObj[key][i]));
+								var elem = $('#' + repkey + '_' + $.md5(JsonObj[key][i]));
+
+								console.log(JsonObj[key][i] + "//" + key + "//" + $.md5(JsonObj[key][i]));
 
 								if(elem.length==0) {
 									if (oval=="") {
@@ -758,11 +764,11 @@ $(document).ready(function(){
 										oel.val(oval);
 									}
 								} else {
-									elem.attr('checked', 'checked').change();
+									elem.prop('checked', true).change();
 								}
 							}
 						} else {
-							$('#' + key + '_' + $.md5(JsonObj[key])).attr('checked', 'checked').change();
+							$('#' + repkey + '_' + $.md5(JsonObj[key])).prop('checked', true).change();
 						}
 					}
 				}
