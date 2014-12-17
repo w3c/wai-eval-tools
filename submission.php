@@ -83,8 +83,6 @@ function iter($input, $reference) {
     $data->a11yloc = san($_POST['location_a11yinfo']);
     if ($data->a11yloc != "") {
     	$data->a11yinfo = "Tools providing accessibility information";
-    } else {
-    	$data->a11yinfo = "";
     }
     $data->update = san(date('Y-m-d'));
 
