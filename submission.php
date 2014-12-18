@@ -1,77 +1,110 @@
 <?php
-	include_once("config.php");
+/* Include configuration file: */
+include_once("config.php");
 
-  $mailstatus = 'none';
-  $others = array();
 
-  function replace_accents($var){ //replace for accents catalan spanish and more
-    $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
-    $b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
-    $var= str_replace($a, $b,$var);
-    return $var;
-	}
+/* Initialize variables:
+ *
+ * $mailstatus (mixed):
+ * 		'none' => No status applied (no mail to send)
+ * 		true => no errors, ready to send mail
+ * 		false => there were errors, don’t send mail
+ */
+$mailstatus = 'none';
 
-	function friendly_url($url) {
-	  // everything to lower and no spaces begin or end
-	  $url = strtolower(trim($url));
+/* $others (array):
+ * 		This array collects the number of items in (other) text input fields.
+ * 		It allows to prefix items with other: in the mail that is sent out.
+ */
+$others = array();
 
-	  //replace accent characters, depends your language is needed
-	  $url=replace_accents($url);
+/* (string) friendly_url(string)
+ * 		Converts a string to another string without accents or other invalid characters.
+ * 		Used for generating the file name
+ */
 
-	  // decode html maybe needed if there's html I normally don't use this
-	  $url = html_entity_decode($url,ENT_QUOTES);
+function friendly_url($url) {
 
-	  // adding - for spaces and union characters
-	  $find = array(' ', '&', '+',',');
-	  $url = str_replace ($find, '-', $url);
+	function replace_accents($var){ //replace for accents catalan spanish and more
+  $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
+  $b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
+  $var= str_replace($a, $b,$var);
+  return $var;
+}
 
-	  //delete and replace rest of special chars
-	  $find = array('/[^a-z0-9-<>]/', '/[-]+/', '/<[^>]*>/');
-	  $repl = array('', '-', '');
-	  $url = preg_replace ($find, $repl, $url);
 
-	  //return the friendly url
-	  return $url;
-	}
+  // everything to lower and no spaces begin or end
+  $url = strtolower(trim($url));
 
-  function create_form_cb_section($data) {
-    $section  = '<fieldset id="fs-'.$data[variable].'">';
-    $section .= '<legend>'.$data[title].'</legend>';
-    $section .= '<h3 class="visuallyhidden" id="'.$data[variable].'">'.$data[title].'</h3>';
-    $section .= '<ul class="form-block-mini radio">';
+  //replace accent characters, depends your language is needed
+  $url=replace_accents($url);
 
-    foreach ($data['data'] as $key => $value) {
-      $section .= '<li class="form-row"><span><input data-id="'.$data[variable].'_'.$key.'" id="'.$data[variable].'_'.md5($value).'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.((isset($_POST[$data[variable]]) && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.md5($value).'">'.$value.((isset($data['explanation'][$key]) ? ' <a href="'.$data['explanation'][$key].'" title="opens new window" class="btn" target="selectingtools">Info</a>' : '')).'</label></li>';
-    }
+  // decode html maybe needed if there's html I normally don't use this
+  $url = html_entity_decode($url,ENT_QUOTES);
 
-    if($data[other]) {
-      $section .= '<li class="form-row"><span></span><label for="'.$data[variable].'_other">Other: <input id="'.$data[variable].'_other" name="'.$data[variable].'[other]" type="text">'.$_POST[$data[variable]]['other'].'</label></li>';
-    }
+  // adding - for spaces and union characters
+  $find = array(' ', '&', '+',',');
+  $url = str_replace ($find, '-', $url);
 
-    $section .= '</ul>';
-    $section .= '</fieldset>';
+  //delete and replace rest of special chars
+  $find = array('/[^a-z0-9-<>]/', '/[-]+/', '/<[^>]*>/');
+  $repl = array('', '-', '');
+  $url = preg_replace ($find, $repl, $url);
 
-    echo $section;
+  //return the friendly url
+  return $url;
+}
+
+/* (string) create_form_cb_section(array)
+ * 		This function creates a section of the form that uses checkboxes and (optionally) an other field.
+ */
+
+function create_form_cb_section($data) {
+  $section  = '<fieldset id="fs-'.$data[variable].'">';
+  $section .= '<legend>'.$data[title].'</legend>';
+  $section .= '<h3 class="visuallyhidden" id="'.$data[variable].'">'.$data[title].'</h3>';
+  $section .= '<ul class="form-block-mini radio">';
+
+  foreach ($data['data'] as $key => $value) {
+    $section .= '<li class="form-row"><span><input data-id="'.$data[variable].'_'.$key.'" id="'.$data[variable].'_'.md5($value).'" name="'.$data[variable].'[]" value="'.$key.'" type="'.$data[type].'"'.((isset($_POST[$data[variable]]) && in_array($key, $_POST[$data[variable]])) ? ' checked' : '').'> </span><label for="'.$data[variable].'_'.md5($value).'">'.$value.((isset($data['explanation'][$key]) ? ' <a href="'.$data['explanation'][$key].'" title="opens new window" class="btn" target="selectingtools">Info</a>' : '')).'</label></li>';
   }
+
+  if($data[other]) {
+    $section .= '<li class="form-row"><span></span><label for="'.$data[variable].'_other">Other: <input id="'.$data[variable].'_other" name="'.$data[variable].'[other]" type="text">'.$_POST[$data[variable]]['other'].'</label></li>';
+  }
+
+  $section .= '</ul>';
+  $section .= '</fieldset>';
+
+  echo $section;
+}
+
+/* (string) san(string)
+ * 		Trims and sanitizes a string.
+ */
 
 function san($s) {
   return filter_var(trim($s), FILTER_SANITIZE_STRING);
 }
 
+/* (array) iter(array, array)
+ * 		Iterates through form values and returns an array with the longform names of the item.
+ */
+
 function iter($input, $reference) {
-  $reference_data = $reference['data'];
+  $reference_data = $reference['data']; // For example list of languages from the config file.
   $o = array();
-  if (count($input)) {
+  if (count($input)) { // Do this only if there have been $input values. Else return empty array.
     foreach ($input as $key => $value) {
-      if ($key !== 'other') {
-        $o[] = $reference_data[$value];
-      } else {
-        $val = san($value);
-        if ($val !== '') {
-        	$val = explode(',', san($value));
-        	$GLOBALS['others'][$reference["variable"]] = count($val);
+      if ($key !== 'other') { // If the key is not 'other', we can find the longname in the referenced data
+        $o[] = $reference_data[$value]; // … and add it to the list
+      } else { // … else
+        $val = san($value); // We sanatize the value and
+        if ($val !== '') { // if it isn’t empty
+        	$val = explode(',', $val); // we split the value up
+        	$GLOBALS['others'][$reference["variable"]] = count($val); // and keep a note on how much of those other values we have
 					foreach ($val as $v) {
-          	$o[] = san($v);
+          	$o[] = san($v); // And add each variable to the array
           }
         }
       }
