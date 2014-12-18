@@ -1,24 +1,39 @@
-<!doctype html>
-<html class="no-js no-svg" lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>List a Web Accessibility Evaluation Tool</title>
-  <meta name="viewport" content="width=device-width">
-  <link href="css/wai-act.min.css" media="screen" rel="stylesheet" type="text/css">
-  <script src="js/modernizr.min.js" type="text/javascript"></script>
-  <style>
-    fieldset {border:none; padding:0 0 0 .5em; border-left: .25em solid #ccc; margin-bottom: 2em;}
-    fieldset legend {font-size: 1.5em; font-weight: bold;}
-    fieldset > fieldset legend {font-size: 1.25em;}
-    fieldset > fieldset > fieldset legend {font-size: 1em;}
-  </style>
-</head>
-<body class="texts">
 <?php
 	include_once("config.php");
 
   $mailstatus = 'none';
   $others = array();
+
+  function replace_accents($var){ //replace for accents catalan spanish and more
+    $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
+    $b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
+    $var= str_replace($a, $b,$var);
+    return $var;
+	}
+
+	function friendly_url($url) {
+	  // everything to lower and no spaces begin or end
+	  $url = strtolower(trim($url));
+
+	  //replace accent characters, depends your language is needed
+	  $url=replace_accents($url);
+
+	  // decode html maybe needed if there's html I normally don't use this
+	  $url = html_entity_decode($url,ENT_QUOTES);
+
+	  // adding - for spaces and union characters
+	  $find = array(' ', '&', '+',',');
+	  $url = str_replace ($find, '-', $url);
+
+	  //delete and replace rest of special chars
+	  $find = array('/[^a-z0-9-<>]/', '/[-]+/', '/<[^>]*>/');
+	  $repl = array('', '-', '');
+	  $url = preg_replace ($find, $repl, $url);
+
+	  //return the friendly url
+	  return $url;
+	}
+
   function create_form_cb_section($data) {
     $section  = '<fieldset id="fs-'.$data[variable].'">';
     $section .= '<legend>'.$data[title].'</legend>';
@@ -104,38 +119,16 @@ function iter($input, $reference) {
     $data->browsers = iter($_POST['browsers'], $browsers);
     $data->license = iter($_POST['license'], $license);
 
+
+if($_GET['download']==true) {
+header('Content-type: application/json');
+header('Content-disposition: attachment; filename="'.friendly_url($data->title).'.json"');
+
+ die(json_encode($data));
+
+}
+
 if ($mailstatus !== false) {
-
-  function friendly_url($url) {
-  // everything to lower and no spaces begin or end
-  $url = strtolower(trim($url));
-
-  //replace accent characters, depends your language is needed
-  $url=replace_accents($url);
-
-  // decode html maybe needed if there's html I normally don't use this
-  $url = html_entity_decode($url,ENT_QUOTES);
-
-  // adding - for spaces and union characters
-  $find = array(' ', '&', '+',',');
-  $url = str_replace ($find, '-', $url);
-
-  //delete and replace rest of special chars
-  $find = array('/[^a-z0-9-<>]/', '/[-]+/', '/<[^>]*>/');
-  $repl = array('', '-', '');
-  $url = preg_replace ($find, $repl, $url);
-
-  //return the friendly url
-  return $url;
-}
-
-
-function replace_accents($var){ //replace for accents catalan spanish and more
-    $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
-    $b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
-    $var= str_replace($a, $b,$var);
-    return $var;
-}
 
 
 $multipartSep = '-----'.md5(time()).'-----';
@@ -252,7 +245,22 @@ function mailstatus($none, $true, $false) {
     }
 }
 
-?>
+?><!doctype html>
+<html class="no-js no-svg" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>List a Web Accessibility Evaluation Tool</title>
+  <meta name="viewport" content="width=device-width">
+  <link href="css/wai-act.min.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="js/modernizr.min.js" type="text/javascript"></script>
+  <style>
+    fieldset {border:none; padding:0 0 0 .5em; border-left: .25em solid #ccc; margin-bottom: 2em;}
+    fieldset legend {font-size: 1.5em; font-weight: bold;}
+    fieldset > fieldset legend {font-size: 1.25em;}
+    fieldset > fieldset > fieldset legend {font-size: 1em;}
+  </style>
+</head>
+<body class="texts">
   <header role="banner">
     <div class="w3c-wai-header">
       <a href="http://w3.org/"><img alt="W3C" width="90" src="img/w3c.png"></a>
@@ -319,7 +327,10 @@ function mailstatus($none, $true, $false) {
 <?php if ($mailstatus !== true): ?>
 
   <div id="hForm">
-  <form name="submission" id="submission" method="post" action="submission.php">
+  <form name="submission" id="submission" method="post" action="submission.php<?php if($_GET['download']==true):?>?download=true<?php endif ?>">
+
+	<?php if($_GET['download']!=true): ?>
+
   <fieldset>
     <legend><span>Information about you</span></legend>
     <h2 class="visuallyhidden">Information about you</h2>
@@ -330,10 +341,12 @@ function mailstatus($none, $true, $false) {
     <fieldset class="border-less"><legend><span>Your Role</span></legend>
       <ul class="form-block-mini">
         <li class="form-row radio"><span><input name="role" id="vendor" value="vendor" type="radio"></span><label for="vendor">Tool vendor (includes tool developer, owner, etc.)</label></li>
-        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user (or if you happen to know if a tool, etc.)</label></li>
+        <li class="form-row radio"><span><input name="role" id="user" value="user" type="radio"></span><label for="user"> Tool user (or if you happen to know of a tool, etc.)</label></li>
       </ul>
     </fieldset>
   </fieldset>
+
+	<?php endif ?>
 
     <fieldset>
       <legend><span>Tool identification</span></legend>
@@ -382,9 +395,11 @@ function mailstatus($none, $true, $false) {
 
     <?php create_form_cb_section($license); ?>
 
+		<?php if($_GET['download']!=true): ?>
 		<ul class="form-block-mini">
-			<li class="form-row"><label for="cmnt">Comment:</label><span><textarea name="cmnt" id="cmnt" cols="60" rows="10" maxlength="300" required="" aria-required="true" aria-describedby="cmntdesc"></textarea><br><span id="cmntdesc">This comment will be included in email but not published on the tools list.</span></span></li>
+			<li class="form-row"><label for="cmnt">Comment:</label><span><textarea name="cmnt" id="cmnt" cols="60" rows="10" maxlength="300" aria-describedby="cmntdesc"></textarea><br><span id="cmntdesc">This comment will be included in email but not published on the tools list.</span></span></li>
 		</ul>
+		<?php endif ?>
 
   <p><button class="btn-primary" style="float:none;" name="send" id="send" type="submit">Send Information</button></p>
 
@@ -790,7 +805,8 @@ $(document).ready(function(){
   });
 
 	} else {
-	  alert('The File APIs are not fully supported in this browser.');
+	  $('aside.editbox p').html('The File APIs are not fully supported in this browser, please update to a newer browser to enable file editing.');
+	  $('aside.editbox button,aside.editbox output').remove();
 	}
 
 });
