@@ -58,8 +58,7 @@ $guideline = array(
 		"section508" => 'Section 508, <abbr title="United States">US</abbr> federal procurement standard',
 		"jis" => '<abbr title="Japanese Industry Standard">JIS</abbr>, Japanese industry standard',
 		"stanca" => 'Stanca Act, Italian accessibility legislation',
-		"bitv20" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung 2.0">BITV 2.0</abbr>, German government standard',
-		"bitv10" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr>, German government standard',
+		"bitv" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr>, German government standard',
 		"rgaa" => '<abbr lang="fr" title="Référentiel Général d’Accessibilité pour les Administrations">RGAA</abbr>, French government standard'
 	),
 	other => true,
