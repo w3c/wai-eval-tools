@@ -116,9 +116,11 @@ function iter($input, $reference) {
 
   if ($_POST) {
 
-    if (trim($_POST['comment'])) { die("This may be spam."); }
+    if (trim($_POST['comment'])) { die("This may be spam."); } // If someone enters text into the honeypot, stop form submission
 
-   // var_dump($_POST);
+    /*
+     * Construction of the data object:
+     */
 
     $data = (object) array();
 
@@ -142,7 +144,6 @@ function iter($input, $reference) {
     $data->guideline = iter($_POST['guideline'], $guideline);
     $data->assists = iter($_POST['assists'], $assists);
     $data->automated = iter($_POST['automated'], $automated);
-    # $data->repairs = iter($_POST['repairs'], $repairs);
     $data->technology = iter($_POST['technology'], $technology);
     $data->type = iter($_POST['tooltype'], $tooltype);
     $data->onlineservice = iter($_POST['onlineservice'], $onlineservice);
@@ -153,11 +154,11 @@ function iter($input, $reference) {
     $data->license = iter($_POST['license'], $license);
 
 
-if($_GET['download']==true) {
-header('Content-type: application/json');
-header('Content-disposition: attachment; filename="'.friendly_url($data->title).'.json"');
+if($_GET['download']==true) { /* If download mode, send file to download instead of a */
+	header('Content-type: application/json');
+	header('Content-disposition: attachment; filename="'.friendly_url($data->title).'.json"');
 
- die(json_encode($data));
+	die(json_encode($data));
 
 }
 
