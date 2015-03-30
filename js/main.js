@@ -470,4 +470,13 @@ $(function(){
 
 		});
 
+    if ((window.location.hostname !== 'www.w3.org') && (window.location.hostname !== 'w3.org')) {
+      var notification = document.createElement('div');
+      notification.className = 'not-w3c-notification';
+      notification.innerHTML = 'This is an Editor’s draft, for <em>preview purposes only</em>. Please see, and link to, released Web Accessibility Evaluation Tools at <a href="http://www.w3.org/WAI/ER/tools/">w3.org/WAI/ER/tools/</a>.';
+      document.getElementsByClassName('w3c-wai-header')[0].insertAdjacentHTML('beforebegin', notification.outerHTML);
+
+      document.getElementsByTagName('title')[0].innerHTML = '[PREVIEW] ' + document.getElementsByTagName('title')[0].innerHTML;
+    }
+
 });
