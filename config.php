@@ -36,14 +36,19 @@ $language = array(
 		"fr" => 'French (<span lang="fr">Français</span>)',
 		"gl" => 'Galician (<span lang="gl">Galego</span>)',
 		"de" => 'German (<span lang="de">Deutsch</span>)',
+		"hu" => 'Hungarian (<span lang="hu">Magyar</span>)',
 		"it" => 'Italian (<span lang="it">Italiano</span>)',
 		"ja" => 'Japanese (<span lang="ja">日本語</span>)',
 		"ko" => 'Korean (<span lang="ko">한국어</span>)',
 		"pl" => 'Polish (<span lang="pl">Polski</span>)',
 		"pt" => 'Portuguese (<span lang="pt">Português</span>)',
 		"ro" => 'Romanian (<span lang="ro">Română</span>)',
+		"ru" => 'Russian (<span lang="ru">русский язык</span>)',
 		"sr" => 'Serbian (<span lang="sr">Српски</span>)',
 		"es" => 'Spanish (<span lang="es">Castellano</span>)'
+		"sv" => 'Swedish (<span lang="sv">Svenska</span>)',
+		"tr" => 'Turkish (<span lang="tr">Türkçe</span>)',
+		"uk" => 'Ukranian (<span lang="uk">українська мова</span>)'
 	),
 	other => true,
 	variable => 'language',
@@ -96,6 +101,7 @@ $repair = array(
 $technology = array(
 	title => "Checks the accessibility of:",
 	data => array(
+		"aria" => 'WAI-ARIA',
 		"css" => '<abbr title="Cascading Style Sheets">CSS</abbr>',
 		"html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
 		"xhtml" => '<abbr title="Extensible Hypertext Markup Language">XHTML</abbr>',
