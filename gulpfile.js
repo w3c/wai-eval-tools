@@ -14,9 +14,8 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     cheerio = require('gulp-cheerio'),
     livereload = require('gulp-livereload'),
-    jsonlint = require("gulp-jsonlint");
-
-    require('gulp-grunt')(gulp);
+    jsonlint = require("gulp-jsonlint"),
+    modernizr = require('gulp-modernizr');
 
 gulp.task('styles', function() {
   return gulp.src('sass/*.scss')
@@ -57,10 +56,57 @@ gulp.task('json', function() {
 gulp.task('scripts', function() {
   return gulp.src(['javascript/jquery.js', 'javascript/underscore.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/linkify.jquery.min.js', 'javascript/script.js'])
     .pipe(concat('js/main.js'))
-    .pipe(gulp.dest(''))
+    .pipe(modernizr({
+    // Avoid unnecessary builds (see Caching section below)
+    "cache" : true,
+
+    // Path to the build you're using for development.
+    "devFile" : false,
+
+    // Path to save out the built file
+    "dest" : false,
+
+    // Based on default settings on http://modernizr.com/download/
+    "options" : [
+        "setClasses",
+        "addTest",
+        "html5printshiv",
+        "testProp",
+        "fnBind",
+        "isSVG"
+    ],
+
+    // Define any tests you want to explicitly include
+    "tests" : [],
+
+    // Useful for excluding any tests that this tool will match
+    // e.g. you use .notification class for notification elements,
+    // but don’t want the test for Notification API
+    "excludeTests": [],
+
+    // By default, will crawl your project for references to Modernizr tests
+    // Set to false to disable
+    "crawl" : true,
+
+    // Set to true to pass in buffers via the "files" parameter below
+    "useBuffers" : false,
+
+    // By default, this task will crawl all *.js, *.css, *.scss files.
+    "files" : {
+        "src": [
+            "*[^(g|G)(runt|ulp)(file)?].{js,css,scss}",
+            "**[^node_modules]/**/*.{js,css,scss}",
+            "!lib/**/*"
+        ]
+    },
+
+    // Have custom Modernizr tests? Add them here.
+    "customTests" : []
+}))
+    .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest('js'))
     .pipe(livereload())
     ;//.pipe(notify({ message: 'Scripts task complete' }));
 });
@@ -69,15 +115,6 @@ gulp.task('fonts', function() {
   return gulp.src('src/fonts/**/*')
     .pipe(gulp.dest('fonts'))
     ;//.pipe(notify({ message: 'Fonts task complete' }));
-});
-
-gulp.task('modernizr', function() {
-  return gulp.src(['javascript/modernizr.js'])
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('js'))
-    .pipe(livereload())
-    ;//.pipe(notify({ message: 'Modernizr task complete' }));
 });
 
 gulp.task('images', function() {
@@ -115,9 +152,8 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.run('grunt-modernizr');
-    gulp.run('addlivereloadscript', 'styles', 'icomoon', 'scripts-clean', 'scripts', 'modernizr', 'images', 'svg', 'fonts');
+gulp.task('default', [], function() {
+    gulp.run('addlivereloadscript', 'styles', 'icomoon', 'scripts-clean', 'scripts', 'images', 'svg', 'fonts');
 });
 
 gulp.task('watch', function() {
@@ -141,7 +177,6 @@ gulp.task('watch', function() {
   // Watch .js files
   gulp.watch('javascript/**/*.js', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('modernizr');
     gulp.run('scripts-clean');
     gulp.run('scripts');
   });
