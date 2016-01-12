@@ -433,6 +433,7 @@ $(function(){
 					'guideline' : {'title': 'Guidelines', 'promoted': ["<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.0<\/strong>", "<abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 1.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 1.0"]},
 					'language'  : {'title': 'Languages', 'collapsed': true},
 					'type': {'title': 'Type of tool', 'collapsed': true},
+					'technology' : {'title': 'Technology', 'collapsed': true},
 					'assists': {'title': 'Assists by …', 'collapsed': true, 'promoted': ['Generating reports of evaluation results', 'Providing step-by-step evaluation guidance', 'Displaying information within web pages', 'Modifying the presentation of web pages']},
 					'automated': {'title': 'Automatically checks…', 'collapsed': true, 'promoted': ['Single web pages', 'Groups of web pages or web sites', 'Restricted or password protected pages']},
 					'license' : {'title': 'License', 'collapsed': true},
