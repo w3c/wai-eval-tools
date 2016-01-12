@@ -2,25 +2,35 @@
 <html class="no-js no-svg" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Web Accessibility Evaluation Tools</title>
+  <title>Web Accessibility Evaluation Tools List</title>
   <meta name="viewport" content="width=device-width">
-  <link href="css/wai-act.css" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="canonical" href="http://www.w3.org/WAI/ER/tools/">
+  <link href="css/wai-act.css" media="screen" rel="stylesheet" type="text/css">
   <script src="js/modernizr.min.js" type="text/javascript"></script>
 </head>
 <body class="texts">
   <header role="banner">
     <div class="w3c-wai-header">
-      <a href="http://w3.org/"><img alt="W3C" width="90" src="//w3c.github.io/wai-tutorials/img/w3c-796023c4.png" /></a>
-      <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="//w3c.github.io/wai-tutorials/img/wai-4c28be39.png" /></a>
+      <a href="http://w3.org/"><img alt="W3C" width="90" src="img/w3c.png"></a>
+      <a href="http://w3.org/WAI/" class="wai"><img alt="Web Accessibility Initiative" src="img/wai.png"></a>
     </div>
   </header>
   <main class="with-side-menu" role="main">
-    <div class="page-title">
-      Web Accessibility Evaluation Tools
-    </div>
+    <h1 class="page-title">Web Accessibility Evaluation Tools List</h1>
+    <p class="intro">Web accessibility evaluation tools are software programs or online services that help you determine if web content meets accessibility guidelines. This page provides a list of evaluation tools that you can filter to find ones that match your particular needs. To determine what kind of tool you need and how they are able to assist you, see <a href="http://www.w3.org/WAI/eval/selectingtools">Selecting Web Accessibility Evaluation Tools</a>.</p><p class="intro"><strong> Information on this page is provided by vendors and others. <abbr title="World Wide Web Consortium">W3C</abbr> does not endorse specific products. See <a href="#disclaimer">Important Disclaimer</a>.</strong></p>
     <div class="navigation">
-      <h2 class="list-heading">Filters:</h2>
-      <div id="facets"></div>
+      <details open>
+        <summary><h2 class="list-heading">Filters:</h2></summary>
+        <div id="facets"></div>
+      </details>
+      <aside role="complementary" class="submit"><a href="submission" class="btn-primary">Add your tool!</a>
+      </aside>
+      <aside role="complementary" class="disclaimer">
+        <h2 id="disclaimer">Important Disclaimer</h2>
+        <p><abbr title="World Wide Web Consortium">W3C</abbr> does not endorse specific vendor products. Inclusion of products in this list does not indicate endorsement by W3C. Products and search criteria are listed with no quality rating.</p>
+        <p>Tool descriptions, search criteria, and other information in this database is provided by tool developers, vendors, or others. W3C does not verify the accuracy of the information.</p>
+        <p>The list is not a review of evaluation tools, nor a complete or definitive list of all tools. The information can change at any time.</p>
+      </aside>
     </div>
     <div class="content">
       <h2>Results:</h2>
@@ -28,31 +38,144 @@
       <ul id="results"></ul>
     </div>
   </main>
+  <footer role="contentinfo">
+  <h2 class="visuallyhidden">Document Information</h2>
+  <p><strong>Status:</strong> Updated 18 December 2014 (first published March 2006)</p>
+  <p>Developers/Editors: <a href="http://www.w3.org/People/yatil/">Eric Eggert</a> and <a href="/People/shadi/">Shadi Abou-Zahra</a>. User Interface developed with the Education and Outreach Working Group (<a href="/WAI/EO/"><abbr title="Education and Outreach Working Group">EOWG</abbr></a>). Database maintained by the Evaluation and Repair Tools Working Group (<a href="/WAI/ER/"><abbr title="Evaluation and Repair Tools">ERT</abbr> <abbr title="Working Group">WG</abbr></a>). <a href="acknowledgements">Acknowledgements</a> lists contributors and previous editors. Developed with support from the <a href="/WAI/TIES/">WAI-TIES Project</a> in 2006, and updated with support from the <a href="/WAI/ACT/">WAI-ACT Project</a> in 2014.</p>
+  <p>See <a href="#disclaimer">Important Disclaimer above</a>.</p>
+  <div class="footer-nav">
+    <p>[<a href="http://www.w3.org/WAI/sitemap.html">WAI Site Map</a>] [<a href="http://www.w3.org/WAI/sitehelp.html">Help with WAI Website</a>] [<a href="http://www.w3.org/WAI/search.php">Search</a>] [<a href="/WAI/contacts">Contacting WAI</a>]<br /><strong>Feedback welcome to <a href="mailto:wai-eo-editors@w3.org">wai-eo-editors@w3.org</a></strong> (a publicly archived list) or <a href="mailto:wai@w3.org">wai@w3.org</a> (a WAI staff-only list).</p>
+  </div> <!-- end footer-nav -->
+  <div class="copyright">
+    <p>Copyright &#xA9; 2014 W3C <sup>&#xAE;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>) <a href="/Consortium/Legal/ipr-notice">Usage policies apply</a>.</p>
+  </div><!-- end copyright -->
+</footer>
     <script type="text/template" id="results-template">
-      <li class="tool-item">
-        <h4><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h4>
-        <p class="desc" tabindex="0"><%= obj.desc %></p>
-        <p> (Version: <%= obj.version %>, Released: <%= obj.release %>)</p>
-        <ul>
-          <% if (obj.assistance) { %>
+      <% function parsedate(datestr) {
+        if (datestr instanceof Array) {
+              var date = datestr[0];
+            } else {
+              var date = datestr;
+            }
+            var dateParts = date.split("-");
+            var month = '';
+            switch (parseInt(dateParts[1],10)) {
+              case 1:
+                month = 'Jan';
+                break;
+              case 2:
+                month = 'Feb';
+                break;
+              case 3:
+                month = 'Mar';
+                break;
+              case 4:
+                month = 'Apr';
+                break;
+              case 5:
+                month = 'May';
+                break;
+              case 6:
+                month = 'Jun';
+                break;
+              case 7:
+                month = 'Jul';
+                break;
+              case 8:
+                month = 'Aug';
+                break;
+              case 9:
+                month = 'Sep';
+                break;
+              case 10:
+                month = 'Oct';
+                break;
+              case 11:
+                month = 'Nov';
+                break;
+              case 12:
+                month = 'Dec';
+                break;
+            }
+          return dateParts[0] + '-' + month + '-' + dateParts[2];
+      }
+      function string_to_slug(str) {
+        str = str.replace(/^\s+|\s+$/g, ''); // trim
+        str = str.toLowerCase();
+
+        // remove accents, swap ñ for n, etc
+        var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+        var to   = "aaaaeeeeiiiioooouuuunc------";
+        for (var i=0, l=from.length ; i<l ; i++) {
+          str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+        }
+
+        str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+          .replace(/\s+/g, '-') // collapse whitespace and replace by -
+          .replace(/-+/g, '-')  // collapse dashes
+          .replace(/(^[0-9]*-)/g, '-') // remove numbers and - from the beginning of the string
+          .replace(/^-*/g, ''); // remove dash from the begining of the string
+
+        return str;
+      } %>
+      <li class="tool-item" tabindex="0" id="<%= string_to_slug(obj.title) %>">
+        <div>
+          <h3><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h3>
+          <a class="permalink" href="#<%= string_to_slug(obj.title) %>" title="Permalink"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAPdJREFUOBGFULENwkAMfEWMkYYoFTNQpMlcMAaioEHKCJSZgJ4JiECIBgoKJMJd8IuXbSUnnWyfz/YnITjo+z4HG/AsZJ47VivRCN5BDWrTS2DiNeIAchnJnGjsSaXA1A3W5BpqLiE6ZQ+ZFlDPHC1KpuctaMW9xcXhE1BvRYu9uNBGDBXgBdS4QijshKPQCO6TDcznjnVcigvGXN4/GPObXhavSFwZhxLgW6cz6Qs+8B6V3yvpofcH2faU+EKsVK9P6gp9eohhJiDhkxbgDSTe4AZcshAwp8YeQS9n/p+MogRbcAr0lPFVJqJZgzvwBD6EzKnVeuALxOKAbAIZAxoAAAAASUVORK5CYII=" alt="Permalink"></a>
+        </div>
+        <div class="desc">
+          <p><%= obj.description.replace( /\n/g, "<br/>" ) %></p>
+          <p class="link"><a href="<%= obj.location %>"><%= obj.location %></a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %></span></p>
+        </div>
+        <details>
+          <summary><strong>Detailed Information</strong> about “<%= obj.title %>”</summary>
+          <ul>
+          <% if (obj.guideline && obj.guideline.length) { %>
             <li>
-            <% if (obj.assistance instanceof Array && obj.assistance.length > 1) { %>
-              <strong>Assistance width:</strong> <%= obj.assistance.join(', ') %>
+            <% if (obj.guideline instanceof Array && obj.guideline.length > 1) { %>
+              <strong>Guidelines:</strong> <%= obj.guideline.join(', ') %>
             <% } else { %>
-              <strong>Assistance with:</strong> <%= obj.assistance %>
+              <strong>Guidelines:</strong> <%= obj.guideline %>
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.type) { %>
+          <% if (obj.assists && obj.assists.length) { %>
             <li>
-            <% if (obj.type instanceof Array && obj.type.length > 1) { %>
-              <strong>Type of tool:</strong> <%= obj.type.join(', ') %>
+            <% if (obj.assists instanceof Array && obj.assists.length > 1) { %>
+              <strong>Assists by:</strong> <%= obj.assists.join(', ') %>
             <% } else { %>
-              <strong>Type of tool:</strong> <%= obj.type %>
+              <strong>Assists by:</strong> <%= obj.assists %>
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.language) { %>
+          <% if (obj.authoringtools && obj.authoringtools.length) { %>
+            <li>
+            <% if (obj.authoringtools instanceof Array && obj.authoringtools.length > 1) { %>
+              <strong>Authoring tools:</strong> <%= obj.authoringtools.join(', ') %>
+            <% } else { %>
+              <strong>Authoring tool:</strong> <%= obj.authoringtools %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.automated && obj.automated.length) { %>
+            <li>
+            <% if (obj.automated instanceof Array && obj.automated.length > 1) { %>
+              <strong>Automatically checks:</strong> <%= obj.automated.join(', ') %>
+            <% } else { %>
+              <strong>Automatically checks:</strong> <%= obj.automated %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.desktopapp && obj.desktopapp.length) { %>
+            <li>
+            <% if (obj.desktopapp instanceof Array && obj.desktopapp.length > 1) { %>
+              <strong>Operating System:</strong> <%= obj.desktopapp.join(', ') %>
+            <% } else { %>
+              <strong>Operating System:</strong> <%= obj.desktopapp %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.language && obj.language.length) { %>
             <li>
             <% if (obj.language instanceof Array && obj.language.length > 1) { %>
               <strong>Languages:</strong> <%= obj.language.join(', ') %>
@@ -61,34 +184,95 @@
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.platform) { %>
+          <% if (obj.browsers && obj.browsers.length) { %>
             <li>
-            <% if (obj.platform instanceof Array && obj.platform.length > 1) { %>
-              <strong>Platforms:</strong> <%= obj.platform.join(', ') %>
+            <% if (obj.browsers instanceof Array && obj.browsers.length > 1) { %>
+              <strong>Browser plugins:</strong> <%= obj.browsers.join(', ') %>
             <% } else { %>
-              <strong>Platform:</strong> <%= obj.platform %>
+              <strong>Browser plugin:</strong> <%= obj.browsers %>
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.checks) { %>
+          <% if (obj.apis && obj.apis.length) { %>
             <li>
-            <% if (obj.checks instanceof Array && obj.checks.length > 1) { %>
-              <strong>Checks:</strong> <%= obj.checks.join(', ') %>
+            <% if (obj.apis instanceof Array && obj.apis.length > 1) { %>
+              <strong>APIs:</strong> <%= obj.apis.join(', ') %>
             <% } else { %>
-              <strong>Checks:</strong> <%= obj.checks %>
+              <strong>API:</strong> <%= obj.apis %>
             <% } %>
             </li>
           <% }; %>
-          <% if (obj.automatic) { %>
+          <% if (obj.technology && obj.technology.length) { %>
             <li>
-            <% if (obj.automatic instanceof Array && obj.automatic.length > 1) { %>
-              <strong>Automatic testing:</strong> <%= obj.automatic.join(', ') %>
+            <% if (obj.technology instanceof Array && obj.technology.length > 1) { %>
+              <strong>Supported formats:</strong> <%= obj.technology.join(', ') %>
             <% } else { %>
-              <strong>Automatic testing:</strong> <%= obj.automatic %>
+              <strong>Supported format:</strong> <%= obj.technology %>
             <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.repairs && obj.repairs.length) { %>
+            <li>
+            <% if (obj.repairs instanceof Array && obj.repairs.length > 1) { %>
+              <strong>Repairs:</strong> <%= obj.repairs.join(', ') %>
+            <% } else { %>
+              <strong>Repairs:</strong> <%= obj.repairs %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.onlineservice && obj.onlineservice.length) { %>
+            <li>
+            <% if (obj.onlineservice instanceof Array && obj.onlineservice.length > 1) { %>
+              <strong>Online Service:</strong> <%= obj.onlineservice.join(', ') %>
+            <% } else { %>
+              <strong>Online Service:</strong> <%= obj.onlineservice %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.repairs && obj.repairs.length) { %>
+            <li>
+            <% if (obj.repairs instanceof Array && obj.repairs.length > 1) { %>
+              <strong>Repairs:</strong> <%= obj.repairs.join(', ') %>
+            <% } else { %>
+              <strong>Repairs:</strong> <%= obj.repairs %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.reports && obj.reports.length) { %>
+            <li>
+            <% if (obj.reports instanceof Array && obj.reports.length > 1) { %>
+              <strong>Report formats:</strong> <%= obj.reports.join(', ') %>
+            <% } else { %>
+              <strong>Report format:</strong> <%= obj.reports %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.license && obj.license.length) { %>
+            <li>
+            <% if (obj.license instanceof Array && obj.license.length > 1) { %>
+              <strong>License:</strong> <%= obj.license.join(', ') %>
+            <% } else { %>
+              <strong>License:</strong> <%= obj.license %>
+            <% } %>
+            </li>
+          <% }; %>
+          <% if (obj.a11yloc) { %>
+            <li>
+              <strong><a href="<%= obj.a11yloc %>">Accessibility information</a></strong>
+            </li>
+          <% }; %>
+          <% if (!obj.a11yloc) { %>
+            <li>
+              <strong>Accessibility information:</strong> (none provided)
+            </li>
+          <% }; %>
+          <% if (obj.update) { %>
+            <li>
+              <strong>Information updated:</strong> <%= parsedate(obj.update) %>
             </li>
           <% }; %>
         </ul>
+        </details>
       </li>
 </script>
 <script src="js/main.js"></script>
