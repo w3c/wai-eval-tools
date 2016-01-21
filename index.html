@@ -51,81 +51,14 @@
   </div><!-- end copyright -->
 </footer>
     <script type="text/template" id="results-template">
-      <% function parsedate(datestr) {
-        if (datestr instanceof Array) {
-              var date = datestr[0];
-            } else {
-              var date = datestr;
-            }
-            var dateParts = date.split("-");
-            var month = '';
-            switch (parseInt(dateParts[1],10)) {
-              case 1:
-                month = 'Jan';
-                break;
-              case 2:
-                month = 'Feb';
-                break;
-              case 3:
-                month = 'Mar';
-                break;
-              case 4:
-                month = 'Apr';
-                break;
-              case 5:
-                month = 'May';
-                break;
-              case 6:
-                month = 'Jun';
-                break;
-              case 7:
-                month = 'Jul';
-                break;
-              case 8:
-                month = 'Aug';
-                break;
-              case 9:
-                month = 'Sep';
-                break;
-              case 10:
-                month = 'Oct';
-                break;
-              case 11:
-                month = 'Nov';
-                break;
-              case 12:
-                month = 'Dec';
-                break;
-            }
-          return dateParts[0] + '-' + month + '-' + dateParts[2];
-      }
-      function string_to_slug(str) {
-        str = str.replace(/^\s+|\s+$/g, ''); // trim
-        str = str.toLowerCase();
-
-        // remove accents, swap ñ for n, etc
-        var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-        var to   = "aaaaeeeeiiiioooouuuunc------";
-        for (var i=0, l=from.length ; i<l ; i++) {
-          str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-        }
-
-        str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-          .replace(/\s+/g, '-') // collapse whitespace and replace by -
-          .replace(/-+/g, '-')  // collapse dashes
-          .replace(/(^[0-9]*-)/g, '-') // remove numbers and - from the beginning of the string
-          .replace(/^-*/g, ''); // remove dash from the begining of the string
-
-        return str;
-      } %>
-      <li class="tool-item" tabindex="0" id="<%= string_to_slug(obj.title) %>">
+      <li class="tool-item" tabindex="0" id="<%= _(obj.title).to_slug() %>">
         <div>
           <h3><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h3>
-          <a class="permalink" href="#<%= string_to_slug(obj.title) %>" title="Permalink"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAPdJREFUOBGFULENwkAMfEWMkYYoFTNQpMlcMAaioEHKCJSZgJ4JiECIBgoKJMJd8IuXbSUnnWyfz/YnITjo+z4HG/AsZJ47VivRCN5BDWrTS2DiNeIAchnJnGjsSaXA1A3W5BpqLiE6ZQ+ZFlDPHC1KpuctaMW9xcXhE1BvRYu9uNBGDBXgBdS4QijshKPQCO6TDcznjnVcigvGXN4/GPObXhavSFwZhxLgW6cz6Qs+8B6V3yvpofcH2faU+EKsVK9P6gp9eohhJiDhkxbgDSTe4AZcshAwp8YeQS9n/p+MogRbcAr0lPFVJqJZgzvwBD6EzKnVeuALxOKAbAIZAxoAAAAASUVORK5CYII=" alt="Permalink"></a>
+          <a class="permalink" href="#<%= _(obj.title).to_slug() %>" title="Permalink"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAPdJREFUOBGFULENwkAMfEWMkYYoFTNQpMlcMAaioEHKCJSZgJ4JiECIBgoKJMJd8IuXbSUnnWyfz/YnITjo+z4HG/AsZJ47VivRCN5BDWrTS2DiNeIAchnJnGjsSaXA1A3W5BpqLiE6ZQ+ZFlDPHC1KpuctaMW9xcXhE1BvRYu9uNBGDBXgBdS4QijshKPQCO6TDcznjnVcigvGXN4/GPObXhavSFwZhxLgW6cz6Qs+8B6V3yvpofcH2faU+EKsVK9P6gp9eohhJiDhkxbgDSTe4AZcshAwp8YeQS9n/p+MogRbcAr0lPFVJqJZgzvwBD6EzKnVeuALxOKAbAIZAxoAAAAASUVORK5CYII=" alt="Permalink"></a>
         </div>
         <div class="desc">
           <p><%= obj.description.replace( /\n/g, "<br/>" ) %></p>
-          <p class="link"><a href="<%= obj.location %>"><%= obj.location %></a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= parsedate(obj.release) %></span></p>
+          <p class="link"><a href="<%= obj.location %>"><%= obj.location %></a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= _(obj.release).parsedate() %></span></p>
         </div>
         <details>
           <summary><strong>Detailed Information</strong> about “<%= obj.title %>”</summary>
@@ -268,7 +201,7 @@
           <% }; %>
           <% if (obj.update) { %>
             <li>
-              <strong>Information updated:</strong> <%= parsedate(obj.update) %>
+              <strong>Information updated:</strong> <%= _(obj.update).parsedate() %>
             </li>
           <% }; %>
         </ul>
@@ -276,5 +209,42 @@
       </li>
 </script>
 <script src="js/main.js"></script>
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-home" viewbox="0 0 1024 1024">
+<title>home</title>
+<path class="path1" d="M1024 608l-192-192v-288h-128v160l-192-192-512 512v32h128v320h320v-192h128v192h320v-320h128z"></path>
+</symbol>
+<symbol id="icon-image" viewbox="0 0 1024 1024">
+<title>image</title>
+<path class="path1" d="M959.884 128c0.040 0.034 0.082 0.076 0.116 0.116v767.77c-0.034 0.040-0.076 0.082-0.116 0.116h-895.77c-0.040-0.034-0.082-0.076-0.114-0.116v-767.772c0.034-0.040 0.076-0.082 0.114-0.114h895.77zM960 64h-896c-35.2 0-64 28.8-64 64v768c0 35.2 28.8 64 64 64h896c35.2 0 64-28.8 64-64v-768c0-35.2-28.8-64-64-64v0z"></path>
+<path class="path2" d="M832 288c0 53.020-42.98 96-96 96s-96-42.98-96-96 42.98-96 96-96 96 42.98 96 96z"></path>
+<path class="path3" d="M896 832h-768v-128l224-384 256 320h64l224-192z"></path>
+</symbol>
+<symbol id="icon-accessibility" viewbox="0 0 1024 1024">
+<title>accessibility</title>
+<path class="path1" d="M416 96c0-53.018 42.98-96 96-96s96 42.982 96 96c0 53.020-42.98 96-96 96s-96-42.98-96-96z"></path>
+<path class="path2" d="M640 320l329.596-142.172-23.77-59.424-401.826 137.596h-64l-401.826-137.596-23.77 59.424 329.596 142.172v256l-131.27 424.57 59.84 22.7 185.716-415.27h27.428l185.716 415.27 59.84-22.7-131.27-424.57z"></path>
+</symbol>
+<symbol id="icon-cloud" viewbox="0 0 1024 1024">
+<title>cloud</title>
+<path class="path1" d="M1024 657.542c0-82.090-56.678-150.9-132.996-169.48-3.242-128.7-108.458-232.062-237.862-232.062-75.792 0-143.266 35.494-186.854 90.732-24.442-31.598-62.69-51.96-105.708-51.96-73.81 0-133.642 59.874-133.642 133.722 0 6.436 0.48 12.76 1.364 18.954-11.222-2.024-22.766-3.138-34.57-3.138-106.998-0.002-193.732 86.786-193.732 193.842 0 107.062 86.734 193.848 193.73 193.848l656.262-0.012c96.138-0.184 174.008-78.212 174.008-174.446z"></path>
+</symbol>
+<symbol id="icon-warning" viewbox="0 0 1024 1024">
+<title>warning</title>
+<path class="path1" d="M512 92.774l429.102 855.226h-858.206l429.104-855.226zM512 0c-22.070 0-44.14 14.882-60.884 44.648l-437.074 871.112c-33.486 59.532-5 108.24 63.304 108.24h869.308c68.3 0 96.792-48.708 63.3-108.24h0.002l-437.074-871.112c-16.742-29.766-38.812-44.648-60.882-44.648v0z"></path>
+<path class="path2" d="M576 832c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-35.346 28.654-64 64-64s64 28.654 64 64z"></path>
+<path class="path3" d="M512 704c-35.346 0-64-28.654-64-64v-192c0-35.346 28.654-64 64-64s64 28.654 64 64v192c0 35.346-28.654 64-64 64z"></path>
+</symbol>
+<symbol id="icon-share" viewbox="0 0 1024 1024">
+<title>share</title>
+<path class="path1" d="M864 704c-45.16 0-85.92 18.738-115.012 48.83l-431.004-215.502c1.314-8.252 2.016-16.706 2.016-25.328s-0.702-17.076-2.016-25.326l431.004-215.502c29.092 30.090 69.852 48.828 115.012 48.828 88.366 0 160-71.634 160-160s-71.634-160-160-160-160 71.634-160 160c0 8.622 0.704 17.076 2.016 25.326l-431.004 215.504c-29.092-30.090-69.852-48.83-115.012-48.83-88.366 0-160 71.636-160 160 0 88.368 71.634 160 160 160 45.16 0 85.92-18.738 115.012-48.828l431.004 215.502c-1.312 8.25-2.016 16.704-2.016 25.326 0 88.368 71.634 160 160 160s160-71.632 160-160c0-88.364-71.634-160-160-160z"></path>
+</symbol>
+<symbol id="icon-github" viewbox="0 0 1024 1024">
+<title>github</title>
+<path class="path1" d="M512.008 12.642c-282.738 0-512.008 229.218-512.008 511.998 0 226.214 146.704 418.132 350.136 485.836 25.586 4.738 34.992-11.11 34.992-24.632 0-12.204-0.48-52.542-0.696-95.324-142.448 30.976-172.504-60.41-172.504-60.41-23.282-59.176-56.848-74.916-56.848-74.916-46.452-31.778 3.51-31.124 3.51-31.124 51.4 3.61 78.476 52.766 78.476 52.766 45.672 78.27 119.776 55.64 149.004 42.558 4.588-33.086 17.852-55.68 32.506-68.464-113.73-12.942-233.276-56.85-233.276-253.032 0-55.898 20.004-101.574 52.76-137.428-5.316-12.9-22.854-64.972 4.952-135.5 0 0 43.006-13.752 140.84 52.49 40.836-11.348 84.636-17.036 128.154-17.234 43.502 0.198 87.336 5.886 128.256 17.234 97.734-66.244 140.656-52.49 140.656-52.49 27.872 70.528 10.35 122.6 5.036 135.5 32.82 35.856 52.694 81.532 52.694 137.428 0 196.654-119.778 239.95-233.79 252.624 18.364 15.89 34.724 47.046 34.724 94.812 0 68.508-0.596 123.644-0.596 140.508 0 13.628 9.222 29.594 35.172 24.566 203.322-67.776 349.842-259.626 349.842-485.768 0-282.78-229.234-511.998-511.992-511.998z"></path>
+</symbol>
+</defs>
+</svg>
   </body>
 </html>

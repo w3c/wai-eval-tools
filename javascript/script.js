@@ -1,3 +1,83 @@
+_.mixin({
+  to_slug: function(str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+      .replace(/\s+/g, '-') // collapse whitespace and replace by -
+      .replace(/-+/g, '-')  // collapse dashes
+      .replace(/(^[0-9]*-)/g, '-') // remove numbers and - from the beginning of the string
+      .replace(/^-*/g, ''); // remove dash from the begining of the string
+
+    return str;
+  }
+});
+_.mixin({
+	strip_html: function(html) {
+		var tmp = document.createElement("DIV");
+		tmp.innerHTML = html;
+		return tmp.textContent || tmp.innerText || "";
+	}
+});
+_.mixin({
+	parsedate: function(datestr) {
+		var date = "";
+  	if (datestr instanceof Array) {
+        date = datestr[0];
+      } else {
+        date = datestr;
+      }
+      var dateParts = date.split("-");
+      var month = '';
+      switch (parseInt(dateParts[1],10)) {
+        case 1:
+          month = 'Jan';
+          break;
+        case 2:
+          month = 'Feb';
+          break;
+        case 3:
+          month = 'Mar';
+          break;
+        case 4:
+          month = 'Apr';
+          break;
+        case 5:
+          month = 'May';
+          break;
+        case 6:
+          month = 'Jun';
+          break;
+        case 7:
+          month = 'Jul';
+          break;
+        case 8:
+          month = 'Aug';
+          break;
+        case 9:
+          month = 'Sep';
+          break;
+        case 10:
+          month = 'Oct';
+          break;
+        case 11:
+          month = 'Nov';
+          break;
+        case 12:
+          month = 'Dec';
+          break;
+      }
+    return dateParts[0] + '-' + month + '-' + dateParts[2];
+  }
+});
+
 $(function(){
 		var item_template = $('#results-template').text();
 		var eval_tools = $.getJSON( "./js/data.json", function() {
@@ -24,7 +104,7 @@ $(function(){
 				orderByOptions   : {'title': 'Title'},
 				facetSortOption  : {},
 				facetListContainer : '<ul class=facetlist></ul>',
-				listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;<% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></label></span></li>',
+				listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>" data-name="<%= _(_(name).strip_html()).to_slug() %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;<% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></label></span></li>',
 				listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></span>',
 				orderByTemplate    : '',
 				countTemplate      : '<div class="facettotalcount"><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters: <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } %></div>',
@@ -40,6 +120,24 @@ $(function(){
 		// alert($.fn.details.support);
 		$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 		$('#facets details, .navigation > details, #editdetail').details();
+
+		function addCheckboxDataIDs() {
+			$('.facetitem').each(function(index, el) {
+				console.log(_($(el).data('name')).to_slug());
+			});
+		}
+
+		addCheckboxDataIDs();
+
+		$('#facets').on('change', '.facetitem', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			var checked = [];
+			$('.facetitem:checked').each(function(index, el) {
+				checked.push($(el).data('name'));
+			});
+			console.log(checked);
+		});
 
 		if(window.location.hash) {
 			var elem = $(window.location.hash).focus();
