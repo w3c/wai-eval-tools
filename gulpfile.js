@@ -53,9 +53,13 @@ gulp.task('json', function() {
     .pipe(gulp.dest('js'));
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['scripts-clean'], function() {
   return gulp.src(['javascript/jquery.js', 'javascript/underscore.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/linkify.jquery.min.js', 'javascript/script.js'])
-    .pipe(concat('js/main.js'))
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('js'))
     .pipe(modernizr({
     // Avoid unnecessary builds (see Caching section below)
     "cache" : true,
@@ -103,10 +107,6 @@ gulp.task('scripts', function() {
     // Have custom Modernizr tests? Add them here.
     "customTests" : []
 }))
-    .pipe(gulp.dest('js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('js'))
     .pipe(livereload())
     ;//.pipe(notify({ message: 'Scripts task complete' }));
 });
@@ -177,7 +177,6 @@ gulp.task('watch', function() {
   // Watch .js files
   gulp.watch('javascript/**/*.js', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('scripts-clean');
     gulp.run('scripts');
   });
 
