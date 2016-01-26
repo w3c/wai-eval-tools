@@ -18,17 +18,15 @@ h1.page-title {
     padding: .25em .5em;
     color: #fff;
     position: relative;
+    display: flex;
+    justify-content: space-between;
     h3 {
     	@extend .font-primary;
     	color: #fff;
     }
     a {
-    	color: #fff;
+      color: #fff;
     }
-    i {
-		  font-weight: normal;
-		  font-size: 0.9em;
-		}
   }
   details {
     clear:both;
@@ -121,7 +119,6 @@ summary:focus {
     background-color: #fff;
     border-radius: .2em;
     box-shadow: 0 0 3px rgba(#000, .5);
-    overflow:hidden;
   }
   .desc, ul {padding: .25em .5em;}
   ul {

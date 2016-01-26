@@ -1,0 +1,71 @@
+.permalink_wrapper {
+  position: relative;
+  text-align: right;
+  flex:1;
+  > a {
+    white-space: nowrap;
+    color: #333 !important;
+    border: 1px solid #CCC;
+    background-color: #fff;
+    font-size: .8em;
+    padding: .1em;
+    border-radius: 3px;
+    text-decoration: none;
+    &:hover {
+      color: #fff !important;
+    }
+    svg {
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+  .sharebox {
+    display:none;
+    &.open {
+      display:block;
+    }
+    font-size: .85em;
+    color: #333;
+    text-align:left;
+    position: absolute;
+    z-index: 999;
+    top:100%;
+    right: 0;
+    background: #ddd;
+    border: 1px solid #777;
+    padding: .5em;
+    min-width: 20em;
+    max-width: 100%;
+    box-shadow: 0 0 10px #222;
+    a {
+      color: #333 !important;
+    }
+    input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    label span {
+      display: block;
+      text-align: right;
+    }
+    button {
+      @extend .btn-small;
+      position:absolute;
+      bottom:0;
+      right:0;
+    }
+    p {
+      float:none;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.i-share {
+  fill: currentColor;
+  height: 1em;
+  width: 1em;
+}
