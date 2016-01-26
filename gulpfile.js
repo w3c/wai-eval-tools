@@ -54,7 +54,7 @@ gulp.task('json', function() {
 });
 
 gulp.task('scripts', ['scripts-clean'], function() {
-  return gulp.src(['javascript/jquery.js', 'javascript/underscore.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/linkify.jquery.min.js', 'javascript/script.js'])
+  return gulp.src(['javascript/jquery.js', 'javascript/underscore.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/sharebox.js', 'javascript/script.js'])
     .pipe(concat('main.js'))
     .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))

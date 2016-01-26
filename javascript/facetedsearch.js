@@ -369,6 +369,7 @@ function updateFacetUI() {
 function updateResults() {
   $(settings.resultSelector).html(settings.currentResults.length === 0 ? settings.noResults : "");
   showMoreResults();
+  addSharebox();
 }
 
 var moreButton;
