@@ -66,6 +66,8 @@ jQuery.facetelize = function(usersettings) {
   filter();
   order();
   createFacetUI();
+  filter();
+  order();
   updateResults();
 };
 
@@ -265,6 +267,10 @@ function createFacetUI() {
     _.each(settings.facetStore[facet], function(filter, filtername){
       var item = {id: filter.id, name: filtername, count: filter.count};
       var filteritem  = $(itemtemplate(item));
+      if (_.indexOf(settings.selected, _(_(filtername).strip_html()).to_slug()) >= 0) {
+        filteritem.addClass("activefacet");
+        toggleFilter(facet, filtername);
+      }
       if (_.indexOf(settings.state.filters[facet], filtername) >= 0) {
         filteritem.addClass("activefacet");
       }
@@ -363,6 +369,18 @@ function updateFacetUI() {
   $('#results').highlight();
 }
 
+var updateURL = function(){
+  var checked = [];
+  $('.facetitem:checked').each(function(index, el) {
+    checked.push($(el).data('name'));
+  });
+
+  var location = window.history.location || window.location;
+  var uri = new URI(location);
+  var data = uri.search({q: checked});
+  history.pushState(null, null, uri);
+};
+
 /**
  * Updates the the list of results according to the filters that have been set
  */
@@ -370,6 +388,8 @@ function updateResults() {
   $(settings.resultSelector).html(settings.currentResults.length === 0 ? settings.noResults : "");
   showMoreResults();
   addSharebox();
+
+  updateURL();
 }
 
 var moreButton;
