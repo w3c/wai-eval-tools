@@ -2942,7 +2942,7 @@ $(function(){
     if (_.isArray(selected.q)) {
       selected = selected.q;
     } else {
-      selected = array(selected.q);
+      selected = [selected.q];
     }
   }
   console.log(selected.q);
