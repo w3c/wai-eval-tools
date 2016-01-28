@@ -1,23 +1,29 @@
 var addclass = function(el, className) {
-  if (el.classList)
+  if (el.classList) {
     el.classList.add(className);
-  else
+  }
+  else {
     el.className += ' ' + className;
+  }
 };
 
 var remclass = function(el, className) {
-  if (el.classList)
+  if (el.classList) {
     el.classList.remove(className);
-  else
+  }
+  else {
     el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-}
+  }
+};
 
 var hasclass = function(el, className) {
-  if (el.classList)
+  if (el.classList) {
     return el.classList.contains(className);
-  else
+  }
+  else {
     return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-}
+  }
+};
 
 var getNearestParentMatchingSelector = function (elem, selector) {
 
@@ -38,7 +44,7 @@ var addSharebox = function() {
   //addclass(plel, 'permalink');
   plel.innerHTML = '<svg aria-hidden="true" class="i-share"><use xlink:href="#icon-share"></use></svg> SHARE';
 
-  var plwrapdiv = document.createElement('div')
+  var plwrapdiv = document.createElement('div');
   addclass(plwrapdiv, 'permalink_wrapper');
 
   var sharebox = document.createElement('div');
@@ -87,8 +93,8 @@ var addSharebox = function() {
       var openboxes = document.querySelectorAll('.sharebox.open');
       for (var i = openboxes.length - 1; i >= 0; i--) {
         remclass(openboxes[i], 'open');
-      };
+      }
       el.parentNode.parentNode.parentNode.querySelector('a').focus();
     });
   });
-}
+};
