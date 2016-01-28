@@ -2804,7 +2804,7 @@ var addSharebox = function() {
 
   var sharebox = document.createElement('div');
   addclass(sharebox, 'sharebox');
-  var shareboxtext = '<p><label>Link to this section:<input type="url" value="%s" readonly> Shortcut to copy the link: <kbd>ctrl</kbd>+<kbd>C</kbd> <em>or</em> <kbd>⌘</kbd><kbd>C</kbd></label></p><p><a href="mailto:?subject=Web%20Accessibility%20Tutorials&body=Hi!%0AYou%20might%20be%20interested%20in%20this%20section%20of%20W3C%20WAI%E2%80%99s%20Web%20Accessibility%20Tutorials%3A%0A%0A%s">E-mail a link to this section</a><button>Close</button></p>';
+  var shareboxtext = '<p><label>Link to this section:<input type="url" data-value="%s" value="" readonly> Shortcut to copy the link: <kbd>ctrl</kbd>+<kbd>C</kbd> <em>or</em> <kbd>⌘</kbd><kbd>C</kbd></label></p><p><a href="mailto:?subject=Web%20Accessibility%20Tutorials&body=Hi!%0AYou%20might%20be%20interested%20in%20this%3A%0A%0A%s">E-mail a link to this section</a><button>Close</button></p>';
 
   var url = window.location.origin + window.location.pathname;
 
@@ -2815,9 +2815,10 @@ var addSharebox = function() {
     var parentwid = getNearestParentMatchingSelector(el, 'li[id]');
     var theid = parentwid.id; //el.parentNode.parentNode.querySelector('h4[id]').id;
     cplel.setAttribute('href', '#' + theid);
-    cplel.setAttribute('aria-label', 'Share Link to the section “' + el.textContent + '”');
+    addclass(cplel, 'btn');
+    cplel.setAttribute('aria-label', 'Share Link to this');//e section “' + el.textContent + '”');
 
-    var csbtext = shareboxtext.replace("%s", url + '#' + theid).replace("%s", url + '#' + theid);
+    var csbtext = shareboxtext.replace("%s", '#' + theid).replace("%s", url + '#' + theid);
     var csb = sharebox.cloneNode(true);
     csb.innerHTML = csbtext;
 
@@ -2827,11 +2828,13 @@ var addSharebox = function() {
     //addclass(cplwrapdiv, el.localName);
 
     cplel.addEventListener('click', function(e){
+      var url = window.location;
       var sbox = this.nextSibling;
       var input = sbox.querySelector('input');
       if (hasclass(sbox, 'open')) {
         remclass(sbox, 'open');
       } else {
+        input.value = url + input.getAttribute('data-value');
         addclass(sbox, 'open');
         input.select();
         input.focus();
@@ -2975,10 +2978,11 @@ $(function(){
 			listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>" data-name="<%= _(_(name).strip_html()).to_slug() %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;<% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></label></span></li>',
 			listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></span>',
 			orderByTemplate    : '',
-			countTemplate      : '<div class="facettotalcount"><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters: <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } %></div>',
+			countTemplate      : '<div class="facettotalcount"><strong><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters:</strong> <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } else { %></strong><% } %></div>',
 			facetTitleTemplate : '<% if (!obj.plain) { %><summary class="facettitle"><%= title %></summary><% } %>',
 			facetContainer     : '<% if (!obj.plain) { %><details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details><% } else { %><div class="plainitem"></div><% } %>',
 			showMoreTemplate   : '<button type="button" id="showmorebutton">Show more</button>',
+      deselectTemplate   : '<button type="button" id="deselect" class="btn"><svg aria-hidden="true" class="i-refresh"><use xlink:href="#icon-refresh"></use></svg> Clear filters</button>',
       selected           : selected,
       state              : {
                          orderBy : false,
