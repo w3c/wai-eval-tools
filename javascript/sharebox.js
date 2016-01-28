@@ -61,7 +61,7 @@ var addSharebox = function() {
     var theid = parentwid.id; //el.parentNode.parentNode.querySelector('h4[id]').id;
     cplel.setAttribute('href', '#' + theid);
     addclass(cplel, 'btn');
-    cplel.setAttribute('aria-label', 'Share Link to the section “' + el.textContent + '”');
+    cplel.setAttribute('aria-label', 'Share Link to this');//e section “' + el.textContent + '”');
 
     var csbtext = shareboxtext.replace("%s", '#' + theid).replace("%s", url + '#' + theid);
     var csb = sharebox.cloneNode(true);
