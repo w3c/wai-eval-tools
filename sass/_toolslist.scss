@@ -23,9 +23,9 @@ h1.page-title {
     h3 {
     	@extend .font-primary;
     	color: #fff;
-    }
-    a {
-      color: #fff;
+      a {
+        color: inherit;
+      }
     }
   }
   details {
@@ -98,6 +98,21 @@ summary:focus {
 }
 
 .bottomline {
+  z-index: 9999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+  padding: 0 .5/.8 * 1em;
+  min-height: 2.5em;
+  font-size: .8em;
+  background: #ddd;
+  margin-bottom: .5em;
   div, a {
     display: inline-block;
   }
@@ -206,10 +221,6 @@ summary:focus {
   }
 }
 
-#infos {
-  padding-bottom: .5em;
-}
-
 .submit {
 padding: 1em 0;
 background-color: #fff;
@@ -242,8 +253,7 @@ text-align: center;
 }
 
 .facettotalcount {
-	strong { font-weight: normal; }
-	.filter { background-color: #fff; border: 1px solid #ddd; padding: .1em .25em; border-radius: 2px; }
+	.filter strong { font-weight: normal; }
 }
 
 .permalink {
