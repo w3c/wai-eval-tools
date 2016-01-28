@@ -36,14 +36,6 @@ gulp.task('icomoon', function() {
     ;//.pipe(notify({ message: 'Styles task complete' }));
 });
 
-gulp.task('scripts-clean', function() {
-  return gulp.src(['javascript/facetedsearch.js', 'javascript/script.js'])
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-    ;//.pipe(notify({ message: 'Scripts task complete' }));
-});
-
-
 gulp.task('json', function() {
   return gulp.src("data/**/*")
     .pipe(concat('data.json', {newLine: ','}))
@@ -53,8 +45,19 @@ gulp.task('json', function() {
     .pipe(gulp.dest('js'));
 });
 
+var hintscripts = ['javascript/facetedsearch.js', 'javascript/sharebox.js', 'javascript/script.js'];
+
+gulp.task('scripts-clean', function() {
+  return gulp.src(hintscripts)
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'))
+    ;//.pipe(notify({ message: 'Scripts task complete' }));
+});
+
+var javascripts = ['javascript/jquery.js', 'javascript/underscore.js', 'javascript/uri.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/sharebox.js', 'javascript/script.js'];
+
 gulp.task('scripts', ['scripts-clean'], function() {
-  return gulp.src(['javascript/jquery.js', 'javascript/underscore.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/sharebox.js', 'javascript/script.js'])
+  return gulp.src(javascripts)
     .pipe(concat('main.js'))
     .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))
