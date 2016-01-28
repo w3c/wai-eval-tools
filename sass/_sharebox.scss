@@ -4,16 +4,10 @@
   flex:1;
   > a {
     white-space: nowrap;
-    color: #333 !important;
     border: 1px solid #CCC;
-    background-color: #fff;
-    font-size: .8em;
-    padding: .1em;
-    border-radius: 3px;
+    font-size: .66em;
     text-decoration: none;
-    &:hover {
-      color: #fff !important;
-    }
+    font-weight: bold;
     svg {
       vertical-align: middle;
       display: inline-block;
@@ -64,8 +58,9 @@
   }
 }
 
-.i-share {
+.i-share, .i-refresh {
   fill: currentColor;
   height: 1em;
   width: 1em;
+  vertical-align: middle;
 }
