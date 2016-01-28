@@ -2645,6 +2645,7 @@ function createFacetUI() {
   });
   $(bottom).append(' ').append(deselect.hide());
   $(settings.facetSelector).trigger("facetuicreated");
+  jQuery.facetUpdate();
 }
 
 /**
