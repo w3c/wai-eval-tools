@@ -120,10 +120,11 @@ $(function(){
 			listItemTemplate   : '<li><span><input type="checkbox" class="facetitem" aria-pressed="false" id="<%= id %>" data-name="<%= _(_(name).strip_html()).to_slug() %>"></span> <span><label for="<%= id %>"><%= name %> <span class="facetitemcount">(<%= count %>&nbsp;<% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></label></span></li>',
 			listItemInnerTemplate   : '<span><%= name %> <span class=facetitemcount>(<%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %>)</span></span>',
 			orderByTemplate    : '',
-			countTemplate      : '<div class="facettotalcount"><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters: <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } %></div>',
+			countTemplate      : '<div class="facettotalcount"><strong><span aria-live="true">Showing <%= count %> <% if (count==1) { %>tool<% } else {%>tools<% } %></span><% if (filters) { %>, matching the filters:</strong> <span class="filter"><%= filters.join("</span>, <span class=\'filter\'>") %></span><% } else { %></strong><% } %></div>',
 			facetTitleTemplate : '<% if (!obj.plain) { %><summary class="facettitle"><%= title %></summary><% } %>',
 			facetContainer     : '<% if (!obj.plain) { %><details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details><% } else { %><div class="plainitem"></div><% } %>',
 			showMoreTemplate   : '<button type="button" id="showmorebutton">Show more</button>',
+      deselectTemplate   : '<button type="button" id="deselect" class="btn"><svg aria-hidden="true" class="i-refresh"><use xlink:href="#icon-refresh"></use></svg> Clear filters</button>',
       selected           : selected,
       state              : {
                          orderBy : false,
