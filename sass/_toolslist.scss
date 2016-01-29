@@ -254,6 +254,7 @@ text-align: center;
 
 .facettotalcount {
 	.filter strong { font-weight: normal; }
+  flex: 6;
 }
 
 .permalink {
@@ -322,4 +323,8 @@ text-align: center;
 	h3 {
 		margin-bottom: 0.5em;
 	}
+}
+
+#deselect {
+  flex:1;
 }
