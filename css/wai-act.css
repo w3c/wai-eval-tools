@@ -659,10 +659,7 @@ pre[class*="language-"] {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  white-space: nowrap;
 }
 /* line 17, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox {
@@ -1208,10 +1205,10 @@ summary:focus {
 
 /* line 255, ../sass/_toolslist.scss */
 .facettotalcount {
-  -webkit-box-flex: 6;
-  -webkit-flex: 6;
-      -ms-flex: 6;
-          flex: 6;
+  -webkit-box-flex: 80%;
+  -webkit-flex: 80%;
+      -ms-flex: 80%;
+          flex: 80%;
 }
 /* line 256, ../sass/_toolslist.scss */
 .facettotalcount .filter strong {
@@ -1298,12 +1295,32 @@ summary:focus {
 
 /* line 328, ../sass/_toolslist.scss */
 #deselect {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  white-space: nowrap;
 }
 
+/* line 332, ../sass/_toolslist.scss */
+.active {
+  -webkit-animation: yellowfade 1s linear;
+          animation: yellowfade 1s linear;
+}
+
+@-webkit-keyframes yellowfade {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: #DDDDDD;
+  }
+}
+
+@keyframes yellowfade {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: #DDDDDD;
+  }
+}
 @font-face {
   font-family: "Vollkorn";
   src: url('../fonts/vollkorn/vollkorn-regular.eot?1452591464');

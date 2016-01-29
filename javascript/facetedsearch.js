@@ -379,6 +379,7 @@ function updateFacetUI() {
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
   $('#results').highlight();
+  $('.bottomline').addClass('active');
 }
 
 var updateURL = function(){

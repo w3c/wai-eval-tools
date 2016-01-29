@@ -254,7 +254,7 @@ text-align: center;
 
 .facettotalcount {
 	.filter strong { font-weight: normal; }
-  flex: 6;
+  flex: 80%;
 }
 
 .permalink {
@@ -326,5 +326,18 @@ text-align: center;
 }
 
 #deselect {
-  flex:1;
+  white-space: nowrap;
+}
+
+.active {
+  animation: yellowfade 1s linear;
+}
+
+@keyframes yellowfade {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: #DDDDDD;
+  }
 }

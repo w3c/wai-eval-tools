@@ -2703,6 +2703,7 @@ function updateFacetUI() {
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
   $('#results').highlight();
+  $('.bottomline').addClass('active');
 }
 
 var updateURL = function(){
@@ -3009,6 +3010,12 @@ $(function(){
 	// alert($.fn.details.support);
 	$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 	$('#facets details, .navigation > details, #editdetail').details();
+
+  $('.bottomline').on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $(event.target).removeClass('active');
+  });
 
 	});
 

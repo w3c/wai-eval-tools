@@ -13,7 +13,7 @@
       display: inline-block;
     }
   }
-  &#sharethisview > a { font-size: 1em; font-weight: normal; display: flex; flex:1;}
+  &#sharethisview > a { font-size: 1em; font-weight: normal; display: flex; white-space: nowrap;}
   .sharebox {
     display:none;
     &.open {

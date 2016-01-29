@@ -141,6 +141,12 @@ $(function(){
 	$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 	$('#facets details, .navigation > details, #editdetail').details();
 
+  $('.bottomline').on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $(event.target).removeClass('active');
+  });
+
 	});
 
 });
