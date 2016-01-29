@@ -833,23 +833,25 @@ select {
 }
 
 .btn {
-	@include background(linear-gradient(to bottom, lighten(#ccc, 10%), #ccc));
+	display: inline-block;
+	background-color: #fff;
 	color: #333;
 	font-weight: normal;
 	font-size: 1em;
-	padding: .25em .5em;
+  padding: 5px 10px;
+  border-radius: 2px;
 	line-height: 1;
 	text-decoration: none;
 	border: {
-		color: #bbb;
+		color: #ccc;
 		width: 1px;
 		style: solid;
-		radius: .25em;
 	}
 	&:hover, &:focus {
-		color: #333;
+		color: #141414 !important;
+		background-color: #f2f2f2;
+		border-color: #adadad;
 		text-decoration: underline;
-		box-shadow: 0 0 6px #888;
 	}
 	small {
 		display:block;
@@ -874,7 +876,7 @@ select {
 
 .btn-small {
 	@extend .btn;
-	padding: .15em .2em;
+	padding: 2px 3px !important;
 	line-height: 1;
 }
 

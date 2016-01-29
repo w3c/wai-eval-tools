@@ -13,6 +13,7 @@
       display: inline-block;
     }
   }
+  &#sharethisview > a { font-size: 1em; font-weight: normal; display: flex; flex:1;}
   .sharebox {
     display:none;
     &.open {
@@ -32,7 +33,10 @@
     max-width: 100%;
     box-shadow: 0 0 10px #222;
     a {
-      color: #333 !important;
+      color: #333;
+      &:hover, &:focus {
+        color: #fff;
+      }
     }
     input {
       display: block;
@@ -56,6 +60,7 @@
       }
     }
   }
+  &#sharethisview > .sharebox { font-size: 1em;}
 }
 
 .i-share, .i-refresh {

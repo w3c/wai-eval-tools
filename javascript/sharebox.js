@@ -42,7 +42,7 @@ var getNearestParentMatchingSelector = function (elem, selector) {
 var addSharebox = function() {
   var plel = document.createElement('a');
   //addclass(plel, 'permalink');
-  plel.innerHTML = '<svg aria-hidden="true" class="i-share"><use xlink:href="#icon-share"></use></svg> SHARE';
+  plel.innerHTML = '<svg aria-hidden="true" class="i-share"><use xlink:href="#i-share"></use></svg> SHARE';
 
   var plwrapdiv = document.createElement('div');
   addclass(plwrapdiv, 'permalink_wrapper');
@@ -60,7 +60,7 @@ var addSharebox = function() {
     var parentwid = getNearestParentMatchingSelector(el, 'li[id]');
     var theid = parentwid.id; //el.parentNode.parentNode.querySelector('h4[id]').id;
     cplel.setAttribute('href', '#' + theid);
-    addclass(cplel, 'btn');
+    addclass(cplel, 'btn-small');
     cplel.setAttribute('aria-label', 'Share Link to this');//e section “' + el.textContent + '”');
 
     var csbtext = shareboxtext.replace("%s", '#' + theid).replace("%s", url + '#' + theid);

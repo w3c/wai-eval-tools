@@ -2643,7 +2643,16 @@ function createFacetUI() {
     settings.state.filters = {};
     jQuery.facetUpdate();
   });
+  //Add share this view button
+  var sharethis = $(settings.shareviewTemplate).find('a.btn').click(function(event){
+    $(event.target).next().find('a').attr('href', 'mailto:?subject=Web%20Accessibility%20Tutorials&body=Hi!%0AYou%20might%20be%20interested%20in%20this%3A%0A%0A' + encodeURIComponent(window.location));
+    $(event.target).next().toggle();
+    $(event.target).next().find('input').val(window.location).select().focus();
+  }).parent().find('button').click(function(event){
+    $(event.target).parent().parent().toggle();
+  }).parent().parent().parent();
   $(bottom).append(' ').append(deselect.hide());
+  $(bottom).append(' ').append(sharethis.hide());
   $(settings.facetSelector).trigger("facetuicreated");
   jQuery.facetUpdate();
 }
@@ -2686,8 +2695,10 @@ function updateFacetUI() {
   if (activeFilters.length === 0) {
     activeFilters = false;
     $('#deselect').hide();
+    $('#sharethisview').hide();
   } else {
     $('#deselect').show();
+    $('#sharethisview').show();
   }
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
@@ -2797,7 +2808,7 @@ var getNearestParentMatchingSelector = function (elem, selector) {
 var addSharebox = function() {
   var plel = document.createElement('a');
   //addclass(plel, 'permalink');
-  plel.innerHTML = '<svg aria-hidden="true" class="i-share"><use xlink:href="#icon-share"></use></svg> SHARE';
+  plel.innerHTML = '<svg aria-hidden="true" class="i-share"><use xlink:href="#i-share"></use></svg> SHARE';
 
   var plwrapdiv = document.createElement('div');
   addclass(plwrapdiv, 'permalink_wrapper');
@@ -2815,7 +2826,7 @@ var addSharebox = function() {
     var parentwid = getNearestParentMatchingSelector(el, 'li[id]');
     var theid = parentwid.id; //el.parentNode.parentNode.querySelector('h4[id]').id;
     cplel.setAttribute('href', '#' + theid);
-    addclass(cplel, 'btn');
+    addclass(cplel, 'btn-small');
     cplel.setAttribute('aria-label', 'Share Link to this');//e section “' + el.textContent + '”');
 
     var csbtext = shareboxtext.replace("%s", '#' + theid).replace("%s", url + '#' + theid);
@@ -2982,7 +2993,8 @@ $(function(){
 			facetTitleTemplate : '<% if (!obj.plain) { %><summary class="facettitle"><%= title %></summary><% } %>',
 			facetContainer     : '<% if (!obj.plain) { %><details <% if (obj.collapsed) { %><% } else { %>open="true"<% } %> class="facetsearch <% if (obj.collapsed) { %><% } else { %>open<% } %>" id="<%= id %>"></details><% } else { %><div class="plainitem"></div><% } %>',
 			showMoreTemplate   : '<button type="button" id="showmorebutton">Show more</button>',
-      deselectTemplate   : '<button type="button" id="deselect" class="btn"><svg aria-hidden="true" class="i-refresh"><use xlink:href="#icon-refresh"></use></svg> Clear filters</button>',
+      deselectTemplate   : '<button type="button" id="deselect" class="btn"><svg aria-hidden="true" class="i-refresh"><use xlink:href="#i-refresh"></use></svg> Clear filters</button>',
+      shareviewTemplate  : '<div class="permalink_wrapper" id="sharethisview"><a href="#" class="btn"><svg aria-hidden="true" class="i-share"><use xlink:href="#i-share"></use></svg> Share this view</a><div class="sharebox"><p><label>Link to this view:<input type="url" value="" readonly=""> Shortcut to copy the link: <kbd>ctrl</kbd>+<kbd>C</kbd> <em>or</em> <kbd>⌘</kbd><kbd>C</kbd></label></p><p><a href="">E-mail a link to this section</a><button>Close</button></p></div></div>',
       selected           : selected,
       state              : {
                          orderBy : false,

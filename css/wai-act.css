@@ -652,6 +652,19 @@ pre[class*="language-"] {
   display: inline-block;
 }
 /* line 16, ../sass/_sharebox.scss */
+.permalink_wrapper#sharethisview > a {
+  font-size: 1em;
+  font-weight: normal;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/* line 17, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox {
   display: none;
   font-size: .85em;
@@ -668,41 +681,49 @@ pre[class*="language-"] {
   max-width: 100%;
   box-shadow: 0 0 10px #222;
 }
-/* line 18, ../sass/_sharebox.scss */
+/* line 19, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox.open {
   display: block;
 }
-/* line 34, ../sass/_sharebox.scss */
+/* line 35, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox a {
-  color: #333 !important;
+  color: #333;
 }
 /* line 37, ../sass/_sharebox.scss */
+.permalink_wrapper .sharebox a:hover, .permalink_wrapper .sharebox a:focus {
+  color: #fff;
+}
+/* line 41, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox input {
   display: block;
   width: 100%;
   box-sizing: border-box;
 }
-/* line 42, ../sass/_sharebox.scss */
+/* line 46, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox label span {
   display: block;
   text-align: right;
 }
-/* line 46, ../sass/_sharebox.scss */
+/* line 50, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox button {
   position: absolute;
   bottom: 0;
   right: 0;
 }
-/* line 52, ../sass/_sharebox.scss */
+/* line 56, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox p {
   float: none;
 }
-/* line 54, ../sass/_sharebox.scss */
+/* line 58, ../sass/_sharebox.scss */
 .permalink_wrapper .sharebox p:first-child {
   margin-top: 0;
 }
+/* line 63, ../sass/_sharebox.scss */
+.permalink_wrapper#sharethisview > .sharebox {
+  font-size: 1em;
+}
 
-/* line 61, ../sass/_sharebox.scss */
+/* line 66, ../sass/_sharebox.scss */
 .i-share, .i-refresh {
   fill: currentColor;
   height: 1em;
@@ -1185,12 +1206,19 @@ summary:focus {
   white-space: nowrap;
 }
 
+/* line 255, ../sass/_toolslist.scss */
+.facettotalcount {
+  -webkit-box-flex: 6;
+  -webkit-flex: 6;
+      -ms-flex: 6;
+          flex: 6;
+}
 /* line 256, ../sass/_toolslist.scss */
 .facettotalcount .filter strong {
   font-weight: normal;
 }
 
-/* line 259, ../sass/_toolslist.scss */
+/* line 260, ../sass/_toolslist.scss */
 .permalink {
   position: absolute;
   top: .2em;
@@ -1202,51 +1230,51 @@ summary:focus {
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: center;
 }
-/* line 270, ../sass/_toolslist.scss */
+/* line 271, ../sass/_toolslist.scss */
 .permalink:hover {
   border: 1px solid #fff;
 }
-/* line 273, ../sass/_toolslist.scss */
+/* line 274, ../sass/_toolslist.scss */
 .permalink img {
   display: inline-block;
 }
 
-/* line 279, ../sass/_toolslist.scss */
+/* line 280, ../sass/_toolslist.scss */
 .plainitem .facetlist {
   margin: .375em;
   padding: .375em 0 0;
   border-top: 1px solid #777;
 }
 
-/* line 285, ../sass/_toolslist.scss */
+/* line 286, ../sass/_toolslist.scss */
 .tool-item p.link {
   font-size: .85em;
   margin-top: .5em;
 }
-/* line 288, ../sass/_toolslist.scss */
+/* line 289, ../sass/_toolslist.scss */
 .tool-item p.link a {
   color: inherit;
 }
-/* line 290, ../sass/_toolslist.scss */
+/* line 291, ../sass/_toolslist.scss */
 .tool-item p.link a:hover {
   color: #fff;
 }
 
-/* line 297, ../sass/_toolslist.scss */
+/* line 298, ../sass/_toolslist.scss */
 .group fieldset {
   margin-left: 3em;
 }
-/* line 299, ../sass/_toolslist.scss */
+/* line 300, ../sass/_toolslist.scss */
 .group fieldset:first-child {
   margin-left: 0;
 }
 
-/* line 305, ../sass/_toolslist.scss */
+/* line 306, ../sass/_toolslist.scss */
 #file {
   display: none;
 }
 
-/* line 309, ../sass/_toolslist.scss */
+/* line 310, ../sass/_toolslist.scss */
 .editbox {
   padding: 1% 0;
   border: 1px solid #777;
@@ -1254,7 +1282,7 @@ summary:focus {
   font-size: 0.85em;
 }
 @media screen and (min-width: 43em) {
-  /* line 309, ../sass/_toolslist.scss */
+  /* line 310, ../sass/_toolslist.scss */
   .editbox {
     float: right;
     width: 14%;
@@ -1263,9 +1291,17 @@ summary:focus {
     border-width: 1px;
   }
 }
-/* line 322, ../sass/_toolslist.scss */
+/* line 323, ../sass/_toolslist.scss */
 .editbox h3 {
   margin-bottom: 0.5em;
+}
+
+/* line 328, ../sass/_toolslist.scss */
+#deselect {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 @font-face {
@@ -2325,39 +2361,38 @@ select {
 
 /* line 835, ../sass/wai-act.scss */
 .btn, #showmorebutton, .btn-primary, .btn-small, .permalink_wrapper .sharebox button {
-  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U2ZTZlNiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2NjY2NjYyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e6e6e6), color-stop(100%, #cccccc));
-  background: -webkit-linear-gradient(top, #e6e6e6, #cccccc);
-  background: linear-gradient(to bottom, #e6e6e6, #cccccc);
+  display: inline-block;
+  background-color: #fff;
   color: #333;
   font-weight: normal;
   font-size: 1em;
-  padding: .25em .5em;
+  padding: 5px 10px;
+  border-radius: 2px;
   line-height: 1;
   text-decoration: none;
-  border-color: #bbb;
+  border-color: #ccc;
   border-width: 1px;
   border-style: solid;
-  border-radius: .25em;
 }
-/* line 849, ../sass/wai-act.scss */
+/* line 850, ../sass/wai-act.scss */
 .btn:hover, #showmorebutton:hover, .btn-primary:hover, .btn-small:hover, .permalink_wrapper .sharebox button:hover, .btn:focus, #showmorebutton:focus, .btn-primary:focus, .btn-small:focus, .permalink_wrapper .sharebox button:focus {
-  color: #333;
+  color: #141414 !important;
+  background-color: #f2f2f2;
+  border-color: #adadad;
   text-decoration: underline;
-  box-shadow: 0 0 6px #888;
 }
-/* line 854, ../sass/wai-act.scss */
+/* line 856, ../sass/wai-act.scss */
 .btn small, #showmorebutton small, .btn-primary small, .btn-small small, .permalink_wrapper .sharebox button small {
   display: block;
   font-size: 77.77778%;
 }
 
-/* line 860, ../sass/wai-act.scss */
+/* line 862, ../sass/wai-act.scss */
 .btn-login {
   text-align: right;
 }
 
-/* line 864, ../sass/wai-act.scss */
+/* line 866, ../sass/wai-act.scss */
 .btn-primary {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNGM5OSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMzM2NiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #004c99), color-stop(100%, #003366));
@@ -2366,32 +2401,32 @@ select {
   color: #fff;
   border-color: #001933;
 }
-/* line 869, ../sass/wai-act.scss */
+/* line 871, ../sass/wai-act.scss */
 .btn-primary:hover, .btn-primary:focus {
   color: #fff;
   text-decoration: underline;
 }
 
-/* line 875, ../sass/wai-act.scss */
+/* line 877, ../sass/wai-act.scss */
 .btn-small, .permalink_wrapper .sharebox button {
-  padding: .15em .2em;
+  padding: 2px 3px !important;
   line-height: 1;
 }
 
-/* line 881, ../sass/wai-act.scss */
+/* line 883, ../sass/wai-act.scss */
 .btn-icon {
   border: none;
   background-color: transparent;
   padding: 0;
 }
 
-/* line 887, ../sass/wai-act.scss */
+/* line 889, ../sass/wai-act.scss */
 .btn-next {
   float: right;
 }
 
 /* ====== ICONS   ======== EDIT ABOVE! ======== */
-/* line 893, ../sass/wai-act.scss */
+/* line 895, ../sass/wai-act.scss */
 .icon, .notes::before, .learn h3::before, .treevue li::before {
   display: inline-block;
   height: 1em;
@@ -2400,68 +2435,68 @@ select {
   background-repeat: no-repeat;
   vertical-align: middle;
 }
-/* line 900, ../sass/wai-act.scss */
+/* line 902, ../sass/wai-act.scss */
 .icon.icon-with-visible-text, .icon-with-visible-text.notes::before, .learn h3.icon-with-visible-text::before, .treevue li.icon-with-visible-text::before {
   margin-right: .25em;
 }
-/* line 903, ../sass/wai-act.scss */
+/* line 905, ../sass/wai-act.scss */
 .icon.icon-menu, .icon-menu.notes::before, .learn h3.icon-menu::before, .icon-navigation button .icon, .icon-navigation button .notes::before, .icon-navigation button .learn h3::before, .learn .icon-navigation button h3::before, .icon-navigation button .treevue li::before, .treevue .icon-navigation button li::before, .treevue li.icon-menu::before {
   background-image: url(../img/menu.svg);
 }
-/* line 906, ../sass/wai-act.scss */
+/* line 908, ../sass/wai-act.scss */
 .icon.icon-menu-active, .icon-menu-active.notes::before, .learn h3.icon-menu-active::before, .icon-navigation button.on .icon, .icon-navigation button.on .notes::before, .icon-navigation button.on .learn h3::before, .learn .icon-navigation button.on h3::before, .icon-navigation button.on .treevue li::before, .treevue .icon-navigation button.on li::before, .treevue li.icon-menu-active::before {
   background-image: url(../img/menu-active.svg);
 }
-/* line 909, ../sass/wai-act.scss */
+/* line 911, ../sass/wai-act.scss */
 .icon.icon-link, .icon-link.notes::before, .learn h3.icon-link::before, .treevue li.icon-link::before {
   background-image: url(../img/link.svg);
 }
-/* line 912, ../sass/wai-act.scss */
+/* line 914, ../sass/wai-act.scss */
 .icon.icon-images, .icon-images.notes::before, .learn h3.icon-images::before, .treevue li.icon-images::before {
   background-image: url(../img/images.svg);
 }
-/* line 915, ../sass/wai-act.scss */
+/* line 917, ../sass/wai-act.scss */
 .icon.icon-tables, .icon-tables.notes::before, .learn h3.icon-tables::before, .treevue li.icon-tables::before {
   background-image: url(../img/tables.svg);
 }
-/* line 918, ../sass/wai-act.scss */
+/* line 920, ../sass/wai-act.scss */
 .icon.icon-forms, .icon-forms.notes::before, .learn h3.icon-forms::before, .treevue li.icon-forms::before {
   background-image: url(../img/forms.svg);
 }
-/* line 921, ../sass/wai-act.scss */
+/* line 923, ../sass/wai-act.scss */
 .icon.icon-carousels, .icon-carousels.notes::before, .learn h3.icon-carousels::before, .treevue li.icon-carousels::before {
   background-image: url(../img/images.svg);
 }
-/* line 924, ../sass/wai-act.scss */
+/* line 926, ../sass/wai-act.scss */
 .icon.icon-arrow, .icon-arrow.notes::before, .learn h3.icon-arrow::before, .treevue li.icon-arrow::before {
   background-image: url(../img/arrow.svg);
 }
-/* line 927, ../sass/wai-act.scss */
+/* line 929, ../sass/wai-act.scss */
 .icon.icon-expand, .icon-expand.notes::before, .learn h3.icon-expand::before, .treevue li.icon-expand::before, .treevue li.treevue-collapsed::before {
   background-image: url(../img/expand.svg);
 }
-/* line 930, ../sass/wai-act.scss */
+/* line 932, ../sass/wai-act.scss */
 .icon.icon-collapse, .icon-collapse.notes::before, .learn h3.icon-collapse::before, .treevue li.icon-collapse::before, .treevue li.treevue-expanded::before {
   background-image: url(../img/collapse.svg);
 }
-/* line 933, ../sass/wai-act.scss */
+/* line 935, ../sass/wai-act.scss */
 .icon.icon-info, .notes::before, .learn h3.icon-info::before, .learn h3.notes::before, .treevue li.icon-info::before, .treevue li.notes::before {
   background-image: url(../img/info.svg);
 }
-/* line 936, ../sass/wai-act.scss */
+/* line 938, ../sass/wai-act.scss */
 .icon.icon-file, .icon-file.notes::before, .learn h3::before, .treevue li.icon-file::before {
   background-image: url(../img/file.svg);
 }
-/* line 939, ../sass/wai-act.scss */
+/* line 941, ../sass/wai-act.scss */
 .icon.icon-remove, .icon-remove.notes::before, .learn h3.icon-remove::before, .treevue li.icon-remove::before {
   background-image: url(../img/remove.svg);
 }
 
-/* line 944, ../sass/wai-act.scss */
+/* line 946, ../sass/wai-act.scss */
 .area-login {
   text-align: center;
 }
-/* line 946, ../sass/wai-act.scss */
+/* line 948, ../sass/wai-act.scss */
 .area-login > span {
   display: inline-block;
   border: 2px solid #ccc;
@@ -2473,7 +2508,7 @@ select {
 /*
 * Hide only visually, but have it available for screenreaders: h5bp.com/v
 */
-/* line 960, ../sass/wai-act.scss */
+/* line 962, ../sass/wai-act.scss */
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -2489,7 +2524,7 @@ select {
 * Extends the .visuallyhidden class to allow the element to be focusable
 * when navigated to via the keyboard: h5bp.com/p
 */
-/* line 976, ../sass/wai-act.scss */
+/* line 978, ../sass/wai-act.scss */
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -2500,28 +2535,28 @@ select {
   width: auto;
 }
 
-/* line 994, ../sass/wai-act.scss */
+/* line 996, ../sass/wai-act.scss */
 .grid {
   width: 99%;
   margin: 0 0.5%;
 }
 
-/* line 998, ../sass/wai-act.scss */
+/* line 1000, ../sass/wai-act.scss */
 .with-filter {
   clear: both;
 }
 @media screen and (min-width: 43em) {
-  /* line 1001, ../sass/wai-act.scss */
+  /* line 1003, ../sass/wai-act.scss */
   .with-filter h3 > button {
     display: none;
   }
-  /* line 1002, ../sass/wai-act.scss */
+  /* line 1004, ../sass/wai-act.scss */
   .with-filter .column-first {
     float: left;
     margin-right: -100%;
     width: 32%;
   }
-  /* line 1005, ../sass/wai-act.scss */
+  /* line 1007, ../sass/wai-act.scss */
   .with-filter .column-second {
     float: left;
     margin-right: -100%;
@@ -2531,24 +2566,24 @@ select {
   }
 }
 @media screen and (min-width: 43em) {
-  /* line 1013, ../sass/wai-act.scss */
+  /* line 1015, ../sass/wai-act.scss */
   .with-filter.with-basket h3 > button {
     display: none;
   }
-  /* line 1014, ../sass/wai-act.scss */
+  /* line 1016, ../sass/wai-act.scss */
   .with-filter.with-basket .column-first {
     float: left;
     margin-right: -100%;
     width: 23.5%;
   }
-  /* line 1017, ../sass/wai-act.scss */
+  /* line 1019, ../sass/wai-act.scss */
   .with-filter.with-basket .column-second {
     float: left;
     margin-right: -100%;
     width: 57.5%;
     margin-left: 25.5%;
   }
-  /* line 1021, ../sass/wai-act.scss */
+  /* line 1023, ../sass/wai-act.scss */
   .with-filter.with-basket .column-third {
     float: left;
     margin-right: -100%;
@@ -2557,30 +2592,30 @@ select {
   }
 }
 
-/* line 1029, ../sass/wai-act.scss */
+/* line 1031, ../sass/wai-act.scss */
 .column-filters {
   background-color: #f5f5f5;
   padding: .25em;
 }
-/* line 1032, ../sass/wai-act.scss */
+/* line 1034, ../sass/wai-act.scss */
 .column-filters form > div {
   border-bottom: 1px dotted #777;
   padding: 0 0 1em;
   margin-bottom: 1em;
 }
-/* line 1036, ../sass/wai-act.scss */
+/* line 1038, ../sass/wai-act.scss */
 .column-filters form > div:last-child {
   border-bottom-style: none;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 1041, ../sass/wai-act.scss */
+/* line 1043, ../sass/wai-act.scss */
 .column-filters form > div h4 {
   margin-bottom: 0;
 }
 
 @media screen and (min-width: 43em) {
-  /* line 1047, ../sass/wai-act.scss */
+  /* line 1049, ../sass/wai-act.scss */
   .centered {
     float: left;
     margin-right: -100%;
@@ -2589,7 +2624,7 @@ select {
   }
 }
 
-/* line 1054, ../sass/wai-act.scss */
+/* line 1056, ../sass/wai-act.scss */
 .column {
   float: left;
   margin-right: -100%;
@@ -2597,90 +2632,90 @@ select {
 }
 
 @media screen and (min-width: 43em) {
-  /* line 1059, ../sass/wai-act.scss */
+  /* line 1061, ../sass/wai-act.scss */
   .onehalf, .two4ths, .three6ths {
     float: left;
     margin-right: -100%;
     width: 49%;
   }
 
-  /* line 1062, ../sass/wai-act.scss */
+  /* line 1064, ../sass/wai-act.scss */
   .one3rd, .two6ths {
     float: left;
     margin-right: -100%;
     width: 32%;
   }
 
-  /* line 1065, ../sass/wai-act.scss */
+  /* line 1067, ../sass/wai-act.scss */
   .two3rds, .content .inner, .four6ths {
     float: left;
     margin-right: -100%;
     width: 66%;
   }
 
-  /* line 1068, ../sass/wai-act.scss */
+  /* line 1070, ../sass/wai-act.scss */
   .one4th {
     float: left;
     margin-right: -100%;
     width: 23.5%;
   }
 
-  /* line 1074, ../sass/wai-act.scss */
+  /* line 1076, ../sass/wai-act.scss */
   .three4ths {
     float: left;
     margin-right: -100%;
     width: 74.5%;
   }
 
-  /* line 1077, ../sass/wai-act.scss */
+  /* line 1079, ../sass/wai-act.scss */
   .one6th {
     float: left;
     margin-right: -100%;
     width: 15%;
   }
 
-  /* line 1089, ../sass/wai-act.scss */
+  /* line 1091, ../sass/wai-act.scss */
   .five6ths {
     float: left;
     margin-right: -100%;
     width: 83%;
   }
 }
-/* line 1100, ../sass/wai-act.scss */
+/* line 1102, ../sass/wai-act.scss */
 .flush.right {
   float: right;
 }
 
-/* line 1107, ../sass/wai-act.scss */
+/* line 1109, ../sass/wai-act.scss */
 .treevue, .treevue ul {
   clear: both;
   padding: 0;
   margin: 0;
   cursor: auto;
 }
-/* line 1112, ../sass/wai-act.scss */
+/* line 1114, ../sass/wai-act.scss */
 .treevue li, .treevue ul li {
   list-style: none;
   /* Create a little space to the left for the open/close images */
 }
 
-/* line 1119, ../sass/wai-act.scss */
+/* line 1121, ../sass/wai-act.scss */
 .treevue li {
   padding-bottom: 0.25em;
   padding-left: 3em;
   overflow: hidden;
 }
 @media screen and (min-width: 56em) {
-  /* line 1119, ../sass/wai-act.scss */
+  /* line 1121, ../sass/wai-act.scss */
   .treevue li {
     padding-left: 1.5em;
   }
 }
-/* line 1126, ../sass/wai-act.scss */
+/* line 1128, ../sass/wai-act.scss */
 .treevue li input[type=checkbox] {
   margin-right: .25em;
 }
-/* line 1129, ../sass/wai-act.scss */
+/* line 1131, ../sass/wai-act.scss */
 .treevue li::before {
   content: '';
   float: left;
@@ -2689,7 +2724,7 @@ select {
   margin-left: -3em;
 }
 @media screen and (min-width: 56em) {
-  /* line 1129, ../sass/wai-act.scss */
+  /* line 1131, ../sass/wai-act.scss */
   .treevue li::before {
     width: 1.5em;
     height: 1.5em;
@@ -2697,22 +2732,22 @@ select {
   }
 }
 
-/* line 1144, ../sass/wai-act.scss */
+/* line 1146, ../sass/wai-act.scss */
 .treevue li.treevue-expanded {
   cursor: pointer;
 }
 
-/* line 1151, ../sass/wai-act.scss */
+/* line 1153, ../sass/wai-act.scss */
 .treevue li.treevue-collapsed {
   cursor: pointer;
 }
 
-/* line 1158, ../sass/wai-act.scss */
+/* line 1160, ../sass/wai-act.scss */
 .treevue label:hover {
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* line 1162, ../sass/wai-act.scss */
+/* line 1164, ../sass/wai-act.scss */
 [class^="icon-"], [class*=" icon-"] {
   display: inline-block;
   width: 1em;
@@ -2727,14 +2762,14 @@ Example showing how to change the color/size of the icons:
 	color: red; // works for single-colored icons, because "fill" was set to "currentColor"
 }
 ======================================================================================== */
-/* line 1177, ../sass/wai-act.scss */
+/* line 1179, ../sass/wai-act.scss */
 progress {
   display: none;
   height: 1em;
   width: 100%;
 }
 
-/* line 1183, ../sass/wai-act.scss */
+/* line 1185, ../sass/wai-act.scss */
 #infos:empty + progress {
   display: block;
 }

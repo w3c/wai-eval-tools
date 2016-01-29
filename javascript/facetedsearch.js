@@ -319,7 +319,16 @@ function createFacetUI() {
     settings.state.filters = {};
     jQuery.facetUpdate();
   });
+  //Add share this view button
+  var sharethis = $(settings.shareviewTemplate).find('a.btn').click(function(event){
+    $(event.target).next().find('a').attr('href', 'mailto:?subject=Web%20Accessibility%20Tutorials&body=Hi!%0AYou%20might%20be%20interested%20in%20this%3A%0A%0A' + encodeURIComponent(window.location));
+    $(event.target).next().toggle();
+    $(event.target).next().find('input').val(window.location).select().focus();
+  }).parent().find('button').click(function(event){
+    $(event.target).parent().parent().toggle();
+  }).parent().parent().parent();
   $(bottom).append(' ').append(deselect.hide());
+  $(bottom).append(' ').append(sharethis.hide());
   $(settings.facetSelector).trigger("facetuicreated");
   jQuery.facetUpdate();
 }
@@ -362,8 +371,10 @@ function updateFacetUI() {
   if (activeFilters.length === 0) {
     activeFilters = false;
     $('#deselect').hide();
+    $('#sharethisview').hide();
   } else {
     $('#deselect').show();
+    $('#sharethisview').show();
   }
   countHtml = _.template(settings.countTemplate, {count: settings.currentResults.length, filters: activeFilters});
   $(settings.infoSelector + ' .facettotalcount').replaceWith(countHtml);
