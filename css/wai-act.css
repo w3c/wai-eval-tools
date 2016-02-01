@@ -2780,13 +2780,17 @@ Example showing how to change the color/size of the icons:
 }
 ======================================================================================== */
 /* line 1179, ../sass/wai-act.scss */
-progress {
+.progress {
   display: none;
+}
+/* line 1181, ../sass/wai-act.scss */
+.progress progress {
+  display: block;
   height: 1em;
   width: 100%;
 }
 
-/* line 1185, ../sass/wai-act.scss */
-#infos:empty + progress {
+/* line 1188, ../sass/wai-act.scss */
+#infos:empty + .progress {
   display: block;
 }

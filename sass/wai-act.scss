@@ -1176,12 +1176,15 @@ Example showing how to change the color/size of the icons:
 }
 ======================================================================================== */
 
-progress {
+.progress {
 	display:none;
-	height: 1em;
-	width: 100%;
+	progress {
+		display:block;
+		height: 1em;
+		width: 100%;
+	}
 }
 
-#infos:empty + progress {
+#infos:empty + .progress {
 	display: block;
 }
