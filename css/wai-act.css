@@ -2794,3 +2794,22 @@ Example showing how to change the color/size of the icons:
 #infos:empty + .progress {
   display: block;
 }
+
+/* line 2, ../sass/_footer.scss */
+.footer-nav ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 6, ../sass/_footer.scss */
+.footer-nav li {
+  list-style: none;
+  display: inline;
+}
+/* line 9, ../sass/_footer.scss */
+.footer-nav li:before {
+  content: "[";
+}
+/* line 12, ../sass/_footer.scss */
+.footer-nav li:after {
+  content: "] ";
+}
