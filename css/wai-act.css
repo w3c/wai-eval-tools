@@ -2813,3 +2813,7 @@ Example showing how to change the color/size of the icons:
 .footer-nav li:after {
   content: "] ";
 }
+/* line 17, ../sass/_footer.scss */
+.footer-nav + .feedback p {
+  margin-top: 0;
+}
