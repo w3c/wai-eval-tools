@@ -48,9 +48,9 @@ $language = array(
 		"ru" => 'Russian (<span lang="ru">Pу́сский</span>)',
 		"sr" => 'Serbian (<span lang="sr">Српски</span>)',
 		"es" => 'Spanish (<span lang="es">Castellano</span>)',
-		"se" => 'Swedish (<span lang="se">Svenska</span>)',
-		"uk" => 'Ukrainian (<span lang="uk">Yкраїнська</span>)',
+		"sv" => 'Swedish (<span lang="sv">Svenska</span>)',
 		"tr" => 'Turkish (<span lang="tr">Türkçe</span>)'
+		"uk" => 'Ukrainian (<span lang="uk">Yкраїнська</span>)',
 	),
 	other => true,
 	variable => 'language',
