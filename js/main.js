@@ -2970,7 +2970,7 @@ $(function(){
 		var settings = {
 			items            : jsn,
 			facets           : {
-				'guideline' : {'title': 'Guidelines', 'promoted': ["<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.0<\/strong>", "<abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 1.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 1.0"]},
+				'guideline' : {'title': 'Guidelines', 'promoted': ["<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.1 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.1<\/strong>", "<strong><abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 2.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 2.0<\/strong>", "<abbr title=\"Web Content Accessibility Guidelines\">WCAG<\/abbr> 1.0 — <abbr title=\"World Wide Web Consortium\">W3C<\/abbr> Web Content Accessibility Guidelines 1.0"]},
 				'language'  : {'title': 'Languages', 'collapsed': true},
 				'type': {'title': 'Type of tool', 'collapsed': true},
 				'technology' : {'title': 'Technology', 'collapsed': true},
