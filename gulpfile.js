@@ -56,7 +56,7 @@ gulp.task('scripts-clean', function() {
 
 var javascripts = ['javascript/jquery.js', 'javascript/underscore.js', 'javascript/uri.js', 'javascript/details.js', 'javascript/facetedsearch.js', 'javascript/sharebox.js', 'javascript/script.js'];
 
-gulp.task('scripts', ['scripts-clean'], function() {
+gulp.task('scripts', gulp.series('scripts-clean', function() {
   return gulp.src(javascripts)
     .pipe(concat('main.js'))
     .pipe(gulp.dest('js'))
@@ -112,7 +112,7 @@ gulp.task('scripts', ['scripts-clean'], function() {
 }))
     .pipe(livereload())
     ;//.pipe(notify({ message: 'Scripts task complete' }));
-});
+}));
 
 gulp.task('fonts', function() {
   return gulp.src('src/fonts/**/*')
@@ -155,50 +155,50 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('default', [], function() {
-    gulp.run('addlivereloadscript', 'styles', 'icomoon', 'scripts-clean', 'scripts', 'images', 'svg', 'fonts');
+gulp.task('default', function() {
+    gulp.series('addlivereloadscript', 'styles', 'icomoon', 'scripts-clean', 'scripts', 'images', 'svg', 'fonts');
 });
 
 gulp.task('watch', function() {
 
   gulp.watch('src/*.html', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('addlivereloadscript');
+    gulp.series('addlivereloadscript');
   });
 
   gulp.watch('src/fonts/*', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('fonts');
+    gulp.series('fonts');
   });
 
   // Watch .scss files
   gulp.watch('sass/**/*.scss', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('styles');
+    gulp.series('styles');
   });
 
   // Watch .js files
   gulp.watch('javascript/**/*.js', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('scripts');
+    gulp.series('scripts');
   });
 
-  gulp.watch(['js/*.json','data/**/*'], function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('json');
+  gulp.watch(['js/*.json','data/**/*'], function(event, path, stats) {
+    console.log('File ' + path + ' was ' + event + ', running tasks...');
+    gulp.series('json');
   });
 
   // Watch image files
   gulp.watch('images/**/*', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('svg');
-    gulp.run('images');
+    gulp.series('svg');
+    gulp.series('images');
   });
 
   // Watch icomoon files
   gulp.watch('icomoon/**/*', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('icomoon');
+    gulp.series('icomoon');
   });
 
 });
