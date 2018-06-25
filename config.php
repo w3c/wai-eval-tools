@@ -24,6 +24,8 @@ $assists = array(
 $language = array(
 	title => "Tool languages:",
 	data => array(
+    "ar" => 'Arabic (<span lang="ar">العَرَبِيَّة</span>)',
+    "ast" => 'Asturian (<span lang="ast">Asturianu</span>)',
 		"pt-br" => 'Brazilian Portuguese (<span lang="pt-br">Português Brasileiro</span>)',
 		"bg" => 'Bulgarian (<span lang="bg">Български</span>)',
 		"zh-hans" => 'Chinese, Simplified (<span lang="zh-hans">简体中文</span>)',
@@ -40,15 +42,16 @@ $language = array(
 		"it" => 'Italian (<span lang="it">Italiano</span>)',
 		"ja" => 'Japanese (<span lang="ja">日本語</span>)',
 		"ko" => 'Korean (<span lang="ko">한국어</span>)',
+    "no" => 'Norwegian (<span lang="no">Norge</span>)',
 		"pl" => 'Polish (<span lang="pl">Polski</span>)',
 		"pt" => 'Portuguese (<span lang="pt">Português</span>)',
 		"ro" => 'Romanian (<span lang="ro">Română</span>)',
-		"ru" => 'Russian (<span lang="ru">русский язык</span>)',
+    "ru" => 'Russian (<span lang="ru">Pу́сский</span>)',
 		"sr" => 'Serbian (<span lang="sr">Српски</span>)',
-		"es" => 'Spanish (<span lang="es">Castellano</span>)'
+    "es" => 'Spanish (<span lang="es">Castellano</span>)',
 		"sv" => 'Swedish (<span lang="sv">Svenska</span>)',
 		"tr" => 'Turkish (<span lang="tr">Türkçe</span>)',
-		"uk" => 'Ukranian (<span lang="uk">українська мова</span>)'
+    "uk" => 'Ukrainian (<span lang="uk">Yкраїнська</span>)'
 	),
 	other => true,
 	variable => 'language',
@@ -58,13 +61,16 @@ $language = array(
 $guideline = array(
 	title => "Select Guidelines that can be checked using this tool:",
 	data => array(
+		"wcag21" => '<strong><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 2.1</strong>',
 		"wcag20" => '<strong><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0 — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 2.0</strong>',
 		"wcag10" => '<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 1.0 — <abbr title="World Wide Web Consortium">W3C</abbr> Web Content Accessibility Guidelines 1.0',
+    "epub" => 'EPUB Accessibility 1.0',
 		"section508" => 'Section 508, <abbr title="United States">US</abbr> federal procurement standard',
-		"jis" => '<abbr title="Japanese Industry Standard">JIS</abbr>, Japanese industry standard',
-		"stanca" => 'Stanca Act, Italian accessibility legislation',
 		"bitv" => '<abbr lang="de" title="Barrierefreie Informationstechnik-Verordnung">BITV</abbr>, German government standard',
-		"rgaa" => '<abbr lang="fr" title="Référentiel Général d’Accessibilité pour les Administrations">RGAA</abbr>, French government standard'
+    "irit" => 'Irish National IT Accessibility Guidelines',
+    "jis" => '<abbr title="Japanese Industry Standard">JIS</abbr>, Japanese industry standard',
+    "rgaa" => '<abbr lang="fr" title="Référentiel Général d’Accessibilité pour les Administrations">RGAA</abbr>, French government standard',
+    "stanca" => 'Stanca Act, Italian accessibility legislation'
 	),
 	other => true,
 	variable => 'guideline',
@@ -105,11 +111,13 @@ $technology = array(
 		"css" => '<abbr title="Cascading Style Sheets">CSS</abbr>',
 		"html" => '<abbr title="Hypertext Markup Language">HTML</abbr>',
 		"xhtml" => '<abbr title="Extensible Hypertext Markup Language">XHTML</abbr>',
+    "aria" => '<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>',
 		"svg" => '<abbr title="Scalabale Vector Grpahics">SVG</abbr>',
 		"pdf" => '<abbr title="Portable Document Format">PDF</abbr> documents',
 		"images" => 'Images',
 		"smil" => '<abbr title="Synchronized Multimedia Integration Language">SMIL</abbr>',
-		"office" => 'Microsoft Office documents'
+    "office" => 'Microsoft Office documents',
+    "odf" => 'Open Documents Format (ODF)'
 	),
 	other => true,
 	variable => 'technology',
@@ -132,7 +140,7 @@ $desktopapp = array(
 	title => "Desktop application for:",
 	data => array(
 		"windows" => 'Microsoft Windows',
-		"osx" => 'Apple (Mac) OS X',
+		"osx" => 'Apple macOS',
 		"linux" => 'Linux',
 		"solaris" => 'Solaris',
 		"bsd" => '<abbr title="Berkley Shell Distribution">BSD</abbr> Unix'
@@ -176,12 +184,11 @@ $authoringtools = array(
 $browsers = array(
 	title => "Browser plugin for:",
 	data => array(
+    "any" => 'Any (bookmarklet)',
 		"chrome" => 'Chrome',
 		"firefox" => 'Firefox',
-		"oldie" => 'Internet Explorer &le; 8',
-		"ie" => 'Internet Explorer &ge; 9',
-		"oldopera" => 'Opera &le; 12',
-		"opera" => 'Opera &ge; 15',
+    "ie" => 'Internet Explorer',
+    "opera" => 'Opera',
 		"safari" => 'Safari'
 	),
 	other => true,
