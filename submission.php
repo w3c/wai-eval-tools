@@ -150,6 +150,7 @@ function iter($input, $reference) {
     $data->desktop = iter($_POST['desktop'], $desktopapp);
     $data->mobile = iter($_POST['mobile'], $mobileapp);
     $data->authoringtools = iter($_POST['authoringtools'], $authoringtools);
+    $data->apitype = iter($_POST['apitype'], $apitype);
     $data->browsers = iter($_POST['browsers'], $browsers);
     $data->license = iter($_POST['license'], $license);
 
@@ -422,6 +423,8 @@ function mailstatus($none, $true, $false) {
 			<?php create_form_cb_section($browsers); ?>
 
 	    <?php create_form_cb_section($authoringtools); ?>
+
+      <?php create_form_cb_section($apitype); ?>
 
 	    <?php create_form_cb_section($onlineservice); ?>
 
@@ -737,6 +740,9 @@ $(document).ready(function(){
 			break;
 			case 'atplugin':
 				$('#fs-authoringtools').toggle();
+      break;
+      case 'api':
+        $('#fs-apitype').toggle();
 			break;
 			case 'online':
 				$('#fs-onlineservice').toggle();
@@ -747,7 +753,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#fs-desktop,#fs-mobile,#fs-authoringtools,#fs-browsers,#fs-onlineservice').hide();
+	$('#fs-desktop,#fs-mobile,#fs-authoringtools,#fs-browsers,#fs-onlineservice,#fs-apitype').hide();
 
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
 

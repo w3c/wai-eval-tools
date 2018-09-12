@@ -218,9 +218,24 @@ $tooltype = array(
 		"cli" => 'Command line tool',
 		"browserplugin" => 'Browser plugin',
 		"atplugin" => 'Authoring tool plugin',
+		"api" => 'API (Application Programming Interface)',
 		"online" => 'Online tool'
 	),
 	other => false,
 	variable => 'tooltype',
 	type => 'checkbox'
 );
+
+$apitype = array(
+	title => 'API type:',
+	data => array(
+		"rest" => 'REST',
+		"soap" => 'SOAP',
+		"webhook" => 'Webhook',
+		"js" => 'JavaScript'
+	),
+	other => true,
+	variable => 'apitype',
+	type => 'checkbox'
+);
+
