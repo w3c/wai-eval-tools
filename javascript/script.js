@@ -90,7 +90,6 @@ $(function(){
       selected = [selected.q];
     }
   }
-  console.log(selected.q);
 
 	var item_template = $('#results-template').text();
 	var eval_tools = $.getJSON( "./js/data.json", function() {
@@ -146,6 +145,9 @@ $(function(){
     /* Act on the event */
     $(event.target).removeClass('active');
   });
+
+  document.querySelector(location.hash).scrollIntoView();
+  $(location.hash).focus();
 
 	});
 

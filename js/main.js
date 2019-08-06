@@ -3017,6 +3017,9 @@ $(function(){
     $(event.target).removeClass('active');
   });
 
+  document.querySelector(location.hash).scrollIntoView();
+  $(location.hash).focus();
+
 	});
 
 });
