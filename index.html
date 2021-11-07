@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Web Accessibility Evaluation Tools List</title>
   <meta name="viewport" content="width=device-width">
+  <meta name="robots" content="nofollow">
   <link rel="canonical" href="http://www.w3.org/WAI/ER/tools/">
   <link href="css/wai-act.css" media="screen" rel="stylesheet" type="text/css">
   <script src="js/modernizr.min.js" type="text/javascript"></script>
@@ -63,12 +64,12 @@
     <script type="text/template" id="results-template">
       <li class="tool-item" tabindex="0" id="<%= _(obj.title).to_slug() %>">
         <div>
-          <h3><a href="<%= obj.location %>"><%= obj.title %></a> <i>by <%= obj.creator %></i></h3>
+          <h3><a href="<%= obj.location %>" rel="nofollow"><%= obj.title %></a> <i>by <%= obj.creator %></i></h3>
           <span class="future_permalink"></span>
         </div>
         <div class="desc">
           <p><%= obj.description.replace( /\n/g, "<br/>" ) %></p>
-          <p class="link"><a href="<%= obj.location %>"><%= obj.location %></a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= _(obj.release).parsedate() %></span></p>
+          <p class="link"><a rel="nofollow" href="<%= obj.location %>"><%= obj.location %></a>, <% if (obj.version.length) { %>Version: <%= obj.version %>, <% } %>Released: <%= _(obj.release).parsedate() %></span></p>
         </div>
         <details>
           <summary><strong>Detailed Information</strong> about “<%= obj.title %>”</summary>
