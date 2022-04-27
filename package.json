@@ -12,7 +12,7 @@
     "gulp-modernizr": "^2.0.4"
   },
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.5.2",
     "grunt-modernizr": "^1.0.3",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^1.0.1",
