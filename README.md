@@ -1,5 +1,7 @@
 # WAI Accessibility Evaluation Tools
 
+**[issues in related repo](https://github.com/w3c/wai-evaluation-tools-list/issues)**
+
 ## Setup and Addition of Data
 
 Data is collected in the `data` directory. There are two possibilities to use it.
