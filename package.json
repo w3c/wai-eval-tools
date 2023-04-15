@@ -15,7 +15,7 @@
     "grunt": "^1.0.3",
     "grunt-modernizr": "^1.0.3",
     "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^1.0.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-cache": "^0.2.4",
     "gulp-cheerio": "^0.6.3",
     "gulp-clean": "^0.3.1",
