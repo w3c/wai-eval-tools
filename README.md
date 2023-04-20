@@ -1,6 +1,6 @@
 # WAI Accessibility Evaluation Tools
 
-**[issues in related repo](https://github.com/w3c/wai-evaluation-tools-list/issues)**
+**_This is the repo for the old list. The repo for the new list is: https://github.com/w3c/wai-evaluation-tools-list/issues_**
 
 ## Setup and Addition of Data
 
