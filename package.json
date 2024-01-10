@@ -9,7 +9,7 @@
   "version": "0.2.0",
   "private": "true",
   "dependencies": {
-    "gulp-modernizr": "^2.0.4"
+    "gulp-modernizr": "^4.0.3"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
