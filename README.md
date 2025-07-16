@@ -1,6 +1,9 @@
 # WAI Accessibility Evaluation Tools
 
-**_This is the repo for the old list. The repo for the new list is: https://github.com/w3c/wai-evaluation-tools-list/issues_**
+> [!IMPORTANT]
+> This repository was used for the old list, and has been archived 17 July 2025.
+>
+> The current [Web Accessibility Evaluation Tools List](https://www.w3.org/WAI/test-evaluate/tools/list/) is edited in the [wai-evaluation-tools-list](https://github.com/w3c/wai-evaluation-tools-list) repository.
 
 ## Setup and Addition of Data
 
